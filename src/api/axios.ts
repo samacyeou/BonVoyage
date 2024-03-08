@@ -5,3 +5,4 @@ const instance = axios.create({
 })
 
 export default instance;
+//axios instance 생성, baseURL 설정
