@@ -1,0 +1,46 @@
+:root {
+  --white: #ffffff;
+
+  --Gray10: #fafafa;
+  --Gray20: #eeeeee;
+  --Gray30: #d9d9d9;
+  --Gray40: #9fa6b2;
+  --Gray50: #787468;
+
+  --black10: #4b4b4b;
+  --black20: #333236;
+  --black30: #171717;
+  --black40: #000000;
+
+  --blue10: #a7d7d9;
+  --blue20: #01b3c8;
+  --blue30: #026fb0;
+  --blue40: #35627b;
+  --blue50: #00387e;
+
+  --orange10: #f7e1cc;
+  --orange20: #fac171;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  font-family: "Pretendard", Helvetica;
+}
+
+body,
+
+input,
+a {
+  all: unset;
+}
