@@ -8,16 +8,16 @@
   gap: 10px;
 
   border-radius: 4px;
-  background: var(--gray-gray_EEEEEE, #eee);
+  background: var(--gray20, #eee);
 
   span {
-    color: var(--gray-gray_787486, #787486);
+    color: var(--gray50, #787486);
     text-align: center;
-    font-size: 10px;
+    font-size: 1rem;
     font-weight: 500;
 
     @media (min-width: 375px) {
-      font-size: 12px;
+      font-size: 1.2rem;
     }
   }
 }

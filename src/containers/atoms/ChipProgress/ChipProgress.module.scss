@@ -11,14 +11,14 @@
   span {
     color: var(--5534-da, #00387e);
     text-align: center;
-    font-size: 8px;
+    font-size: 0.8rem;
 
     @media (min-width: 375px) {
-      font-size: 10px;
+      font-size: 1rem;
     }
 
     @media (min-width: 769px) {
-      font-size: 12px;
+      font-size: 1.2rem;
     }
   }
 }
