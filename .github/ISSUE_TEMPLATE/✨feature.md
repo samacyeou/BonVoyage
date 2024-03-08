@@ -1,7 +1,7 @@
 ---
 name: "✨Feature"
 about: Describe this issue template's purpose here.
-title: "[Feature]"
+title: "[Feature] "
 labels: 중
 assignees: ''
 

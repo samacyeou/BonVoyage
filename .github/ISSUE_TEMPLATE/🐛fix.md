@@ -1,8 +1,8 @@
 ---
 name: "\U0001F41BFix"
 about: Describe this issue template's purpose here.
-title: "[Bug]"
-labels: bug, 상
+title: "[Bug] "
+labels: 상
 assignees: ''
 
 ---
