@@ -7,3 +7,4 @@ const index = () => {
 }
 
 export default index
+//여기는 메인 랜딩페이지 들어갈 곳
