@@ -1,9 +1,11 @@
+import StatusDropDown from '@/containers/atoms/DropDown/StatusDropDown';
 import React from 'react';
 
 const index = () => {
   return (
     <>
       <div>index</div>
+      <StatusDropDown items={['ToDo', 'OnProgress', 'Done']} />
     </>
   );
 };
