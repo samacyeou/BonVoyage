@@ -1,0 +1,97 @@
+//새로운 컬럼 추가히기
+.addColumn {
+  width: 284px;
+  height: 60px;
+  border-radius: 8px;
+  border: 1px solid var(--Gray30, #d9d9d9);
+  background: var(--white, #ffffff);
+  color: var(--black20, #333236);
+  font-size: 1.6rem;
+  font-weight: 700;
+
+  .icon {
+    margin-left: 12px;
+    display: inline-block;
+  }
+
+  //태블릿
+  @media (min-width: 769px) {
+    width: 544px;
+    height: 70px;
+  }
+
+  //데스크탑
+  @media (min-width: 1024px) {
+    width: 354px;
+    height: 70px;
+  }
+}
+
+//새로운 대시보드
+.newDashboard {
+  width: 260px;
+  height: 58px;
+  border-radius: 8px;
+  border: 1px solid var(--Gray30, #d9d9d9);
+  background: var(--white, #ffffff);
+  color: var(--black20, #333236);
+  font-size: 14px;
+  font-weight: 600;
+
+  .icon {
+    margin-left: 12px;
+    display: inline-block;
+  }
+
+  //태블릿
+  @media (min-width: 769px) {
+    width: 247px;
+    height: 68px;
+  }
+
+  //데스크탑
+  @media (min-width: 1024px) {
+    width: 332px;
+    height: 70px;
+  }
+}
+
+//투두 추가
+.addTodo {
+  width: 284px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--Gray30, #d9d9d9);
+  background: var(--white, #ffffff);
+
+  //태블릿
+  @media (min-width: 769px) {
+    width: 544px;
+    height: 40px;
+  }
+
+  //데스크탑
+  @media (min-width: 1024px) {
+    width: 314px;
+    height: 40px;
+  }
+}
+
+//대시보드 삭제
+.deleteDashboard {
+  width: 284px;
+  height: 52px;
+  background: var(--Gray10, #fafafa);
+  border-radius: 8px;
+  border: 1px solid var(--Gray30, #d9d9d9);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--black20, #333236);
+
+  //데스크탑 태블릿
+  @media (min-width: 769px) {
+    width: 320px;
+    height: 62px;
+  }
+}
+

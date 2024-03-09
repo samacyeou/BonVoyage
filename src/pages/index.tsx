@@ -1,4 +1,5 @@
 import Button from "@/components/atoms/button/index";
+import DashboardBtn from "@/components/atoms/dashboardBtn/index";
 
 const index = () => {
   return (
@@ -18,6 +19,20 @@ const index = () => {
       <Button name="취소" type="modal" color="white" />
       <br />
       <Button name="확인" type="modal" color="blue" />
+      <br />
+      <DashboardBtn name="새로운 컬럼 추가하기" type="addColumn"/>
+      <br />
+      <DashboardBtn name="새로운 대시보드" type="newDashboard"/>
+      <br />
+      <DashboardBtn type="addTodo"/>
+      <br />
+      <DashboardBtn name="대시보드 삭제하기" type="deleteDashboard"/>
+      <br />
+    
+
+      <br />
+      <br />
+
     </>
   );
 };
