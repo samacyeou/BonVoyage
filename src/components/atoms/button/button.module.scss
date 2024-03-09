@@ -9,6 +9,8 @@
   text-align: center;
   font-size: 1.8rem;
   font-weight: 500;
+  cursor: pointer;
+
 
   &:disabled {
     background: var(--Gray40, #9fa6b2);
@@ -31,6 +33,8 @@
   text-align: center;
   font-size: 1.2rem;
   font-weight: 500;
+  cursor: pointer;
+
 
   //태블릿
   @media (min-width: 769px) {
@@ -68,6 +72,8 @@
   color: var(--blue30, #026fb0);
   font-size: 1.2rem;
   font-weight: 500;
+  cursor: pointer;
+
 
   //태블릿, 데스크탑
   @media (min-width: 769px) {
@@ -84,6 +90,8 @@
   border-radius: 8px;
   font-size: 1.4rem;
   font-weight: 500;
+  cursor: pointer;
+
 
   @media (min-width: 769px) {
     width: 120px;
@@ -113,6 +121,8 @@
   color: var(--blue30, #026fb0);
   font-size: 1.2rem;
   font-weight: 500;
+  cursor: pointer;
+
   @media (min-width: 769px) {
     width: 83px;
     height: 32px;

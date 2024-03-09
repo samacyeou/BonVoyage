@@ -8,6 +8,8 @@
   color: var(--black20, #333236);
   font-size: 1.6rem;
   font-weight: 700;
+  cursor: pointer;
+
 
   .icon {
     margin-left: 12px;
@@ -37,6 +39,8 @@
   color: var(--black20, #333236);
   font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
+
 
   .icon {
     margin-left: 12px;
@@ -63,6 +67,8 @@
   border-radius: 6px;
   border: 1px solid var(--Gray30, #d9d9d9);
   background: var(--white, #ffffff);
+  cursor: pointer;
+
 
   //태블릿
   @media (min-width: 769px) {
@@ -87,6 +93,8 @@
   font-size: 1.6rem;
   font-weight: 500;
   color: var(--black20, #333236);
+  cursor: pointer;
+
 
   //데스크탑 태블릿
   @media (min-width: 769px) {
