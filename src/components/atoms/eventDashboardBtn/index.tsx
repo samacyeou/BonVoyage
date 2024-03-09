@@ -1,9 +1,9 @@
 import { ButtonProps } from "@/@types/type";
-import styles from "./dashboardBtn.module.scss";
+import styles from "./eventDashboardBtn.module.scss";
 import Image from "next/image";
 import plus_png from "../../../../public/assets/icon/plus.png";
 
-const DashboardBtn = ({ name, type, onClick }: ButtonProps) => {
+const eventDashboardBtn = ({ name, type, onClick }: ButtonProps) => {
   return (
     <button
       className={
@@ -29,7 +29,7 @@ const DashboardBtn = ({ name, type, onClick }: ButtonProps) => {
   );
 };
 
-export default DashboardBtn;
+export default eventDashboardBtn;
 
 //사용법 적기
 
