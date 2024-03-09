@@ -25,3 +25,9 @@ const MyDashboard = ({ name, src, src2, iconAlt, onClick }: ButtonProps) => {
 };
 
 export default MyDashboard;
+
+//사용법
+
+//<MyDashboard name="비브리지" src={ellipseGreen} src2={crownIcon}/>
+
+//이런식으로 사용하실 컴포넌트에서 src, src2 prop에 이미지 import해서 사용하시면 됩니다.

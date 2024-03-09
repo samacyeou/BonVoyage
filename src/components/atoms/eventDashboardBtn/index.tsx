@@ -31,3 +31,13 @@ const DashboardBtn = ({ name, type, onClick }: ButtonProps) => {
 
 export default DashboardBtn;
 
+//사용법 적기
+
+// <DashboardBtn name="새로운 컬럼 추가하기" type="addColumn"/>
+//
+
+// <DashboardBtn name="새로운 대시보드" type="newDashboard"/>
+
+// <DashboardBtn type="addTodo"/>
+
+// <DashboardBtn name="대시보드 삭제하기" type="deleteDashboard"/>
