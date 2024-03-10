@@ -1,0 +1,12 @@
+.tagContainer {
+  position: relative;
+}
+
+.tag {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
