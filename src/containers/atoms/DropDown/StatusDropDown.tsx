@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { MouseEvent, useRef, useState } from 'react';
 import styles from './statusDropDown.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
