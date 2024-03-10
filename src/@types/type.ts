@@ -15,4 +15,7 @@ export interface MyDashboardProps extends ButtonProps {
   iconAlt?: string;
 }
 
-
+export interface MemberProfile {
+  nickname: string;
+  imageUrl: string;
+}

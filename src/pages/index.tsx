@@ -1,4 +1,3 @@
-import ImageInput from '@/containers/atoms/ImageInput/ImageInput';
 import React from 'react';
 
 const index = () => {
@@ -6,9 +5,6 @@ const index = () => {
   return (
     <>
       <div>index</div>
-      <div style={{ padding: '10px' }}>
-        <ImageInput />
-      </div>
     </>
   );
 
