@@ -1,4 +1,4 @@
-import StatusDropDown from '@/containers/atoms/DropDown/StatusDropDown';
+import ImageInput from '@/containers/atoms/ImageInput/ImageInput';
 import React from 'react';
 
 const index = () => {
@@ -6,7 +6,9 @@ const index = () => {
   return (
     <>
       <div>index</div>
-      <StatusDropDown items={['ToDo', 'OnProgress', 'Done']} />
+      <div style={{ padding: '10px' }}>
+        <ImageInput />
+      </div>
     </>
   );
 
