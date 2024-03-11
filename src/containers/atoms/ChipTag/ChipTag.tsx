@@ -5,7 +5,7 @@ const cn = classNames.bind(styles);
 
 interface Props {
   tag: string;
-  color: string;
+  color: 'orange' | 'pink' | 'blue' | 'green';
 }
 
 export default function ChipTag({ tag, color }: Props) {
