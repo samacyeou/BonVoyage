@@ -1,27 +1,33 @@
-import styles from "./button.module.scss";
-import { ButtonProps } from "@/@types/type";
+import styles from './button.module.scss';
+import { ButtonProps } from '@/@types/type';
 
 const Button = ({ name, disabled, type, color, onClick }: ButtonProps) => {
+  const classNames = (
+    type: ButtonProps['type'],
+    color: ButtonProps['color'],
+  ) => {
+    switch (type) {
+      case 'acount':
+        return styles.acountBtn;
+      case 'small':
+        return color === 'blue' ? styles.acceptBtn : styles.declineBtn;
+      case 'delete':
+        return styles.deleteBtn;
+      case 'modal':
+        return color === 'blue'
+          ? styles.modalConfirmBtn
+          : color === 'white'
+            ? styles.modalCancelBtn
+            : styles.modalSubmitBtn;
+      default:
+        return '';
+    }
+  };
+
   return (
     <>
       <button
-        className={
-          type === "acount"
-            ? styles.acountBtn
-            : type === "small"
-              ? color === "blue"
-                ? styles.acceptBtn
-                : styles.declineBtn
-              : type === "delete"
-                ? styles.deleteBtn
-                : type === "modal"
-                  ? color === "blue"
-                    ? styles.modalConfirmBtn
-                    : color === "white"
-                      ? styles.modalCancelBtn
-                      : styles.modalSubmitBtn
-                  : ""
-        }
+        className={classNames(type, color)}
         disabled={disabled}
         onClick={onClick}
       >

@@ -9,7 +9,7 @@ export interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export interface MyDashboardProps extends ButtonProps{
+export interface MyDashboardProps extends ButtonProps {
   src: StaticImageData;
   src2?: StaticImageData;
   iconAlt?: string;

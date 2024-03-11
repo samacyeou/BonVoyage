@@ -1,28 +1,29 @@
-import { ButtonProps } from "@/@types/type";
-import styles from "./eventDashboardBtn.module.scss";
-import Image from "next/image";
-import plus_png from "../../../../public/assets/icon/plus.png";
+import { ButtonProps } from '@/@types/type';
+import styles from './eventDashboardBtn.module.scss';
+import Image from 'next/image';
+import plus_png from '../../../../public/assets/icon/plus.png';
 
 const eventDashboardBtn = ({ name, type, onClick }: ButtonProps) => {
+  const classNames = (type: ButtonProps['type']) => {
+    switch (type) {
+      case 'addColumn':
+        return styles.addColumn;
+      case 'newDashboard':
+        return styles.newDashboard;
+      case 'addTodo':
+        return styles.addTodo;
+      case 'deleteDashboard':
+        return styles.deleteDashboard;
+      default:
+        return '';
+    }
+  };
   return (
-    <button
-      className={
-        type === "addColumn"
-          ? styles.addColumn
-          : type === "newDashboard"
-            ? styles.newDashboard
-            : type === "addTodo"
-              ? styles.addTodo
-              : type === "deleteDashboard"
-                ? styles.deleteDashboard
-                : ""
-      }
-      onClick={onClick}
-    >
+    <button className={classNames(type)} onClick={onClick}>
       {name}
-      {type !== "deleteDashboard" && (
+      {type !== 'deleteDashboard' && (
         <div className={styles.icon}>
-          <Image src={plus_png} alt="plus" width={20} height={20} />
+          <Image src={plus_png} alt='plus' width={20} height={20} />
         </div>
       )}
     </button>
