@@ -1,7 +1,7 @@
 import { MyDashboardProps } from '@/@types/type';
 import styles from './myDashboardBtn.module.scss';
 import Image from 'next/image';
-import forwardArrowIcon from '../../../../public/assets/icon/forwardArrowIcon.svg';
+import forwardArrowIcon from '../../../../../public/assets/icon/forwardArrowIcon.svg';
 
 const MyDashboard = ({
   name,

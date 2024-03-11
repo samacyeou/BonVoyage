@@ -1,7 +1,7 @@
 import { ButtonProps } from '@/@types/type';
 import styles from './pagenationBtn.module.scss';
-import forwardArrowIcon from '../../../../public/assets/icon/forwardArrowIcon.svg';
-import leftArrowIcon from '../../../../public/assets/icon/leftArrowIcon.svg';
+import forwardArrowIcon from '../../../../../public/assets/icon/forwardArrowIcon.svg';
+import leftArrowIcon from '../../../../../public/assets/icon/leftArrowIcon.svg';
 import Image from 'next/image';
 
 const PagenationBtn = ({ onClick }: ButtonProps) => {

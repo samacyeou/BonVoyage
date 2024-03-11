@@ -1,9 +1,10 @@
 import { ButtonProps } from '@/@types/type';
 import styles from './eventDashboardBtn.module.scss';
 import Image from 'next/image';
-import plus_png from '../../../../public/assets/icon/plus.png';
+import plus_png from '../../../../../public/assets/icon/plus.png';
 
-const eventDashboardBtn = ({ name, type, onClick }: ButtonProps) => {
+
+const EventDashboardBtn = ({ name, type, onClick }: ButtonProps) => {
   const classNames = (type: ButtonProps['type']) => {
     switch (type) {
       case 'addColumn':
@@ -30,15 +31,15 @@ const eventDashboardBtn = ({ name, type, onClick }: ButtonProps) => {
   );
 };
 
-export default eventDashboardBtn;
+export default EventDashboardBtn;
 
 //사용법 적기
 
-// <DashboardBtn name="새로운 컬럼 추가하기" type="addColumn"/>
+// <eventDashboardBtn name="새로운 컬럼 추가하기" type="addColumn"/>
 //
 
-// <DashboardBtn name="새로운 대시보드" type="newDashboard"/>
+// <eventDashboardBtn name="새로운 대시보드" type="newDashboard"/>
 
-// <DashboardBtn type="addTodo"/>
+// <eventDashboardBtn type="addTodo"/>
 
-// <DashboardBtn name="대시보드 삭제하기" type="deleteDashboard"/>
+// <eventDashboardBtn name="대시보드 삭제하기" type="deleteDashboard"/>
