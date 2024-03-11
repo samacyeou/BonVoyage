@@ -33,7 +33,7 @@ const EventDashboardBtn = ({ name, type, onClick }: ButtonProps) => {
 
 export default EventDashboardBtn;
 
-//사용법 적기
+//사용법
 
 // <eventDashboardBtn name="새로운 컬럼 추가하기" type="addColumn"/>
 //
