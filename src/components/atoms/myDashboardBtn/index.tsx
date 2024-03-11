@@ -1,9 +1,9 @@
-import { ButtonProps } from "@/@types/type";
+import { MyDashboardProps } from "@/@types/type";
 import styles from "./myDashboardBtn.module.scss";
 import Image from "next/image";
 import forwardArrowIcon from "../../../../public/assets/icon/forwardArrowIcon.svg";
 
-const MyDashboard = ({ name, src, src2, iconAlt, onClick }: ButtonProps) => {
+const MyDashboard = ({ name, src, src2, iconAlt, onClick }: MyDashboardProps) => {
   return (
     <button className={styles.myDashboardBtn} onClick={onClick}>
       <div className={styles.container}>

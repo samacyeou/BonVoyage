@@ -6,10 +6,13 @@ export interface ButtonProps {
   disabled?: boolean;
   type?: string;
   color?: string;
-  iconAlt?: string;
-  src: StaticImageData
-  src2?: StaticImageData 
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+export interface MyDashboardProps extends ButtonProps{
+  src: StaticImageData;
+  src2?: StaticImageData;
+  iconAlt?: string;
 }
 
 //IntrinsicAttributes & Omit<DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>, "src" | ... 4 more ... | "loading"> & { ...; }
