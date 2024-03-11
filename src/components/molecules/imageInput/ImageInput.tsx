@@ -31,25 +31,25 @@ export default function ImageInput() {
       <input
         className={styles['imageInput']}
         ref={imageInput}
-        type="file"
-        accept=".svg, .png, .jpg, .jpeg"
+        type='file'
+        accept='.svg, .png, .jpg, .jpeg'
         onChange={onChangeImage}
       />
       <button className={styles['imageBox']} onClick={onClickImageBox}>
         <div className={styles['image']}>
           <Image
-            layout="fill"
+            layout='fill'
             src={imageUrl ? imageUrl : '/assets/icon/plusIcon.svg'}
-            alt="+ 아이콘"
+            alt='+ 아이콘'
           />
         </div>
         {imageUrl && (
           <div className={styles['hoverImageBox']}>
             <div className={styles['hoverImage']}>
               <Image
-                layout="fill"
-                src="/assets/icon/editIcon.svg"
-                alt="연필 아이콘"
+                layout='fill'
+                src='/assets/icon/editIcon.svg'
+                alt='연필 아이콘'
               />
             </div>
           </div>
