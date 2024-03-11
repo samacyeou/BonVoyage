@@ -1,4 +1,4 @@
-import CreateDoItYourselfInput from "./CreateDoItYourselfInput";
+import CreateDoItYourselfInput from './CreateDoItYourselfInput';
 
 export default function CreateDoItYourselfTitle() {
   return (

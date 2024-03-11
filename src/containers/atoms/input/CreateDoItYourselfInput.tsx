@@ -1,6 +1,6 @@
-import { HTMLInputTypeAttribute, PropsWithChildren, ReactNode } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
-import styles from "./createDoItYourselfInput.module.scss";
+import { HTMLInputTypeAttribute, PropsWithChildren, ReactNode } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
+import styles from './createDoItYourselfInput.module.scss';
 
 interface CreateDoItYourselfProps {
   title: string;
@@ -8,7 +8,7 @@ interface CreateDoItYourselfProps {
   icon?: ReactNode;
   name?: string;
   required?: boolean;
-  type?: HTMLInputTypeAttribute | "textarea";
+  type?: HTMLInputTypeAttribute | 'textarea';
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
@@ -17,9 +17,9 @@ export default function CreateDoItYourselfInput({
   content,
   icon,
   children,
-  name = "inputField",
+  name = 'inputField',
   required = false,
-  type = "text",
+  type = 'text',
   onKeyDown,
   ...props
 }: PropsWithChildren<CreateDoItYourselfProps> &
@@ -34,7 +34,7 @@ export default function CreateDoItYourselfInput({
         {title}
         {required && <span className={styles.requiredLabel}>*</span>}
       </label>
-      {type === "textarea" ? (
+      {type === 'textarea' ? (
         <>
           <textarea
             placeholder={content}

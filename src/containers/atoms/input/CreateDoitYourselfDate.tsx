@@ -1,7 +1,7 @@
-import Image from "next/image";
-import CreateDoItYourselfInput from "./CreateDoItYourselfInput";
+import Image from 'next/image';
+import CreateDoItYourselfInput from './CreateDoItYourselfInput';
 
-export default function CreateDoitYourselfDate() {
+export default function CreateDoItYourselfDate() {
   const calendarIcon = (
     <Image
       src="/assets/icon/calendarIcon.svg"
