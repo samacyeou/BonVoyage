@@ -1,19 +1,24 @@
-import { useState } from "react";
-import ChipTag from "../chipTag/ChipTag";
-import CreateDoItYourselfInput from "./CreateDoItYourselfInput";
-import styles from "./createDoItYourselfTag.module.scss";
+import ChipTag from '@/containers/atoms/ChipTag/ChipTag';
+import { useState } from 'react';
+import CreateDoItYourselfInput from './CreateDoItYourselfInput';
+import styles from './createDoItYourselfTag.module.scss';
 
-const colors = ["orange", "green", "pink", "blue"];
+const colors: Array<'orange' | 'pink' | 'blue' | 'green'> = [
+  'orange',
+  'green',
+  'pink',
+  'blue',
+];
 
 export default function CreateDoitYourselfTag() {
   const [tags, setTags] = useState<string[]>([]); // 입력된 태그들을 저장하는 상태
 
   // 엔터를 누르면 태그를 추가하는 함수
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && event.currentTarget.value.trim() !== "") {
+    if (event.key === 'Enter' && event.currentTarget.value.trim() !== '') {
       const newTag = event.currentTarget.value.trim(); // 입력된 값을 가져옴
       setTags((prevTags) => [...prevTags, newTag]); // 새로운 태그를 추가함
-      event.currentTarget.value = ""; // 입력 필드를 비움
+      event.currentTarget.value = ''; // 입력 필드를 비움
     }
   };
 
@@ -24,9 +29,9 @@ export default function CreateDoitYourselfTag() {
 
   return (
     <CreateDoItYourselfInput
-      title="태그"
-      content="입력 후 Enter를 누르세요"
-      type="text"
+      title='태그'
+      content='입력 후 Enter를 누르세요'
+      type='text'
       onKeyDown={handleKeyDown}
     >
       <div className={styles.tagContainer}>
