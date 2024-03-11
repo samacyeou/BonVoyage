@@ -11,7 +11,7 @@
   cursor: pointer;
 
   &:disabled {
-    background: var(--Gray40, #9fa6b2);
+    background: var(--gray40, #9fa6b2);
     cursor: not-allowed;
   }
 
@@ -54,7 +54,7 @@
 .declineBtn {
   @extend .smallBtn;
   background: var(--white, #ffffff);
-  border: 1px solid var(--Gray30, #d9d9d9);
+  border: 1px solid var(--gray30, #d9d9d9);
   color: var(--blue30, #026fb0);
 }
 
@@ -63,7 +63,7 @@
   width: 52px;
   height: 28px;
   background: var(--white, #ffffff);
-  border: 1px solid var(--Gray30, #d9d9d9);
+  border: 1px solid var(--gray30, #d9d9d9);
   border-radius: 4px;
   color: var(--blue30, #026fb0);
   font-size: 1.2rem;
@@ -102,15 +102,15 @@
 .modalCancelBtn {
   @extend .modalBtn;
   background: var(--white, #ffffff);
-  border: 1px solid var(--Gray30, #d9d9d9);
-  color: var(--Gray50, #787468);
+  border: 1px solid var(--gray30, #d9d9d9);
+  color: var(--gray50, #787468);
 }
 
 .modalSubmitBtn {
   width: 84px;
   height: 28px;
   background: var(--white, #ffffff);
-  border: 1px solid var(--Gray30, #d9d9d9);
+  border: 1px solid var(--gray30, #d9d9d9);
   border-radius: 4px;
   color: var(--blue30, #026fb0);
   font-size: 1.2rem;
