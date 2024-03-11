@@ -1,8 +1,15 @@
 import { ChangeEvent, useRef, useState } from 'react';
 import styles from './imageInput.module.scss';
+import classNames from 'classnames/bind';
 import Image from 'next/image';
 
-export default function ImageInput() {
+const cn = classNames.bind(styles);
+
+interface Props {
+  size: 'small' | 'big';
+}
+
+export default function ImageInput({ size }: Props) {
   const [imageUrl, setImageUrl] = useState('');
   const imageInput = useRef<HTMLInputElement>(null);
 
@@ -12,7 +19,7 @@ export default function ImageInput() {
     }
   };
 
-  const onChangeImage = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeImage = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
     if (file) {
@@ -29,23 +36,25 @@ export default function ImageInput() {
   return (
     <>
       <input
-        className={styles['imageInput']}
+        className={cn('imageInput')}
         ref={imageInput}
         type='file'
         accept='.svg, .png, .jpg, .jpeg'
         onChange={onChangeImage}
       />
-      <button className={styles['imageBox']} onClick={onClickImageBox}>
-        <div className={styles['image']}>
+      <button className={cn('imageBox', size)} onClick={onClickImageBox}>
+        <div
+          className={cn({ iconImage: !imageUrl }, { uploadImage: imageUrl })}
+        >
           <Image
             layout='fill'
             src={imageUrl ? imageUrl : '/assets/icon/plusIcon.svg'}
-            alt='+ 아이콘'
+            alt={imageUrl ? '불러온 이미지' : '+ 아이콘'}
           />
         </div>
         {imageUrl && (
-          <div className={styles['hoverImageBox']}>
-            <div className={styles['hoverImage']}>
+          <div className={cn('hoverImageBox')}>
+            <div className={cn('iconImage')}>
               <Image
                 layout='fill'
                 src='/assets/icon/editIcon.svg'
