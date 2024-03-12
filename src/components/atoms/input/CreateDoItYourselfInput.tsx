@@ -1,24 +1,21 @@
-import { HTMLInputTypeAttribute, PropsWithChildren, ReactNode } from 'react';
+import { CreateDoItYourselfProps } from '@/@types/type';
+import classNames from 'classnames/bind';
+import { PropsWithChildren } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import styles from './createDoItYourselfInput.module.scss';
 
-interface CreateDoItYourselfProps {
-  title: string;
-  content?: string;
-  icon?: ReactNode;
-  name?: string;
-  required?: boolean;
-  type?: HTMLInputTypeAttribute | 'textarea';
-  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-}
+const cn = classNames.bind(styles);
 
 export default function CreateDoItYourselfInput({
   title,
   content,
   icon,
   children,
+  className,
   name = 'inputField',
   required = false,
+  isSpecialInput = false,
+  isVertical = false,
   type = 'text',
   onKeyDown,
   ...props
@@ -28,24 +25,13 @@ export default function CreateDoItYourselfInput({
   const inputProps = required ? { ...props, required: true } : props;
 
   return (
-    <div className={styles.formContainer}>
+    <div className={cn('formContainer', className)}>
       {/* content를 placeholder로 사용하고, required prop 적용 */}
       <label className={styles.labelContainer}>
         {title}
         {required && <span className={styles.requiredLabel}>*</span>}
       </label>
-      {type === 'textarea' ? (
-        <>
-          <textarea
-            placeholder={content}
-            {...inputProps}
-            className={styles.textareaContainer}
-          />
-          <button type="submit" className={styles.submitButton}>
-            입력
-          </button>
-        </>
-      ) : (
+      {!isSpecialInput ? (
         <input
           type={type}
           placeholder={content}
@@ -54,9 +40,22 @@ export default function CreateDoItYourselfInput({
           data-has-icon={icon ? true : undefined}
           onKeyDown={onKeyDown}
         />
+      ) : (
+        <div
+          className={cn('specialInputWrapper', { 'flex-column': isVertical })}
+        >
+          {icon && <div className={styles.calendarIcon}>{icon}</div>}
+          <input
+            type={type}
+            placeholder={content}
+            {...inputProps}
+            className={styles.specialInputContainer}
+            data-has-icon={icon ? true : undefined}
+            onKeyDown={onKeyDown}
+          />
+          {children}
+        </div>
       )}
-      {icon && <div className={styles.calendarIcon}>{icon}</div>}
-      {children}
     </div>
   );
 }

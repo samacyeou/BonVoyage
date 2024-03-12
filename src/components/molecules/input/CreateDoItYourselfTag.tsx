@@ -1,7 +1,7 @@
-import ChipTag from '@/containers/atoms/ChipTag/ChipTag';
 import { useState } from 'react';
-import CreateDoItYourselfInput from '@/containers/atoms/input/CreateDoItYourselfInput';
 import styles from './createDoItYourselfTag.module.scss';
+import CreateDoItYourselfInput from '@/components/atoms/input/CreateDoItYourselfInput';
+import ChipTag from '@/components/atoms/chipTag/ChipTag';
 
 const colors: Array<'orange' | 'pink' | 'blue' | 'green'> = [
   'orange',
@@ -39,11 +39,14 @@ export default function CreateDoItYourselfTag() {
 
   return (
     <CreateDoItYourselfInput
-      title='태그'
-      content='입력 후 Enter를 누르세요'
-      type='text'
+      title="태그"
+      content="입력 후 Enter를 누르세요"
+      type="text"
       onKeyDown={handleKeyDown}
+      isSpecialInput
+      isVertical
     >
+      <hr className={styles.underline} />
       <div
         className={`${styles.tagContainer} ${hasTags ? styles.hasTags : ''}`}
       >
