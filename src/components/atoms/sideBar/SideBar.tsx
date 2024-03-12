@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styles from './sideBar.module.scss';
 import Image from 'next/image';
 import logo from '../../../../public/assets/icon/logo.svg';

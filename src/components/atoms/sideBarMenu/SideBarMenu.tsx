@@ -4,8 +4,8 @@ import Image from 'next/image';
 import crownIcon from '../../../../public/assets/icon/crownIcon.svg';
 
 interface SideBarMenuProps {
-  menuTitle: string;
-  path: string;
+  menuTitle?: string;
+  path?: string;
 }
 
 export default function SideBarMenu({ menuTitle, path }: SideBarMenuProps) {
