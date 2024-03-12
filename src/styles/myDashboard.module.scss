@@ -1,0 +1,23 @@
+.background {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  background: var(--gray10, #fafafa);
+}
+
+.section {
+  padding: 16px 10px 0 80px;
+
+  @media (min-width: 375px) {
+    padding: 24px 12px 0 91px;
+  }
+
+  @media (min-width: 769px) {
+    padding: 40px 40px 0 200px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 40px 80px 0 340px;
+  }
+}

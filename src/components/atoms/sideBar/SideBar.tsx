@@ -3,7 +3,7 @@ import Image from 'next/image';
 import logo from '../../../../public/assets/icon/logo.svg';
 import taskify from '../../../../public/assets/icon/taskify.svg';
 import addBoxIcon from '../../../../public/assets/icon/addBoxIcon.svg';
-import SideBarMenu from '../SideBarMenu/SideBarMenu';
+import SideBarMenu from '../sideBarMenu/SideBarMenu';
 
 export default function SideBar() {
   return (
