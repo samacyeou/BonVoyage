@@ -17,15 +17,13 @@ const MyDashboard = ({
         {name}
         <Image src={src2 ?? ''} alt={iconAlt} width={20} height={20} />
       </div>
-      <div>
-        <Image
-          src={forwardArrowIcon}
-          alt='forwardArrowIcon'
-          className={styles.arrowIcon}
-          width={18}
-          height={18}
-        />
-      </div>
+      <Image
+        src={forwardArrowIcon}
+        alt='forwardArrowIcon'
+        className={styles.arrowIcon}
+        width={18}
+        height={18}
+      />
     </button>
   );
 };
