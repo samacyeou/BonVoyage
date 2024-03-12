@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './statusDropDown.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import ChipProgress from '../../molecules/ChipProgress/ChipProgress';
+import ChipProgress from '../../molecules/chipProgress/ChipProgress';
 
 const cn = classNames.bind(styles);
 
@@ -31,8 +31,8 @@ export default function StatusDropDown({ items }: Props) {
           <Image
             width={26}
             height={26}
-            src='/assets/icon/dropDownArrowIcon.svg'
-            alt='아래 삼각형 아이콘'
+            src="/assets/icon/dropDownArrowIcon.svg"
+            alt="아래 삼각형 아이콘"
           />
         </div>
         {isOpenItemList && (
@@ -53,8 +53,8 @@ export default function StatusDropDown({ items }: Props) {
                       <Image
                         width={22}
                         height={22}
-                        src='/assets/icon/checkIcon.svg'
-                        alt='check 아이콘'
+                        src="/assets/icon/checkIcon.svg"
+                        alt="check 아이콘"
                       />
                     )}
                   </div>
