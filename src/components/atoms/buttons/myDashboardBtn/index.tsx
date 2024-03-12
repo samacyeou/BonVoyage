@@ -1,9 +1,9 @@
 import { MyDashboardProps } from '@/@types/type';
-import styles from './myDashboardBtn.module.scss';
+import styles from './MyDashboardBtn.module.scss';
 import Image from 'next/image';
 import forwardArrowIcon from '../../../../../public/assets/icon/forwardArrowIcon.svg';
 
-const MyDashboard = ({
+const MyDashboardBtn = ({
   name,
   src,
   src2,
@@ -19,7 +19,7 @@ const MyDashboard = ({
       </div>
       <Image
         src={forwardArrowIcon}
-        alt='forwardArrowIcon'
+        alt="forwardArrowIcon"
         className={styles.arrowIcon}
         width={18}
         height={18}
@@ -28,14 +28,11 @@ const MyDashboard = ({
   );
 };
 
-export default MyDashboard;
-
-//src={src2 ?? ""}
-//src2가 null또는 undefinedd이면  ""로 대체
+export default MyDashboardBtn;
 
 //사용법
 
-//<MyDashboard name="비브리지" src={ellipseGreen} src2={crownIcon}/>
+//<MyDashboardBtn name="비브리지" src={ellipseGreen} src2={crownIcon} />
 
 //이런식으로 사용하실 컴포넌트에서 src, src2 prop에 이미지 import해서 사용하시면 됩니다.
 //src2, iconAlt은 선택사항입니다.

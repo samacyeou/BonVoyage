@@ -1,4 +1,4 @@
-import styles from './button.module.scss';
+import styles from './Button.module.scss';
 import { ButtonProps } from '@/@types/type';
 
 const Button = ({ name, disabled, type, color, onClick }: ButtonProps) => {
@@ -64,3 +64,5 @@ export default Button;
 
 // <Button name="입력" type="modal" />;
 //-> 입력버튼, 입력버튼은 color props가 없어도 됨
+
+// 새컬럼 생성 모달의 생성버튼,  컬럼 관리 모달의 변경버튼도 (type="modal") 활용하면 될 것 같아요 

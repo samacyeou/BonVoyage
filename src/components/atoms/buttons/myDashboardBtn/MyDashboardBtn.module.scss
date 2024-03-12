@@ -13,6 +13,8 @@
   color: var(--black20, #333236);
   font-size: 1.4rem;
   font-weight: 600;
+  cursor: pointer;
+
 
   .container {
     display: flex;
@@ -22,7 +24,6 @@
   .arrowIcon:hover {
     transform: scale(1.5);
     transition-duration: 0.3s;
-    cursor: pointer;
   }
 
   //태블릿
