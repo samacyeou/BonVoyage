@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import styles from './createDoItYourselfTag.module.scss';
+<<<<<<< HEAD
 import ChipTag from '@/components/atoms/chipTag/ChipTag';
 import CreateDoItYourselfInput from '@/components/atoms/input/createDoItYourselfCommonInput/CreateDoItYourselfInput';
+=======
+import CreateDoItYourselfInput from '@/components/atoms/input/CreateDoItYourselfInput';
+import ChipTag from '@/components/atoms/chipTag/ChipTag';
+>>>>>>> ffaae27 ([Feat] 할 일 페이지 atoms 구현 (#18))
 
 const colors: Array<'orange' | 'pink' | 'blue' | 'green'> = [
   'orange',
