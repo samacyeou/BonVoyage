@@ -1,0 +1,28 @@
+.signUpWrapper {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 24px);
+  height: 100%;
+  margin: 0 12px;
+}
+
+.signUpLogoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.signUpNiceMeetYouText {
+  color: var(--black);
+  font-size: 2rem;
+}
+
+.signUpFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 8px;
+}
