@@ -1,9 +1,15 @@
+import instance from '@/api/axios';
 import EventDashboardBtn from '@/components/atoms/buttons/eventDashboardBtn';
 import MyDashboardBtn from '@/components/atoms/buttons/myDashboardBtn';
 import SideBar from '@/components/atoms/sideBar/SideBar';
 import MyHeader from '@/components/molecules/myHeader/MyHeader';
 import styles from '@/styles/myDashboard.module.scss';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
+import ellipseGreen from '../../public/assets/icon/ellipseGreen.svg';
+import ellipsePurple from '../../public/assets/icon/ellipsePurple.svg';
+import ellipseSkyBlue from '../../public/assets/icon/ellipseSkyBlue.svg';
+import ellipsePink from '../../public/assets/icon/ellipsePink.svg';
+import ellipseOrange from '../../public/assets/icon/ellipseOrange.svg';
 import { useEffect, useState } from 'react';
 
 interface Dashboard {
@@ -38,12 +44,12 @@ interface Invitation {
   updatedAt: string;
 }
 
-const ELLIPSE_LIST = {
-  green: '/assets/icon/ellipseGreen',
-  orange: '/assets/icon/ellipseOrange',
-  pink: '/assets/icon/ellipsePink',
-  purple: '/assets/icon/ellipsePurple',
-  skyblue: '/assets/icon/ellipseSkyBlue',
+const ELLIPSE_LIST: { [value: string]: StaticImageData } = {
+  '#7AC555': ellipseGreen,
+  '#FFA500': ellipseOrange,
+  '#E876EA': ellipsePink,
+  '#760DDE': ellipsePurple,
+  '#76A5EA': ellipseSkyBlue,
 };
 
 export default function MyDashboard() {
@@ -95,6 +101,41 @@ export default function MyDashboard() {
     );
   }
 
+  useEffect(() => {
+    async function login() {
+      try {
+        const login = await instance.post(
+          '/auth/login',
+          { email: 'test@codeit.com', password: 'sprint101' },
+          {
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+          },
+        );
+
+        const response = await instance.get('/dashboards', {
+          params: {
+            navigationMethod: 'pagination',
+            page: 1,
+            size: 10,
+          },
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${login.data.accessToken}`,
+          },
+        });
+
+        setDashboardList(response.data.dashboards);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    login();
+  }, []);
+
   return (
     <div className={styles['background']}>
       <MyHeader profileImageUrl="/assets/icon/logo.svg" nickname="배유철" />
@@ -102,7 +143,12 @@ export default function MyDashboard() {
         <div className={styles['dashboardList']}>
           <EventDashboardBtn name="새로운 대시보드" type="newDashboard" />
           {dashboardList.map((element) => {
-            return <div></div>; // 대시보드 버튼으로 넣어야 됩니다.
+            return (
+              <MyDashboardBtn
+                name={element.title}
+                src={ELLIPSE_LIST[element.color]}
+              />
+            ); // 대시보드 버튼으로 넣어야 됩니다.
           })}
         </div>
         <div className={styles['invitedDashboardList']}>
