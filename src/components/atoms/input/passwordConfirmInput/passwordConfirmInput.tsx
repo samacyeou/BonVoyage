@@ -1,15 +1,16 @@
-import { useState } from "react";
-import styles from "./passwordConfirmInput.module.scss";
-import Image from "next/image";
-import eyeOffIcon from "../../../../../public/assets/icon/eyeOffIcon.svg";
-import eyeOnIcon from "../../../../../public/assets/icon/eyeOnIcon.svg";
+import { useState } from 'react';
+import styles from './passwordConfirmInput.module.scss';
+import Image from 'next/image';
+import eyeOffIcon from '../../../../../public/assets/icon/eyeOffIcon.svg';
+import eyeOnIcon from '../../../../../public/assets/icon/eyeOnIcon.svg';
 
 interface Props {
   password: string;
+  text: string;
 }
 
-export default function PasswordConfirmInput({ password }: Props) {
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+export default function PasswordConfirmInput({ password, text }: Props) {
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [isSame, setIsSame] = useState<boolean>(true);
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
@@ -30,24 +31,24 @@ export default function PasswordConfirmInput({ password }: Props) {
     setIsClicked(!isClicked);
   };
   return (
-    <div className={styles["inputForm"]}>
-      <label className={styles["inputLabel"]}>비밀번호 확인</label>
+    <div className={styles['inputForm']}>
+      <label className={styles['inputLabel']}>{text}</label>
       <input
-        className={`${styles["inputBox"]} ${isSame ? "" : styles["invalid"]}`}
+        className={`${styles['inputBox']} ${isSame ? '' : styles['invalid']}`}
         placeholder="비밀번호를 한번 더 입력해 주세요"
-        type={isClicked ? "text" : "password"}
+        type={isClicked ? 'text' : 'password'}
         value={confirmPassword}
         onChange={handleInputChange}
         onBlur={handleBlur}
       ></input>
       <Image
-        className={styles["eyeIcon"]}
+        className={styles['eyeIcon']}
         onClick={handleClick}
         src={isClicked ? eyeOnIcon : eyeOffIcon}
         alt="EyeIcon"
       ></Image>
       {!isSame && (
-        <span className={styles["errorMsg"]}>
+        <span className={styles['errorMsg']}>
           비밀번호가 일치하지 않습니다.
         </span>
       )}

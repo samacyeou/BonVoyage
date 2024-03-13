@@ -11,8 +11,10 @@ const Account = () => {
         <Image src={leftArrowIcon} alt="돌아가기" width={20} height={20} />
         돌아가기
       </button>
-      <ProfileForm />
-      <PasswordChangeForm />
+      <div className={styles.formContainer}>
+        <ProfileForm />
+        <PasswordChangeForm />
+      </div>
     </div>
   );
 };

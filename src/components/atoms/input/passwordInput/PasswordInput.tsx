@@ -4,7 +4,7 @@ import Image from "next/image";
 import eyeOffIcon from "../../../../../public/assets/icon/eyeOffIcon.svg";
 import eyeOnIcon from "../../../../../public/assets/icon/eyeOnIcon.svg";
 
-export default function PasswordInput() {
+export default function PasswordInput({text}: {text: string}) {
   const [password, setPassword] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
   const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -27,7 +27,7 @@ export default function PasswordInput() {
   };
   return (
     <div className={styles["inputForm"]}>
-      <label className={styles["inputLabel"]}>비밀번호</label>
+      <label className={styles["inputLabel"]}>{text}</label>
       <input
         className={`${styles["inputBox"]} ${isValid ? "" : styles["invalid"]}`}
         placeholder="비밀번호를 입력해 주세요"
