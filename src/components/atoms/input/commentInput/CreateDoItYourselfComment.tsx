@@ -1,4 +1,4 @@
-import CreateDoItYourselfTextarea from './CreateDoItYourselfTextarea';
+import CreateDoItYourselfTextarea from '../createDoItYourselfCommonTextarea/CreateDoItYourselfTextarea';
 
 export default function CreateDoItYourselfComment() {
   return (

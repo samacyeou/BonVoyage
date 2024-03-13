@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import styles from './createDoItYourselfDate.module.scss';
-import 'react-datepicker/dist/react-datepicker.css';
-import DatePicker from 'react-datepicker';
-import { forwardRef, useState } from 'react';
-import CreateDoItYourselfInput from './CreateDoItYourselfInput';
 import classNames from 'classnames/bind';
+import Image from 'next/image';
+import { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import CreateDoItYourselfInput from '../createDoItYourselfCommonInput/CreateDoItYourselfInput';
+import styles from './createDoItYourselfDate.module.scss';
 
 const cn = classNames.bind(styles);
 
@@ -19,12 +19,6 @@ export default function CreateDoItYourselfDate() {
       alt="pick date"
     />
   );
-
-  // const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-  //   <button className='example-custom-input' onClick={onClick} ref={ref}>
-  //     {value}
-  //   </button>
-  // ));
 
   return (
     <>
@@ -52,7 +46,6 @@ export default function CreateDoItYourselfDate() {
             },
           ]}
           shouldCloseOnSelect // 달력에서 날짜를 선택하면 달력이 닫히도록 설정
-          // readOnly
         />
       </CreateDoItYourselfInput>
     </>
