@@ -24,9 +24,16 @@ export interface CreateDoItYourselfProps {
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
+// 담당자 드롭다운 멤버 프로필
 export interface MemberProfile {
   nickname: string;
   imageUrl: string;
+}
+
+export interface MyDashboardProps extends ButtonProps {
+  src: StaticImageData;
+  src2?: StaticImageData;
+  iconAlt?: string;
 }
 
 export interface IconProps {
@@ -40,10 +47,4 @@ export interface User {
   profileImageUrl: string;
   createdAt: string;
   updatedAt: string;
-}
-
-export interface MyDashboardProps extends ButtonProps {
-  src: StaticImageData;
-  src2?: StaticImageData;
-  iconAlt?: string;
 }
