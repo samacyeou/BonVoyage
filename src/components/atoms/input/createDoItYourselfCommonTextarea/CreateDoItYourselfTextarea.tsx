@@ -1,7 +1,7 @@
-import { HTMLInputTypeAttribute, PropsWithChildren, ReactNode } from 'react';
+import { CreateDoItYourselfProps } from '@/@types/type';
+import { PropsWithChildren } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import styles from './createDoItYourselfTextarea.module.scss';
-import { CreateDoItYourselfProps } from '@/@types/type';
 
 export default function CreateDoItYourselfTextarea({
   title,
