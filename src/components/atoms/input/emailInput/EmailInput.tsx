@@ -6,7 +6,7 @@ function validateEmail(email: string): boolean {
   return regex.test(email);
 }
 
-export default function EmailInput() {
+export default function EmailInput({disabled}: {disabled: boolean}) {
   const [email, setEmail] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
 
@@ -29,6 +29,7 @@ export default function EmailInput() {
         value={email}
         onChange={handleInputChange}
         onBlur={handleBlur}
+        disabled={disabled}
       ></input>
       {!isValid && (
         <span className={styles["errorMsg"]}>

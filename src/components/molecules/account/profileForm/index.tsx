@@ -10,7 +10,7 @@ const ProfileForm = () => {
       <h1>프로필</h1>
       <ImageInput size="big" />
       <div className={styles.inputContainer}>
-        <EmailInput />
+        <EmailInput disabled={true}/>
         <NicknameInput />
       </div>
       <div className={styles.ButtonContainer}>

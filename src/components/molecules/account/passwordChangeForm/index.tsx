@@ -10,7 +10,7 @@ const PasswordChangeForm = () => {
       <div className={styles.inputContainer}>
         <PasswordInput text="현재 비밀번호" />
         <PasswordInput text="새 비밀번호" />
-        <PasswordConfirmInput text="새 비밀번호 확인" />
+        <PasswordConfirmInput text="새 비밀번호 확인"  />
       </div>
       <div className={styles.ButtonContainer}>
         <Button name="변경" type="modal" color="blue" />
