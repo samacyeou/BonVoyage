@@ -22,4 +22,3 @@ const Account = () => {
 export default Account;
 
 //여기에 돌아가기 버튼 추가
-//사이드바에 예비용 보더 추가
