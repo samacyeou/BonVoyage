@@ -1,8 +1,12 @@
+import styles from './profileForm.module.scss'
 import ImageInput from '@/components/molecules/imageInput/ImageInput'
+import Button from '@/components/atoms/buttons/button'
 const ProfileForm = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <h1>프로필</h1>
+      <ImageInput size='big'/>
+      <Button name='저장' type='modal' color='blue'/>
     </div>
   )
 }

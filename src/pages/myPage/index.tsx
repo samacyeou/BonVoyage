@@ -3,10 +3,9 @@ import Layout from '@/components/molecules/layout';
 
 const Mypage = () => {
   return (
-    <>
-      <Layout />
+    <Layout>
       <Account />
-    </>
+    </Layout>
   );
 };
 
