@@ -1,0 +1,5 @@
+.container {
+  flex: 1; /* 나머지 공간을 차지하도록 함 */
+  padding: 20px; /* 내부 여백 설정 */
+  justify-content: flex-end
+}

@@ -1,7 +1,7 @@
 
 const PasswordChangeForm = () => {
   return (
-    <div>PasswordChangeForm</div>
+    <div></div>
   )
 }
 

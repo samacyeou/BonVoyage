@@ -2,6 +2,9 @@
   width: 67px;
   height: 100vh;
   padding: 20px 24px;
+  border-right: 1px solid var(--gray50);//예비
+  // position: sticky; //예비
+  // float: left;
 }
 
 .logoText {
@@ -34,17 +37,17 @@
   text-decoration: underline;
 }
 
-@media (min-width: 375px) {
-  .sidebar {
-    width: 160px;
-  }
-  .menuTitle {
-    display: block;
-  }
-  .menuArea {
-    margin-top: 60px;
-  }
-}
+// @media (min-width: 375px) {
+//   .sidebar {
+//     width: 160px;
+//   }
+//   .menuTitle {
+//     display: block;
+//   }
+//   .menuArea {
+//     margin-top: 60px;
+//   }
+// }
 
 @media (min-width: 769px) {
   .sidebar {

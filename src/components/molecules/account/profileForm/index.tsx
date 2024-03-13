@@ -1,8 +1,9 @@
-import React from 'react'
-
+import ImageInput from '@/components/molecules/imageInput/ImageInput'
 const ProfileForm = () => {
   return (
-    <div>ProfileForm</div>
+    <div>
+      <h1>프로필</h1>
+    </div>
   )
 }
 

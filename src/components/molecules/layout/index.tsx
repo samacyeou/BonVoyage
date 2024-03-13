@@ -1,11 +1,15 @@
 import React, { PropsWithChildren } from 'react';
+import SideBar from '@/components/atoms/sideBar/SideBar';
+import styles from './layout.module.scss';
 
-const Layout = ({ children }: PropsWithChildren) => {
+const Layout = () => {
   return (
-    <div>{children}</div>
+    <div className={styles.container}>
+      {/* //header */}
+      <SideBar/>
+    </div>
   );
 };
 
 export default Layout;
 
-//<div>{children}</div>
