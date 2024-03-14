@@ -1,15 +1,24 @@
 .sidebar {
   width: 67px;
   height: 100vh;
-  padding: 20px 24px;
+  padding: 13px 13px;
+  align-items: center;
+  border-right: solid 1px var(--gray20, #eee);
 }
-
+.logoArea {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  margin-left: 6px;
+}
 .logoText {
   display: none;
 }
 
 .menuArea {
-  margin-top: 40px;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 .menuTitleArea {
@@ -21,6 +30,9 @@
   font-size: 1.2rem;
   color: var(--gray50);
   display: none;
+}
+.ellipseGreen {
+  display: block;
 }
 
 .sidebar a {
@@ -34,23 +46,28 @@
   text-decoration: underline;
 }
 
-@media (min-width: 375px) {
+@media (min-width: 376px) {
   .sidebar {
     width: 160px;
+    padding: 20px 24px;
+  }
+  .logoText {
+    display: block;
   }
   .menuTitle {
     display: block;
   }
   .menuArea {
-    margin-top: 60px;
+    margin-top: 20px;
   }
 }
 
 @media (min-width: 769px) {
   .sidebar {
     width: 300px;
+    padding: 20px 24px;
   }
   .menuArea {
-    margin-top: 60px;
+    margin-top: 20px;
   }
 }
