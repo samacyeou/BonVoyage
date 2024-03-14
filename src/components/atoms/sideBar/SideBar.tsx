@@ -4,8 +4,12 @@ import logo from '../../../../public/assets/icon/logo.svg';
 import taskify from '../../../../public/assets/icon/taskify.svg';
 import addBoxIcon from '../../../../public/assets/icon/addBoxIcon.svg';
 import SideBarMenu from '../sideBarMenu/SideBarMenu';
+import Link from 'next/link';
 
-export default function SideBar() {
+interface prop{
+  path?: string;
+}
+export default function SideBar({path}: prop) {
   return (
     <div className={styles['sidebar']}>
       <div className={styles['logoArea']}>
@@ -20,7 +24,9 @@ export default function SideBar() {
           <h1 className={styles['menuTitle']}>Dash Boards</h1>
           <Image src={addBoxIcon}></Image>
         </div>
-        <SideBarMenu></SideBarMenu>
+        <Link href={`"${path}"`}>
+          <SideBarMenu />
+        </Link>
       </div>
     </div>
   );

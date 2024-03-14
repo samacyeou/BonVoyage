@@ -4,8 +4,14 @@ import ProfileForm from './profileForm';
 import styles from './account.module.scss';
 import leftArrowIcon from '../../../../public/assets/icon/leftArrowIcon.svg';
 import Image from 'next/image';
+import { useContext } from 'react';
+import { userContext } from '@/pages/mypage/index';
 
 const Account = () => {
+
+  const userInfo = useContext(userContext);
+  // console.log(userInfo)
+
   const router = useRouter();
   const goBack = ()=>{
     router.back();

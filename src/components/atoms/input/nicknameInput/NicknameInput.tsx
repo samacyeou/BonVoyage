@@ -1,7 +1,13 @@
 import { useState } from "react";
 import styles from "./nicknameInput.module.scss";
 
-export default function NicknameInput() {
+// interface NicknameInputProps {
+//   value: string;
+//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+// }
+
+export default function NicknameInput({ ...rest}) {
+
   const [nickName, setNickName] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
 
@@ -28,6 +34,7 @@ export default function NicknameInput() {
         value={nickName}
         onChange={handleInputChange}
         onBlur={handleBlur}
+        {...rest}
       ></input>
 
       {!isValid && (

@@ -4,7 +4,9 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
+
 .menuTitle {
   color: var(--gray50);
   font-size: 1.8rem;
