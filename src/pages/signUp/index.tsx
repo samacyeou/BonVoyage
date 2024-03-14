@@ -88,16 +88,7 @@ export default function SignUp() {
       >
         <EmailInput errors={errors} register={register} />
         <NicknameInput errors={errors} register={register} />
-        <PasswordInput
-          errors={errors}
-          register={register}
-          {...register('password', {
-            minLength: {
-              value: 8,
-              message: '8자 이상 입력해주세요.',
-            },
-          })}
-        />
+        <PasswordInput errors={errors} register={register} />
         <PasswordConfirmInput
           errors={errors}
           form={form as any}

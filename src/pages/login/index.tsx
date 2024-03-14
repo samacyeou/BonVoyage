@@ -88,16 +88,7 @@ export default function SignIn() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <EmailInput errors={errors} register={register} />
-        <PasswordInput
-          errors={errors}
-          register={register}
-          {...register('password', {
-            minLength: {
-              value: 8,
-              message: '8자 이상 입력해주세요.',
-            },
-          })}
-        />
+        <PasswordInput errors={errors} register={register} />
         <Button
           name="로그인"
           type="account"

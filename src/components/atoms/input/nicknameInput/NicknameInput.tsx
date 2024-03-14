@@ -18,6 +18,7 @@ export default function NicknameInput({ errors, register }: Props) {
           value: 10,
           message: '10자 이하로 작성해 주세요.',
         },
+        required: '닉네임을 입력해 주세요.',
       })}
     />
   );
