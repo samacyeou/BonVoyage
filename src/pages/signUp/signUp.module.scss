@@ -1,9 +1,24 @@
+@import '@/styles/mixins';
+
 .signUpWrapper {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 24px);
-  height: 100%;
-  margin: 0 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 280px;
+  min-height: 100vh;
+  gap: 10px;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.326),
+      rgba(255, 255, 255, 0)
+    ),
+    url(../../../public/assets/image/bgSignUp.jpg);
+  @include animatedBackground;
+
+  @media (min-width: 769px) {
+    gap: 50px;
+  }
 }
 
 .signUpLogoContainer {
@@ -12,17 +27,74 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+
+  @media (min-width: 769px) {
+    gap: 10px;
+  }
 }
 
 .signUpNiceMeetYouText {
   color: var(--black);
-  font-size: 2rem;
+  font-size: 1.2rem;
+
+  @media (min-width: 769px) {
+    font-size: 1.5rem;
+  }
 }
 
 .signUpFormContainer {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: 100%;
+  width: calc(100% - 24px);
   gap: 8px;
+  background-color: #ffffffa2;
+  padding: 24px 16px;
+  border-radius: 8px;
+
+  @media (min-width: 769px) {
+    width: 50%;
+    padding: 24px;
+    gap: 20px;
+  }
+}
+
+.signUpButton {
+  margin-bottom: 8px;
+}
+
+.termsOfService {
+  display: flex;
+  align-items: center;
+}
+
+.termsOfService input[type='checkbox'] {
+  transform: scale(1.1);
+  margin-left: 3px;
+
+  &:checked {
+    accent-color: var(--orange20);
+  }
+
+  @media (min-width: 769px) {
+    transform: scale(1.3);
+  }
+}
+
+.signUpError {
+  color: red;
+  margin: 0 0 3px;
+  font-size: 1.2rem;
+
+  @media (min-width: 769px) {
+    font-size: 1.4rem;
+  }
+}
+
+.signUpTermsLabel {
+  font-size: 1.2rem;
+
+  @media (min-width: 769px) {
+    font-size: 1.4rem;
+  }
 }
