@@ -9,13 +9,13 @@
   padding: 20px 24px;
   z-index: 1;
 }
-
 .logoText {
   display: none;
 }
 
 .menuArea {
-  margin-top: 40px;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 .menuTitleArea {
@@ -27,6 +27,9 @@
   font-size: 1.2rem;
   color: var(--gray50);
   display: none;
+}
+.ellipseGreen {
+  display: block;
 }
 
 .sidebar a {
@@ -40,7 +43,7 @@
   text-decoration: underline;
 }
 
-@media (min-width: 375px) {
+@media (min-width: 376px) {
   .sidebar {
     // width: 160px;
   }
@@ -48,7 +51,7 @@
     display: block;
   }
   .menuArea {
-    margin-top: 60px;
+    margin-top: 20px;
   }
 }
 
