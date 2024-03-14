@@ -11,15 +11,9 @@
 }
 
 @media (min-width: 376px) {
-  .menuTitle {
-    display: inline-block;
+  .sidebarMenu {
+    justify-content: left;
   }
-  .crownIcon {
-    display: inline-block;
-  }
-}
-
-@media (min-width: 769px) {
   .menuTitle {
     display: inline-block;
   }
