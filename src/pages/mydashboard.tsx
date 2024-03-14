@@ -34,21 +34,6 @@ interface Invitation {
   updatedAt: string;
 }
 
-const COLOR_LIST: { [value: string]: string } = {
-  '#7AC555': 'green',
-  '#FFA500': 'orange',
-  '#E876EA': 'pink',
-  '#760DDE': 'purple',
-  '#76A5EA': 'blue',
-  green: '#7AC555',
-  orange: '#FFA500',
-  pink: '#E876EA',
-  purple: '#760DDE',
-  blue: '#76A5EA',
-};
-
-const COLOR_NAMES = ['green', 'purple', 'orange', 'pink', 'blue'];
-
 export default function MyDashboard() {
   const [user, setUser] = useState<User | null>(null);
   const [dashboardList, setDashboardList] = useState<Dashboard[]>([]);
