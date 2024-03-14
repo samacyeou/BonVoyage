@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useMediaQuery } from 'react-responsive';
 
 export default function LogoWithTitle() {
-  const notMobile = useMediaQuery({ minWidth: 375 });
+  const notMobile = useMediaQuery({ minWidth: 376 });
 
   return (
     <>
@@ -12,18 +12,18 @@ export default function LogoWithTitle() {
         <Link href={'/'}>
           <Image
             src="/assets/icon/logo.svg"
-            width={23}
-            height={27}
+            width={35}
+            height={37}
             alt="logo"
           />
         </Link>
         {notMobile && (
           <Link href={'/'}>
             <Image
-              src="/assets/icon/taskify.svg"
-              width={80}
-              height={22}
-              alt="taskify"
+              src="/assets/icon/logoText.svg"
+              width={130}
+              height={30}
+              alt="logoText"
             />
           </Link>
         )}
