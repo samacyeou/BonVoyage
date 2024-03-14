@@ -6,7 +6,13 @@ function validateEmail(email: string): boolean {
   return regex.test(email);
 }
 
-export default function EmailInput({disabled}: {disabled: boolean}) {
+interface EmailProps {
+  disabled: boolean;
+  placeholder: string;
+}
+//예비
+
+export default function EmailInput({disabled,placeholder}: EmailProps) {
   const [email, setEmail] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
 
@@ -24,7 +30,7 @@ export default function EmailInput({disabled}: {disabled: boolean}) {
       <label className={styles["inputLabel"]}>이메일</label>
       <input
         className={`${styles["inputBox"]} ${isValid ? "" : styles["invalid"]}`}
-        placeholder="이메일을 입력해 주세요"
+        placeholder={placeholder}
         type="email"
         value={email}
         onChange={handleInputChange}
