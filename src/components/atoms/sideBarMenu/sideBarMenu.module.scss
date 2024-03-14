@@ -4,28 +4,24 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
+
 .menuTitle {
   color: var(--gray50);
   font-size: 1.8rem;
+  margin-left: 16px;
   margin-right: 6px;
   display: none;
 }
 .crownIcon {
   display: none;
-
 }
 
 @media (min-width: 376px) {
-  .menuTitle {
-    display: inline-block;
+  .sidebarMenu {
+    justify-content: left;
   }
-  .crownIcon {
-    display: inline-block;
-  }
-}
-
-@media (min-width: 769px) {
   .menuTitle {
     display: inline-block;
   }
