@@ -4,13 +4,20 @@ import MyDashboardBtn from '@/components/atoms/buttons/myDashboardBtn';
 import SideBar from '@/components/atoms/sideBar/SideBar';
 import MyHeader from '@/components/molecules/myHeader/MyHeader';
 import styles from '@/styles/myDashboard.module.scss';
+import classNames from 'classnames/bind';
 import Image, { StaticImageData } from 'next/image';
 import ellipseGreen from '../../public/assets/icon/ellipseGreen.svg';
 import ellipsePurple from '../../public/assets/icon/ellipsePurple.svg';
 import ellipseSkyBlue from '../../public/assets/icon/ellipseSkyBlue.svg';
 import ellipsePink from '../../public/assets/icon/ellipsePink.svg';
 import ellipseOrange from '../../public/assets/icon/ellipseOrange.svg';
-import { useEffect, useState } from 'react';
+import ForwardArrowIcon from '../components/icon/ForwardArrowIcon';
+import LeftArrowIcon from '@/components/icon/LeftArrowIcon';
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
+import { User } from '@/@types/type';
+import BaseModal from '@/components/atoms/baseModal/BaseModal';
+
+const cn = classNames.bind(styles);
 
 interface Dashboard {
   id: number;
@@ -53,19 +60,27 @@ const ELLIPSE_LIST: { [value: string]: StaticImageData } = {
 };
 
 export default function MyDashboard() {
+  const [user, setUser] = useState<User | null>(null);
+  const [createDashboard, setCreateDashboard] = useState({
+    title: '',
+    color: '#7AC555',
+  });
   const [dashboardList, setDashboardList] = useState<Dashboard[]>([]);
+  const [dashboardListPage, setDashboardListPage] = useState(1);
+  const [dashboardListTotalPage, setDashboardListTotalPage] = useState(0);
   const [invitedDashboardList, setInvitedDashboardList] = useState<
     Invitation[]
   >([]);
   const [isMobile, setIsMobile] = useState(false); // 이름, 초대자 모바일 구분용
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   let invitation;
 
   if (invitedDashboardList.length) {
     invitation = (
       <>
-        <div className={styles['search']}>
-          <div className={styles['icon']}>
+        <div className={cn('search')}>
+          <div className={cn('icon')}>
             <Image
               layout="fill"
               objectFit="cover"
@@ -75,21 +90,21 @@ export default function MyDashboard() {
           </div>
           <input placeholder="검색" />
         </div>
-        <div className={styles['columns']}>
-          <span className={styles['name']}>이름</span>
-          <span className={styles['invitor']}>초대자</span>
-          <span className={styles['acceptOrNot']}>수락 여부</span>
+        <div className={cn('columns')}>
+          <span className={cn('name')}>이름</span>
+          <span className={cn('invitor')}>초대자</span>
+          <span className={cn('acceptOrNot')}>수락 여부</span>
         </div>
         {/* 초대된 대시보드 목록을 이용하여 내용을 채워야 합니다.
         {invitedDashboardList.map(({ invitations }) => {
-          return <div className={styles['invitedDashboard']}></div>
+          return <div className={cn('invitedDashboard']}></div>
         })} */}
       </>
     );
   } else {
     invitation = (
-      <div className={styles['empty']}>
-        <div className={styles['emptyMessage']}>
+      <div className={cn('empty')}>
+        <div className={cn('emptyMessage')}>
           <Image
             layout="fill"
             src="/assets/icon/unsubscribeIcon.svg"
@@ -100,6 +115,32 @@ export default function MyDashboard() {
       </div>
     );
   }
+
+  const onClcikNewDashboard = () => {
+    setIsOpenModal(true);
+  };
+
+  const onChangeCreateDashboardTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    setCreateDashboard((preData) => ({
+      ...preData,
+      title: e.currentTarget.value,
+    }));
+  };
+
+  const onClickPaletteColor = (e: MouseEvent<HTMLDivElement>) => {
+    setCreateDashboard((preData) => ({
+      ...preData,
+      color: e.currentTarget.style.backgroundColor,
+    }));
+  };
+
+  const onClickPageButtonLeft = () => {
+    setDashboardListPage((prevPage) => prevPage - 1);
+  };
+
+  const onClickPageButtonRight = () => {
+    setDashboardListPage((prevPage) => prevPage + 1);
+  };
 
   useEffect(() => {
     async function login() {
@@ -115,11 +156,13 @@ export default function MyDashboard() {
           },
         );
 
+        setUser(login.data.user);
+
         const response = await instance.get('/dashboards', {
           params: {
             navigationMethod: 'pagination',
-            page: 1,
-            size: 10,
+            page: dashboardListPage,
+            size: 5,
           },
           headers: {
             accept: 'application/json',
@@ -127,6 +170,7 @@ export default function MyDashboard() {
           },
         });
 
+        setDashboardListTotalPage(Math.ceil(response.data.totalCount / 5));
         setDashboardList(response.data.dashboards);
       } catch (error) {
         console.log(error);
@@ -134,29 +178,104 @@ export default function MyDashboard() {
     }
 
     login();
-  }, []);
+  }, [dashboardListPage]);
 
   return (
-    <div className={styles['background']}>
-      <MyHeader profileImageUrl="/assets/icon/logo.svg" nickname="배유철" />
-      <section className={styles['section']}>
-        <div className={styles['dashboardList']}>
-          <EventDashboardBtn name="새로운 대시보드" type="newDashboard" />
-          {dashboardList.map((element) => {
-            return (
-              <MyDashboardBtn
-                name={element.title}
-                src={ELLIPSE_LIST[element.color]}
-              />
-            ); // 대시보드 버튼으로 넣어야 됩니다.
-          })}
+    <div className={cn('background')}>
+      <MyHeader
+        profileImageUrl={user?.profileImageUrl ?? '/assets/icon/logo.svg'}
+        nickname={user?.nickname ?? 'unknown'}
+      />
+      <section className={cn('section')}>
+        <div className={cn('dashboardListContainer')}>
+          <div className={cn('dashboardList')}>
+            <EventDashboardBtn
+              name="새로운 대시보드"
+              type="newDashboard"
+              onClick={onClcikNewDashboard}
+            />
+            {dashboardList.map((element) => {
+              return (
+                <MyDashboardBtn
+                  name={element.title}
+                  src={ELLIPSE_LIST[element.color]}
+                />
+              );
+            })}
+          </div>
+          <div className={cn('pagenation')}>
+            <span>
+              {dashboardListTotalPage} 페이지 중 {dashboardListPage}
+            </span>
+            <div className={cn('pageButtons')}>
+              <button
+                className={cn('pageButton', 'left')}
+                onClick={onClickPageButtonLeft}
+                disabled={1 >= dashboardListPage}
+              >
+                <div className={cn('arrowImage')}>
+                  <LeftArrowIcon
+                    color={1 < dashboardListPage ? 'black' : 'gray'}
+                  />
+                </div>
+              </button>
+              <button
+                className={cn('pageButton', 'right')}
+                onClick={onClickPageButtonRight}
+                disabled={dashboardListTotalPage <= dashboardListPage}
+              >
+                <div className={cn('arrowImage')}>
+                  <ForwardArrowIcon
+                    color={
+                      dashboardListTotalPage > dashboardListPage
+                        ? 'black'
+                        : 'gray'
+                    }
+                  />
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
-        <div className={styles['invitedDashboardList']}>
+        <div className={cn('invitedDashboardList')}>
           <span>초대받은 대시보드</span>
           {invitation}
         </div>
       </section>
       <SideBar />
+      {isOpenModal && (
+        <BaseModal closeModal={() => setIsOpenModal(false)}>
+          <div className={cn('modalContent')}>
+            <span className={cn('modalName')}>새로운 대시보드</span>
+            <div className={cn('dashboardName')}>
+              <label>대시보드 이름</label>
+              <input type="text" onChange={onChangeCreateDashboardTitle} />
+            </div>
+            <div className={cn('palette')}>
+              <div
+                className={cn('paletteColor', 'green')}
+                onClick={onClickPaletteColor}
+              />
+              <div
+                className={cn('paletteColor', 'orange')}
+                onClick={onClickPaletteColor}
+              />
+              <div
+                className={cn('paletteColor', 'purple')}
+                onClick={onClickPaletteColor}
+              />
+              <div
+                className={cn('paletteColor', 'pink')}
+                onClick={onClickPaletteColor}
+              />
+              <div
+                className={cn('paletteColor', 'skyblue')}
+                onClick={onClickPaletteColor}
+              />
+            </div>
+          </div>
+        </BaseModal>
+      )}
     </div>
   );
 }

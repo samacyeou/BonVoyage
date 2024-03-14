@@ -19,3 +19,16 @@ export interface MemberProfile {
   nickname: string;
   imageUrl: string;
 }
+
+export interface IconProps {
+  color?: string;
+}
+
+export interface User {
+  id: number;
+  email: string;
+  nickname: string;
+  profileImageUrl: string;
+  createdAt: string;
+  updatedAt: string;
+}

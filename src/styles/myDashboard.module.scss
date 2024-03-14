@@ -10,7 +10,7 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 24px;
   padding: 16px 10px 16px 80px;
 
   @media (min-width: 375px) {
@@ -19,11 +19,16 @@
 
   @media (min-width: 769px) {
     padding: 40px 40px 0 200px;
+    gap: 40px;
   }
 
   @media (min-width: 1024px) {
     padding: 40px 40px 0 340px;
   }
+}
+
+.dashboardListContainer {
+  max-width: 1022px;
 }
 
 .dashboardList {
@@ -38,6 +43,64 @@
   @media (min-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.pagenation {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+
+  & > span {
+    color: var(--black-black_333236, #333236);
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: 769px) {
+    margin-top: 10px;
+
+    & > span {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.pageButtons {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  border: 1px solid var(--gray30, #d9d9d9);
+  background: var(--white, #fff);
+
+  .arrowImage {
+    position: relative;
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (min-height: 769px) {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.pageButton.left {
+  border-radius: 4px 0px 0px 4px;
+}
+
+.pageButton.right {
+  border-radius: 0px 4px 4px 0px;
 }
 
 .invitedDashboardList {
@@ -163,4 +226,84 @@
     width: 100px;
     height: 100px;
   }
+}
+
+.modalContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.modalName {
+  color: var(--black20, #333236);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.dashboardName {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    color: var(--black-black_333236, #333236);
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  input {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0 16px;
+
+    color: var(--black20, #333236);
+    font-size: 1.4rem;
+
+    border-radius: 6px;
+    border: 1px solid var(--gray30, #d9d9d9);
+    background: var(--white, #fff);
+  }
+
+  @media (min-width: 769px) {
+    input {
+      height: 48px;
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.palette {
+  display: flex;
+  gap: 10px;
+}
+
+.paletteColor {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+}
+
+.green {
+  background-color: #7ac555;
+}
+
+.orange {
+  background-color: #ffa500;
+}
+
+.pink {
+  background-color: #e876ea;
+}
+
+.purple {
+  background-color: #760dde;
+}
+
+.skyblue {
+  background-color: #76a5ea;
 }
