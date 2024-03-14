@@ -10,15 +10,13 @@
 .section {
   display: flex;
   flex-direction: column;
-  // gap: 40px;
-  // padding: 16px 12px;
   margin-left: 67px;
 
   @media (min-width: 376px) {
-    padding: 24px 24px 24px 91px;
+    margin-left: 160px;
   }
 
   @media (min-width: 769px) {
-    padding: 40px 40px 0 200px;
+    margin-left: 300px;
   }
 }
