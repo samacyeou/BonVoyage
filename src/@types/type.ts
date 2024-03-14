@@ -48,3 +48,18 @@ export interface User {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface CreateDashboard {
+  title: string;
+  color: string;
+}
+
+export interface Dashboard {
+  id: number;
+  title: string;
+  color: string;
+  createdAt: string;
+  updatedAt: string;
+  createdByMe: boolean;
+  userId: number;
+}

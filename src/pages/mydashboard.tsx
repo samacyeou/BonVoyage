@@ -1,31 +1,16 @@
 import instance from '@/api/axios';
-import EventDashboardBtn from '@/components/atoms/buttons/eventDashboardBtn';
-import MyDashboardBtn from '@/components/atoms/buttons/myDashboardBtn';
 import SideBar from '@/components/atoms/sideBar/SideBar';
 import MyHeader from '@/components/molecules/myHeader/MyHeader';
 import styles from '@/styles/myDashboard.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import ForwardArrowIcon from '../components/icon/ForwardArrowIcon';
-import LeftArrowIcon from '@/components/icon/LeftArrowIcon';
-import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
-import { User } from '@/@types/type';
-import BaseModal from '@/components/atoms/baseModal/BaseModal';
-import ColorDot from '@/components/atoms/colorDot/ColorDot';
-import CheckIcon from '@/components/icon/CheckIcon';
+import { useEffect, useState } from 'react';
+import { CreateDashboard, Dashboard, User } from '@/@types/type';
 import { useRouter } from 'next/router';
+import CreateDashboardModal from '@/components/molecules/createDashboardModal/CreateDashboardModal';
+import MyDashboardList from '@/components/molecules/myDashboardList/MyDashboardList';
 
 const cn = classNames.bind(styles);
-
-interface Dashboard {
-  id: number;
-  title: string;
-  color: string;
-  createdAt: string;
-  updatedAt: string;
-  createdByMe: boolean;
-  userId: number;
-}
 
 interface Invitation {
   id: number;
@@ -66,10 +51,6 @@ const COLOR_NAMES = ['green', 'purple', 'orange', 'pink', 'blue'];
 
 export default function MyDashboard() {
   const [user, setUser] = useState<User | null>(null);
-  const [createDashboard, setCreateDashboard] = useState({
-    title: '',
-    color: '#7AC555',
-  });
   const [dashboardList, setDashboardList] = useState<Dashboard[]>([]);
   const [dashboardListPage, setDashboardListPage] = useState(1);
   const [dashboardListTotalPage, setDashboardListTotalPage] = useState(0);
@@ -129,27 +110,11 @@ export default function MyDashboard() {
     setIsOpenModal(true);
   };
 
-  const onChangeCreateDashboardTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    setCreateDashboard((preData) => ({
-      ...preData,
-      title: e.target.value,
-    }));
-    console.log(createDashboard);
-  };
-
-  const onClickPaletteColor = (color: string) => {
-    setCreateDashboard((preData) => ({
-      ...preData,
-      color: COLOR_LIST[color],
-    }));
-  };
-
   const onClickCloseModal = () => {
-    setCreateDashboard({ title: '', color: '#7AC555' });
     setIsOpenModal(false);
   };
 
-  const onClickCreateDashboard = async () => {
+  const onClickCreateDashboard = async (createDashboard: CreateDashboard) => {
     const response = await instance.post(
       'dashboards',
       { ...createDashboard },
@@ -219,57 +184,15 @@ export default function MyDashboard() {
         nickname={user?.nickname ?? 'unknown'}
       />
       <section className={cn('section')}>
-        <div className={cn('dashboardListContainer')}>
-          <div className={cn('dashboardList')}>
-            <EventDashboardBtn
-              name="새로운 대시보드"
-              type="newDashboard"
-              onClick={onClcikNewDashboard}
-            />
-            {dashboardList.map((element) => {
-              return (
-                <MyDashboardBtn
-                  key={element.id}
-                  name={element.title}
-                  src={<ColorDot colorName={COLOR_LIST[element.color]} />}
-                />
-              );
-            })}
-          </div>
-          <div className={cn('pagenation')}>
-            <span>
-              {dashboardListTotalPage} 페이지 중 {dashboardListPage}
-            </span>
-            <div className={cn('pageButtons')}>
-              <button
-                className={cn('pageButton', 'left')}
-                onClick={onClickPageButtonLeft}
-                disabled={1 >= dashboardListPage}
-              >
-                <div className={cn('arrowImage')}>
-                  <LeftArrowIcon
-                    color={1 < dashboardListPage ? 'black' : 'gray'}
-                  />
-                </div>
-              </button>
-              <button
-                className={cn('pageButton', 'right')}
-                onClick={onClickPageButtonRight}
-                disabled={dashboardListTotalPage <= dashboardListPage}
-              >
-                <div className={cn('arrowImage')}>
-                  <ForwardArrowIcon
-                    color={
-                      dashboardListTotalPage > dashboardListPage
-                        ? 'black'
-                        : 'gray'
-                    }
-                  />
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
+        <MyDashboardList
+          dashboardList={dashboardList}
+          dashboardListPage={dashboardListPage}
+          dashboardListTotalPage={dashboardListTotalPage}
+          onClcikNewDashboard={onClcikNewDashboard}
+          onClickPageButtonLeft={onClickPageButtonLeft}
+          onClickPageButtonRight={onClickPageButtonRight}
+        />
+
         <div className={cn('invitedDashboardList')}>
           <span>초대받은 대시보드</span>
           {invitation}
@@ -277,43 +200,10 @@ export default function MyDashboard() {
       </section>
       <SideBar />
       {isOpenModal && (
-        <BaseModal closeModal={onClickCloseModal}>
-          <div className={cn('modalContent')}>
-            <span className={cn('modalName')}>새로운 대시보드</span>
-            <div className={cn('dashboardName')}>
-              <label>대시보드 이름</label>
-              <input type="text" onChange={onChangeCreateDashboardTitle} />
-            </div>
-            <div className={cn('palette')}>
-              {COLOR_NAMES.map((element, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={cn('paletteColor', element)}
-                    onClick={() => onClickPaletteColor(element)}
-                  >
-                    {COLOR_LIST[element] === createDashboard.color && (
-                      <div className={cn('checkIcon')}>
-                        <CheckIcon color="white" />
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-            <div className={cn('modalButtons')}>
-              <button className={cn('modalCancel')} onClick={onClickCloseModal}>
-                취소
-              </button>
-              <button
-                className={cn('modalCreate')}
-                onClick={onClickCreateDashboard}
-              >
-                생성
-              </button>
-            </div>
-          </div>
-        </BaseModal>
+        <CreateDashboardModal
+          onClickCloseModal={onClickCloseModal}
+          onClickAccept={onClickCreateDashboard}
+        />
       )}
     </div>
   );
