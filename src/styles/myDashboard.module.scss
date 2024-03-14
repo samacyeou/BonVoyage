@@ -233,12 +233,20 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media (min-width: 769px) {
+    gap: 28px;
+  }
 }
 
 .modalName {
   color: var(--black20, #333236);
   font-size: 2rem;
   font-weight: 700;
+
+  @media (min-width: 769px) {
+    font-size: 2.4rem;
+  }
 }
 
 .dashboardName {
@@ -268,6 +276,10 @@
   }
 
   @media (min-width: 769px) {
+    label {
+      font-size: 1.8rem;
+    }
+
     input {
       height: 48px;
       font-size: 1.6rem;
@@ -280,12 +292,34 @@
   gap: 10px;
 }
 
+.checkIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 22px;
+  height: 22px;
+
+  @media (min-width: 769px) {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .paletteColor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 28px;
   height: 28px;
   flex-shrink: 0;
 
   border-radius: 50%;
+
+  @media (min-width: 769px) {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .green {
@@ -304,6 +338,57 @@
   background-color: #760dde;
 }
 
-.skyblue {
+.blue {
   background-color: #76a5ea;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 11px;
+
+  button {
+    display: flex;
+    width: 138px;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    cursor: pointer;
+
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    border-radius: 8px;
+  }
+
+  @media (min-width: 769px) {
+    justify-content: flex-end;
+    gap: 12px;
+
+    button {
+      width: 120px;
+      height: 48px;
+
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.modalCancel {
+  color: var(--gray50, #787486);
+
+  border: 1px solid var(--gray30, #d9d9d9);
+  background: var(--white, #fff);
+}
+
+.modalCreate {
+  color: var(--white, #fff);
+
+  border: none;
+  border-radius: 8px;
+  background: var(--blue30, #026fb0);
 }

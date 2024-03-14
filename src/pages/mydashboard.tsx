@@ -5,17 +5,15 @@ import SideBar from '@/components/atoms/sideBar/SideBar';
 import MyHeader from '@/components/molecules/myHeader/MyHeader';
 import styles from '@/styles/myDashboard.module.scss';
 import classNames from 'classnames/bind';
-import Image, { StaticImageData } from 'next/image';
-import ellipseGreen from '../../public/assets/icon/ellipseGreen.svg';
-import ellipsePurple from '../../public/assets/icon/ellipsePurple.svg';
-import ellipseSkyBlue from '../../public/assets/icon/ellipseSkyBlue.svg';
-import ellipsePink from '../../public/assets/icon/ellipsePink.svg';
-import ellipseOrange from '../../public/assets/icon/ellipseOrange.svg';
+import Image from 'next/image';
 import ForwardArrowIcon from '../components/icon/ForwardArrowIcon';
 import LeftArrowIcon from '@/components/icon/LeftArrowIcon';
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { User } from '@/@types/type';
 import BaseModal from '@/components/atoms/baseModal/BaseModal';
+import ColorDot from '@/components/atoms/colorDot/ColorDot';
+import CheckIcon from '@/components/icon/CheckIcon';
+import { useRouter } from 'next/router';
 
 const cn = classNames.bind(styles);
 
@@ -51,13 +49,20 @@ interface Invitation {
   updatedAt: string;
 }
 
-const ELLIPSE_LIST: { [value: string]: StaticImageData } = {
-  '#7AC555': ellipseGreen,
-  '#FFA500': ellipseOrange,
-  '#E876EA': ellipsePink,
-  '#760DDE': ellipsePurple,
-  '#76A5EA': ellipseSkyBlue,
+const COLOR_LIST: { [value: string]: string } = {
+  '#7AC555': 'green',
+  '#FFA500': 'orange',
+  '#E876EA': 'pink',
+  '#760DDE': 'purple',
+  '#76A5EA': 'blue',
+  green: '#7AC555',
+  orange: '#FFA500',
+  pink: '#E876EA',
+  purple: '#760DDE',
+  blue: '#76A5EA',
 };
+
+const COLOR_NAMES = ['green', 'purple', 'orange', 'pink', 'blue'];
 
 export default function MyDashboard() {
   const [user, setUser] = useState<User | null>(null);
@@ -73,6 +78,7 @@ export default function MyDashboard() {
   >([]);
   const [isMobile, setIsMobile] = useState(false); // 이름, 초대자 모바일 구분용
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const router = useRouter();
 
   let invitation;
 
@@ -86,6 +92,7 @@ export default function MyDashboard() {
               objectFit="cover"
               src="/assets/icon/searchIcon.svg"
               alt="돋보기 아이콘"
+              priority={true}
             />
           </div>
           <input placeholder="검색" />
@@ -109,6 +116,8 @@ export default function MyDashboard() {
             layout="fill"
             src="/assets/icon/unsubscribeIcon.svg"
             alt="편지지 아이콘"
+            priority={true}
+            objectFit="cover"
           />
         </div>
         <span>아직 초대받은 대시보드가 없어요</span>
@@ -123,15 +132,37 @@ export default function MyDashboard() {
   const onChangeCreateDashboardTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setCreateDashboard((preData) => ({
       ...preData,
-      title: e.currentTarget.value,
+      title: e.target.value,
+    }));
+    console.log(createDashboard);
+  };
+
+  const onClickPaletteColor = (color: string) => {
+    setCreateDashboard((preData) => ({
+      ...preData,
+      color: COLOR_LIST[color],
     }));
   };
 
-  const onClickPaletteColor = (e: MouseEvent<HTMLDivElement>) => {
-    setCreateDashboard((preData) => ({
-      ...preData,
-      color: e.currentTarget.style.backgroundColor,
-    }));
+  const onClickCloseModal = () => {
+    setCreateDashboard({ title: '', color: '#7AC555' });
+    setIsOpenModal(false);
+  };
+
+  const onClickCreateDashboard = async () => {
+    const response = await instance.post(
+      'dashboards',
+      { ...createDashboard },
+      {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    router.push(`/dashboard/${response.data.id}`);
   };
 
   const onClickPageButtonLeft = () => {
@@ -157,6 +188,7 @@ export default function MyDashboard() {
         );
 
         setUser(login.data.user);
+        localStorage.setItem('accessToken', login.data.accessToken);
 
         const response = await instance.get('/dashboards', {
           params: {
@@ -166,7 +198,7 @@ export default function MyDashboard() {
           },
           headers: {
             accept: 'application/json',
-            Authorization: `Bearer ${login.data.accessToken}`,
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
         });
 
@@ -197,8 +229,9 @@ export default function MyDashboard() {
             {dashboardList.map((element) => {
               return (
                 <MyDashboardBtn
+                  key={element.id}
                   name={element.title}
-                  src={ELLIPSE_LIST[element.color]}
+                  src={<ColorDot colorName={COLOR_LIST[element.color]} />}
                 />
               );
             })}
@@ -244,7 +277,7 @@ export default function MyDashboard() {
       </section>
       <SideBar />
       {isOpenModal && (
-        <BaseModal closeModal={() => setIsOpenModal(false)}>
+        <BaseModal closeModal={onClickCloseModal}>
           <div className={cn('modalContent')}>
             <span className={cn('modalName')}>새로운 대시보드</span>
             <div className={cn('dashboardName')}>
@@ -252,26 +285,32 @@ export default function MyDashboard() {
               <input type="text" onChange={onChangeCreateDashboardTitle} />
             </div>
             <div className={cn('palette')}>
-              <div
-                className={cn('paletteColor', 'green')}
-                onClick={onClickPaletteColor}
-              />
-              <div
-                className={cn('paletteColor', 'orange')}
-                onClick={onClickPaletteColor}
-              />
-              <div
-                className={cn('paletteColor', 'purple')}
-                onClick={onClickPaletteColor}
-              />
-              <div
-                className={cn('paletteColor', 'pink')}
-                onClick={onClickPaletteColor}
-              />
-              <div
-                className={cn('paletteColor', 'skyblue')}
-                onClick={onClickPaletteColor}
-              />
+              {COLOR_NAMES.map((element, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={cn('paletteColor', element)}
+                    onClick={() => onClickPaletteColor(element)}
+                  >
+                    {COLOR_LIST[element] === createDashboard.color && (
+                      <div className={cn('checkIcon')}>
+                        <CheckIcon color="white" />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <div className={cn('modalButtons')}>
+              <button className={cn('modalCancel')} onClick={onClickCloseModal}>
+                취소
+              </button>
+              <button
+                className={cn('modalCreate')}
+                onClick={onClickCreateDashboard}
+              >
+                생성
+              </button>
             </div>
           </div>
         </BaseModal>

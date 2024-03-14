@@ -14,7 +14,13 @@ export default function MyHeader({ profileImageUrl, nickname }: Props) {
       <div className={styles['management']}>
         <div className={styles['user']}>
           <div className={styles['profile']}>
-            <Image layout="fill" src={profileImageUrl} alt="프로필 이미지" />
+            <Image
+              layout="fill"
+              src={profileImageUrl}
+              alt="프로필 이미지"
+              priority={true}
+              objectFit="cover"
+            />
           </div>
           <span>{nickname}</span>
         </div>

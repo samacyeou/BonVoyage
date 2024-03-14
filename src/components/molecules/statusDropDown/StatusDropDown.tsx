@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './statusDropDown.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import ChipProgress from '../../molecules/chipProgress/ChipProgress';
+import ChipProgress from '../chipProgress/ChipProgress';
 
 const cn = classNames.bind(styles);
 

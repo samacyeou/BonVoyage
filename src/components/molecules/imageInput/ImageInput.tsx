@@ -38,8 +38,8 @@ export default function ImageInput({ size }: Props) {
       <input
         className={cn('imageInput')}
         ref={imageInput}
-        type='file'
-        accept='.svg, .png, .jpg, .jpeg'
+        type="file"
+        accept=".svg, .png, .jpg, .jpeg"
         onChange={onChangeImage}
       />
       <button className={cn('imageBox', size)} onClick={onClickImageBox}>
@@ -47,18 +47,22 @@ export default function ImageInput({ size }: Props) {
           className={cn({ iconImage: !imageUrl }, { uploadImage: imageUrl })}
         >
           <Image
-            layout='fill'
+            layout="fill"
             src={imageUrl ? imageUrl : '/assets/icon/plusIcon.svg'}
             alt={imageUrl ? '불러온 이미지' : '+ 아이콘'}
+            priority={true}
+            objectFit="cover"
           />
         </div>
         {imageUrl && (
           <div className={cn('hoverImageBox')}>
             <div className={cn('iconImage')}>
               <Image
-                layout='fill'
-                src='/assets/icon/editIcon.svg'
-                alt='연필 아이콘'
+                layout="fill"
+                src="/assets/icon/editIcon.svg"
+                alt="연필 아이콘"
+                priority={true}
+                objectFit="cover"
               />
             </div>
           </div>
