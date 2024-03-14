@@ -4,13 +4,11 @@
   height: 45px;
   padding: 12px;
   cursor: pointer;
-  display: flex;
 
   .menuTitle {
     color: var(--gray50);
-    font-size: 1.8rem;
-    margin-right: 6px;
-    // display: none;
+    font-size: 18px;
+    display: none;
   }
 }
 
