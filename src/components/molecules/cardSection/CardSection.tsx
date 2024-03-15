@@ -8,6 +8,7 @@ import Card from '../card/Card';
 import React, { useState } from 'react';
 import CardDetailModal from '../modals/cardDetailModal/CardDetailModal';
 import CreateCardModal from '../modals/createCardModal/CreateCardModal';
+import EditColumnModal from '../modals/editColumnModal/EditColumnModal';
 
 const titles: { [key: string]: string } = {
   toDo: 'To Do',
@@ -22,6 +23,7 @@ interface CardSectionProps {
 export default function CardSection({ title }: CardSectionProps) {
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isCreateCardModalOpen, setIsCreateCardModalOpen] = useState(false);
+  const [isEditColumnModalOpen, setIsEditColumnModalOpen] = useState(false);
 
   const handleCardClick = () => {
     setIsDetailModalOpen(true);
@@ -31,9 +33,14 @@ export default function CardSection({ title }: CardSectionProps) {
     setIsCreateCardModalOpen(true);
   };
 
+  const handleSettingButtonClick = () => {
+    setIsEditColumnModalOpen(true);
+  };
+
   const closeModal = () => {
     setIsDetailModalOpen(false);
     setIsCreateCardModalOpen(false);
+    setIsEditColumnModalOpen(false);
   };
 
   return (
@@ -44,7 +51,11 @@ export default function CardSection({ title }: CardSectionProps) {
           <h1 className={styles['title']}>{titles[title]}</h1>
           <ChipNumber number="3"></ChipNumber>
         </div>
-        <Image className={styles['settingIcon']} src={settingIcon}></Image>
+        <Image
+          onClick={handleSettingButtonClick}
+          className={styles['settingIcon']}
+          src={settingIcon}
+        ></Image>
       </div>
       <EventDashboardBtn type="addTodo" onClick={handleAddCardButtonClick} />
       <Card
@@ -58,6 +69,9 @@ export default function CardSection({ title }: CardSectionProps) {
       )}
       {isCreateCardModalOpen && (
         <CreateCardModal onClose={closeModal}></CreateCardModal>
+      )}
+      {isEditColumnModalOpen && (
+        <EditColumnModal onClose={closeModal}></EditColumnModal>
       )}
     </div>
   );
