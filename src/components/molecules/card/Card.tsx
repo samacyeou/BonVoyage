@@ -1,5 +1,4 @@
-import ChipNumber from '@/components/atoms/chipNumber/ChipNumber';
-import ColorDot from '@/components/atoms/colorDot/ColorDot';
+import React from 'react';
 import styles from './card.module.scss';
 import Image from 'next/image';
 import testImage from '../../../../public/assets/image/testImage.png';
@@ -11,11 +10,12 @@ interface CardProps {
   title: string;
   date: string;
   userProfile: string;
+  onClick: () => void;
 }
 
-export default function Card({ title, date, userProfile }: CardProps) {
+export default function Card({ title, date, userProfile, onClick }: CardProps) {
   return (
-    <div className={styles['card']}>
+    <div className={styles['card']} onClick={onClick}>
       <img
         className={styles['cardImage']}
         src="assets/image/testImage.png"
