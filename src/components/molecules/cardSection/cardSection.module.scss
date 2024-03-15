@@ -3,6 +3,14 @@
   flex-direction: column;
   border-bottom: solid 1px var(--gray30, #eee);
   padding: 16px 12px;
+  background: var(--gray10, #fafafa);
+
+  @media (min-width: 769px) {
+    border-right: solid 1px var(--gray30, #eee);
+    border-bottom: none;
+    height: 100vh;
+    width: 350px;
+  }
 }
 .defaultArea {
   display: flex;
@@ -20,4 +28,5 @@
 }
 .settingIcon {
   margin-right: 0;
+  cursor: pointer;
 }

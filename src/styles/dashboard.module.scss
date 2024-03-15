@@ -3,7 +3,6 @@
   width: 100%;
   height: 100vh;
   min-height: 100vh;
-
   background: var(--gray10, #fafafa);
 }
 
@@ -18,9 +17,17 @@
 
   @media (min-width: 769px) {
     margin-left: 300px;
+    display: flex;
+    flex-direction: row;
   }
 }
 
 .newColumnArea {
   padding: 12px;
+  background: var(--gray10, #fafafa);
+
+  @media (min-width: 769px) {
+    height: 100vh;
+    padding-top: 60px;
+  }
 }
