@@ -3,13 +3,13 @@ import styles from './headerMyDashboard.module.scss';
 import HeaderBtn from '@/components/atoms/buttons/headerBtn';
 import { useMediaQuery } from 'react-responsive';
 import Image from 'next/image';
+import ProfileIcon from '@/components/atoms/profileIcon/ProfileIcon';
 
 export default function HeaderMyDashboard({
   enName = 'Name',
   koName = '이름',
   boardTitle = '내 대시보드',
 }) {
-  const firstCharacter = enName.slice(0, 1);
   const isTablet = useMediaQuery({ minWidth: 769 });
   const isPC = useMediaQuery({ minWidth: 1024 });
 
@@ -35,7 +35,7 @@ export default function HeaderMyDashboard({
           <div className={styles['line']}></div>
           <div className={styles['invited']}></div>
           <div className={styles['userProfile']}>
-            <div className={styles['myIcon']}>{firstCharacter}</div>
+            <ProfileIcon name={enName} />
             {isTablet && <span>{koName}</span>}
           </div>
         </div>
