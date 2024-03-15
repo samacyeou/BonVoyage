@@ -1,7 +1,7 @@
 import Account from '@/components/molecules/account';
 import Layout from '@/components/molecules/layout';
 import styles from './mypage.module.scss';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { userInfoData } from '@/api/acountApi/acountApi';
 import React from 'react';
 

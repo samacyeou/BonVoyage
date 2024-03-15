@@ -48,9 +48,10 @@ export default function ImageInput({ size }: Props) {
         >
           <Image
             layout='fill'
-            className={styles.profileImg}           
             src={imageUrl ? imageUrl : '/assets/icon/plusIcon.svg'}
             alt={imageUrl ? '불러온 이미지' : '+ 아이콘'}
+            priority={true}
+            objectFit="cover"
           />
         </div>
         {imageUrl && (

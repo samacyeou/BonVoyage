@@ -1,3 +1,4 @@
+import SideBar from '@/components/atoms/sideBar/SideBar';
 import React from 'react';
 
 const index = () => {
