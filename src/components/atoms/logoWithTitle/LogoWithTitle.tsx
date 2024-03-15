@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import styles from './logoWithTitle.module.scss';
 
 export default function LogoWithTitle() {
-  const notMobile = useMediaQuery({ minWidth: 376 });
+  // const notMobile = useMediaQuery({ minWidth: 376 });
 
   return (
     <>
@@ -17,7 +17,7 @@ export default function LogoWithTitle() {
             alt="logo"
           />
         </Link>
-        {/* {notMobile && ( */}
+        {/* {notMobile && (
           <Link href={'/'}>
             <Image
               src="/assets/icon/logoText.svg"
@@ -26,7 +26,7 @@ export default function LogoWithTitle() {
               alt="logoText"
             />
           </Link>
-        {/* )}  */}
+        )} */}
       </div>
     </>
   );

@@ -1,6 +1,5 @@
 import EmailInput from '@/components/atoms/input/emailInput/EmailInput';
 import NicknameInput from '@/components/atoms/input/nicknameInput/NicknameInput';
-import PasswordConfirmInput from '@/components/atoms/input/passwordConfirmInput/passwordConfirmInput';
 import PasswordInput from '@/components/atoms/input/passwordInput/PasswordInput';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
@@ -8,6 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './signUp.module.scss';
 import Button from '@/components/atoms/buttons/button';
 import { useRouter } from 'next/router';
+import PasswordConfirmInput from '@/components/atoms/input/passwordConfirmInput/passwordConfirmInput';
 
 interface SignUpProps {
   email: string;
@@ -45,6 +45,7 @@ export default function SignUp() {
     register,
     formState: { errors, isValid },
   } = form;
+  console.log({ errors, isValid });
 
   const onSubmit: SubmitHandler<SignUpProps> = (data: any) => {
     // Handle form submission
@@ -89,18 +90,7 @@ export default function SignUp() {
         <EmailInput errors={errors} register={register} />
         <NicknameInput errors={errors} register={register} />
         <PasswordInput errors={errors} register={register} />
-        <PasswordConfirmInput
-          errors={errors}
-          form={form as any}
-          {...register('passwordConfirm', {
-            minLength: {
-              value: 8,
-              message: '8자 이상 입력해주세요.',
-            },
-            validate: (value, { password }) =>
-              value === password || '비밀번호가 일치하지 않습니다.',
-          })}
-        />
+        <PasswordConfirmInput errors={errors} register={register} />
         <div className={styles.termsOfService}>
           <input
             type="checkbox"

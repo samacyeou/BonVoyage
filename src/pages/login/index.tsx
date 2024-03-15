@@ -1,12 +1,11 @@
 import Button from '@/components/atoms/buttons/button';
 import EmailInput from '@/components/atoms/input/emailInput/EmailInput';
-import NicknameInput from '@/components/atoms/input/nicknameInput/NicknameInput';
 import PasswordInput from '@/components/atoms/input/passwordInput/PasswordInput';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './login.module.scss';
-import { useRouter } from 'next/router';
 
 interface SignInProps {
   email: string;

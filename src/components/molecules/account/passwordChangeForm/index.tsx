@@ -4,6 +4,7 @@ import Button from '@/components/atoms/buttons/button';
 import { useEffect, useState } from 'react';
 import { userChangePassword } from '@/api/accountApi/accountApi';
 import { stat } from 'fs';
+import { register } from 'module';
 
 const PasswordChangeForm = () => {
   const [password, setPassword] = useState('');
@@ -25,7 +26,7 @@ const PasswordChangeForm = () => {
       return;
     }
 
-    const res = await userChangePassword({
+    const res: any = await userChangePassword({
       password: password,
       newPassword: newPassword,
     });
@@ -43,7 +44,7 @@ const PasswordChangeForm = () => {
     <div className={styles.container}>
       <h1>비밀번호 변경</h1>
       <div className={styles.inputContainer}>
-        <CommonInput
+        {/* <CommonInput
           label="현재 비밀번호"
           placeholder="현재 비밀번호 입력"
           type="password"
@@ -66,7 +67,7 @@ const PasswordChangeForm = () => {
           value={confirmNewPassword}
           onChange={(e) => setConfirmNewPassword(e.target.value)}
           errors={{}}
-        />
+        /> */}
       </div>
       <div className={styles.error_text_wrapper}>
         {error && <p className={styles.error_text}>{error}</p>}

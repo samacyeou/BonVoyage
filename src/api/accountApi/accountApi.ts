@@ -1,5 +1,5 @@
 import axios from '@/api/axios';
-import { ChnagePasswordProps } from '@/@types/type';
+import { ChangePasswordProps } from '@/@types/type';
 
 export const userInfoData = async () => {
   try {
@@ -22,6 +22,7 @@ export const userChangeNickname = async (nickname: string) => {
     return res.data;
   } catch (error) {
     console.error('nicknameError:', error);
+    return error
   }
 };
 
@@ -30,7 +31,7 @@ export const userChangeNickname = async (nickname: string) => {
 export const userChangePassword = async ({
   password,
   newPassword,
-}: ChnagePasswordProps) => {
+}: ChangePasswordProps) => {
   try {
     const res = await axios.put('/auth/password', {
       password: password,
@@ -48,7 +49,7 @@ export const userChangePassword = async ({
 export const userImageUpload = async (binaryData: string) => {
   try {
     await axios.post('https://sp-taskify-api.vercel.app/3-1/users/me/image', {
-      profileImageUrl: imageUrl,
+      profileImageUrl:  `data:image/jpeg;base64,${binaryData}`,
     });
     console.log('이미지 업로드 성공');
   } catch (error) {

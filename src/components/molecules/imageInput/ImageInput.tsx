@@ -68,6 +68,8 @@ export default function ImageInput({ size }: Props) {
                 layout="fill"
                 src="/assets/icon/editIcon.svg"
                 alt="연필 아이콘"
+                priority={true}
+                objectFit="cover"
               />
             </div>
           </div>
