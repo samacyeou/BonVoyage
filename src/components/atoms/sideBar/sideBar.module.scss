@@ -44,7 +44,11 @@
 
 @media (min-width: 376px) {
   .sidebar {
-    // width: 160px;
+    width: 160px;
+    padding: 20px 24px;
+  }
+  .logoText {
+    display: block;
   }
   .menuTitle {
     display: block;
@@ -54,24 +58,25 @@
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
   .sidebar {
     width: 160px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 160px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 160px;
+    padding: 20px 24px;
   }
   .menuArea {
-    margin-top: 60px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .sidebar {
-    width: 160px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .sidebar {
-    width: 160px;
+    margin-top: 20px;
   }
 }
 

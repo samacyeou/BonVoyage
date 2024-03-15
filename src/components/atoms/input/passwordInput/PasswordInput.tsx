@@ -1,50 +1,63 @@
-import { useState } from "react";
-import styles from "./passwordInput.module.scss";
-import Image from "next/image";
-import eyeOffIcon from "../../../../../public/assets/icon/eyeOffIcon.svg";
-import eyeOnIcon from "../../../../../public/assets/icon/eyeOnIcon.svg";
+import Image from 'next/image';
+import { forwardRef, useState } from 'react';
+import {
+  FieldErrors,
+  UseFormRegister,
+  UseFormRegisterReturn,
+} from 'react-hook-form';
+import eyeOffIcon from '../../../../../public/assets/icon/eyeOffIcon.svg';
+import eyeOnIcon from '../../../../../public/assets/icon/eyeOnIcon.svg';
+import CommonInput from '../common/CommonInput';
 
-export default function PasswordInput() {
-  const [password, setPassword] = useState<string>("");
-  const [isValid, setIsValid] = useState<boolean>(true);
-  const [isClicked, setIsClicked] = useState<boolean>(false);
+export interface Props extends Partial<UseFormRegisterReturn> {
+  errors: FieldErrors;
+  register: UseFormRegister<any>;
+  placeholder?: string;
+  text?: string;
+}
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-  };
+const PasswordInput = forwardRef<HTMLInputElement, Props>(
+  function PasswordInput(
+    {
+      register,
+      placeholder = '비밀번호를 입력해주세요',
+      text = '비밀번호',
+      ...props
+    },
+    ref,
+  ) {
+    const [isClicked, setIsClicked] = useState<boolean>(false);
 
-  const handleBlur = (): void => {
-    if (password.length < 8) {
-      setIsValid(false);
-    } else {
-      setIsValid(true);
-    }
-  };
+    const handleClick = (): void => {
+      setIsClicked(!isClicked);
+    };
 
-  const handleClick = (): void => {
-    setIsClicked(!isClicked);
-  };
-  return (
-    <div className={styles["inputForm"]}>
-      <label className={styles["inputLabel"]}>비밀번호</label>
-      <input
-        className={`${styles["inputBox"]} ${isValid ? "" : styles["invalid"]}`}
-        placeholder="비밀번호를 입력해 주세요"
-        type={isClicked ? "text" : "password"}
-        value={password}
-        onChange={handleInputChange}
-        onBlur={handleBlur}
-      ></input>
+    const passwordIcon = (
       <Image
-        className={styles["eyeIcon"]}
+        alt="EyeIcon"
         onClick={handleClick}
         src={isClicked ? eyeOnIcon : eyeOffIcon}
-        alt="EyeIcon"
-      ></Image>
-      {!isValid && (
-        <span className={styles["errorMsg"]}>8자 이상 입력해 주세요.</span>
-      )}
-    </div>
-  );
-}
+      />
+    );
+
+    return (
+      <CommonInput
+        label={text}
+        placeholder={placeholder}
+        type={isClicked ? 'text' : 'password'}
+        {...register('password', {
+          minLength: {
+            value: 8,
+            message: '8자 이상 입력해주세요.',
+          },
+          required: '비밀번호를 입력해주세요.',
+        })}
+        icon={passwordIcon}
+        {...props}
+        ref={ref}
+      />
+    );
+  },
+);
+
+export default PasswordInput;

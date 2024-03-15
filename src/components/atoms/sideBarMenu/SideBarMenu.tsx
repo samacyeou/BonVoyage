@@ -10,7 +10,10 @@ export default function SideBarMenu({ menuTitle }: SideBarMenuProps) {
     <div className={styles['sidebarMenu']}>
       <ColorDot colorName="orange" />
       <span className={styles['menuTitle']}>{menuTitle}</span>
-      <img className={styles['crownIcon']} src={'/assets/icon/crownIcon.svg'} />
+      <img
+        className={styles['crownIcon']}
+        src={'/assets/icon/crownIcon.svg'}
+      ></img>
     </div>
   );
 }

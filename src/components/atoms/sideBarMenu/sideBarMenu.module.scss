@@ -2,12 +2,20 @@
   width: 100%;
   height: 45px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .menuTitle {
-    color: var(--gray50);
-    font-size: 18px;
-    display: none;
-  }
+.menuTitle {
+  color: var(--gray50);
+  font-size: 1.8rem;
+  margin-left: 16px;
+  margin-right: 6px;
+  display: none;
+}
+.crownIcon {
+  display: none;
 }
 
 @media (min-width: 376px) {
