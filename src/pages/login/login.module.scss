@@ -1,0 +1,85 @@
+@import '@/styles/mixins';
+
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 280px;
+  min-height: 100vh;
+  gap: 10px;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.691),
+      rgba(255, 255, 255, 0.358)
+    ),
+    url(../../../public/assets/image/bgLogin.jpg);
+  @include animatedBackground;
+
+  @media (min-width: 769px) {
+    gap: 50px;
+  }
+}
+
+.loginLogoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  @media (min-width: 769px) {
+    gap: 10px;
+  }
+}
+
+.loginNiceMeetYouText {
+  color: var(--black);
+  font-size: 1.2rem;
+
+  @media (min-width: 769px) {
+    font-size: 1.5rem;
+  }
+}
+
+.loginFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: calc(100% - 24px);
+  gap: 8px;
+  background-color: #ffffff77;
+  padding: 24px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+
+  @media (min-width: 769px) {
+    width: 50%;
+    padding: 24px;
+    gap: 20px;
+  }
+}
+
+.loginButton {
+  margin-bottom: 8px;
+}
+
+.signUpLinkBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  color: var(--black);
+
+  @media (min-width: 769px) {
+    font-size: 1.5rem;
+  }
+
+  .signUpLinkText {
+    color: var(--blue30);
+    text-decoration: underline;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}

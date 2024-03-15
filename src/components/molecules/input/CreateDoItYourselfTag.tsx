@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react';
 import styles from './createDoItYourselfTag.module.scss';
 <<<<<<< HEAD
@@ -7,6 +8,12 @@ import CreateDoItYourselfInput from '@/components/atoms/input/createDoItYourself
 import CreateDoItYourselfInput from '@/components/atoms/input/CreateDoItYourselfInput';
 import ChipTag from '@/components/atoms/chipTag/ChipTag';
 >>>>>>> ffaae27 ([Feat] 할 일 페이지 atoms 구현 (#18))
+=======
+import ChipTag from '@/components/atoms/chipTag/ChipTag';
+import CreateDoItYourselfInput from '@/components/atoms/input/createDoItYourselfCommonInput/CreateDoItYourselfInput';
+import { useState } from 'react';
+import styles from './createDoItYourselfTag.module.scss';
+>>>>>>> aa651f3b8199386f117015637dc75a2fce5440a3
 
 const colors: Array<'orange' | 'pink' | 'blue' | 'green'> = [
   'orange',

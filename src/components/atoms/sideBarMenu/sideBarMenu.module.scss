@@ -2,6 +2,7 @@
   width: 100%;
   height: 45px;
   cursor: pointer;
+<<<<<<< HEAD
 
   .menuTitle {
     color: var(--gray50);
@@ -10,6 +11,24 @@
   }
 }
 
+=======
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuTitle {
+  color: var(--gray50);
+  font-size: 1.8rem;
+  margin-left: 16px;
+  margin-right: 6px;
+  display: none;
+}
+.crownIcon {
+  display: none;
+}
+
+>>>>>>> aa651f3b8199386f117015637dc75a2fce5440a3
 @media (min-width: 376px) {
   .sidebarMenu {
     justify-content: left;

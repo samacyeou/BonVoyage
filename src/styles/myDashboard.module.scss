@@ -10,7 +10,7 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 40px;
   padding: 16px 10px 16px 80px;
 
   @media (min-width: 375px) {
@@ -19,11 +19,24 @@
 
   @media (min-width: 769px) {
     padding: 40px 40px 0 200px;
-    gap: 40px;
   }
 
   @media (min-width: 1024px) {
     padding: 40px 40px 0 340px;
+  }
+}
+
+.dashboardList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 13px;
+
+  @media (min-width: 769px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
