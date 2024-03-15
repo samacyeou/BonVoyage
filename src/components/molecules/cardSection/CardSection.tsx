@@ -4,6 +4,7 @@ import styles from './cardSection.module.scss';
 import Image from 'next/image';
 import settingIcon from '../../../../public/assets/icon/settingsIcon.svg';
 import EventDashboardBtn from '@/components/atoms/buttons/eventDashboardBtn';
+import Card from '../card/Card';
 
 const titles: { [key: string]: string } = {
   toDo: 'To Do',
@@ -27,6 +28,11 @@ export default function CardSection({ title }: CardSectionProps) {
         <Image className={styles['settingIcon']} src={settingIcon}></Image>
       </div>
       <EventDashboardBtn type="addTodo" />
+      <Card
+        title="새로운 일정 관리"
+        date="2023.03.02"
+        userProfile="/assets/icon/logo.svg"
+      ></Card>
     </div>
   );
 }

@@ -1,0 +1,42 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid var(--gray30);
+  margin-top: 10px;
+  padding: 12px;
+  gap: 10px;
+}
+.cardImage {
+}
+.infoArea {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+}
+
+.dateProfileArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.dateArea {
+  display: flex;
+  align-items: center;
+}
+.date {
+  font-size: 1rem;
+  color: var(--gray50);
+  margin-top: 3px;
+  margin-right: 4px;
+}
+
+.userProfile {
+  width: 22px;
+  height: 22px;
+}
