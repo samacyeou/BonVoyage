@@ -2,7 +2,7 @@ import Account from '@/components/molecules/account';
 import Layout from '@/components/molecules/layout';
 import styles from './mypage.module.scss';
 import { useEffect, useState } from 'react';
-import { userInfoData } from '@/api/acountApi/acountApi';
+import { userInfoData } from '@/api/accountApi/accountApi';
 import React from 'react';
 
 export const userContext = React.createContext<UserInfoProps>({

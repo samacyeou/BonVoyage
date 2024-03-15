@@ -1,9 +1,9 @@
 import CommonInput from '@/components/atoms/input/common/CommonInput';
 import styles from './passwordChangeForm.module.scss';
 import Button from '@/components/atoms/buttons/button';
-import { useState } from 'react';
-import { userChangePassword } from '@/api/acountApi/acountApi';
-
+import { useEffect, useState } from 'react';
+import { userChangePassword } from '@/api/accountApi/accountApi';
+import { stat } from 'fs';
 
 const PasswordChangeForm = () => {
   const [password, setPassword] = useState('');
@@ -11,25 +11,32 @@ const PasswordChangeForm = () => {
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [error, setError] = useState('');
 
+  const isDisabled =
+    password === '' || newPassword === '' || confirmNewPassword === '';
+
   const handlePasswordChange = async () => {
     if (newPassword !== confirmNewPassword) {
       setError('비밀번호가 일치하지 않습니다.');
       return;
     }
 
-    try {
-      await userChangePassword({
-        password: password,
-        newPassword: newPassword,
-      });
-      console.log('비밀번호가 성공적으로 변경되었습니다.');
+    if (newPassword.length < 8) {
+      setError('새로운 비밀번호는 8자 이상 입력해주세요.');
+      return;
+    }
+
+    const res = await userChangePassword({
+      password: password,
+      newPassword: newPassword,
+    });
+
+    if (res.status === 204) {
       setPassword('');
       setNewPassword('');
       setConfirmNewPassword('');
-    } catch (error) {
-      console.error('비밀번호 변경 실패:', error);
-      setError('비밀번호 변경에 실패했습니다.');
+      return;
     }
+    setError('현재 비밀번호가 틀렸습니다.');
   };
 
   return (
@@ -61,13 +68,16 @@ const PasswordChangeForm = () => {
           errors={{}}
         />
       </div>
-      <div className={styles.error_text_wrapper}>{error && <p className={styles.error_text}>{error}</p>}</div>
+      <div className={styles.error_text_wrapper}>
+        {error && <p className={styles.error_text}>{error}</p>}
+      </div>
       <div className={styles.ButtonContainer}>
         <Button
           name="변경"
           type="modal"
           color="blue"
           onClick={handlePasswordChange}
+          disabled={isDisabled}
         />
       </div>
     </div>

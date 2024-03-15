@@ -3,7 +3,7 @@ import ImageInput from '@/components/molecules/imageInput/ImageInput';
 import Button from '@/components/atoms/buttons/button';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { userChangeNickname } from '@/api/acountApi/acountApi';
+import { userChangeNickname } from '@/api/accountApi/accountApi';
 import { useContext } from 'react';
 import { userContext } from '@/pages/mypage/index';
 import CommonInput from '@/components/atoms/input/common/CommonInput';
@@ -35,8 +35,8 @@ const ProfileForm = () => {
           label="이메일"
           placeholder={userInfo.email}
           disabled={true}
-          errors={{}} 
-          type='email'
+          errors={{}}
+          type="email"
         />
         <CommonInput
           label="닉네임"
@@ -44,7 +44,7 @@ const ProfileForm = () => {
           value={nickname}
           onChange={handleNicknameChange}
           errors={{}}
-          type='text'
+          type="text"
         />
       </div>
       <div className={styles.ButtonContainer}>
@@ -62,4 +62,3 @@ const ProfileForm = () => {
 export default ProfileForm;
 
 //여기에는 프로필 수정 폼
-
