@@ -1,0 +1,15 @@
+@mixin animatedBackground {
+  background-size: cover;
+  background-position: right;
+  background-attachment: fixed;
+  animation: moveBackground 50s linear infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: right; /* 애니메이션 시작 시 배경 이미지의 초기 위치 */
+  }
+  100% {
+    background-position: left; /* 애니메이션 종료 시 배경 이미지의 최종 위치 */
+  }
+}
