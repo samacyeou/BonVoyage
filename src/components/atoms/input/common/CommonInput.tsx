@@ -1,14 +1,19 @@
 import classNames from 'classnames/bind';
-import { HTMLInputTypeAttribute, PropsWithChildren, ReactNode } from 'react';
+import {
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  PropsWithChildren,
+  ReactNode,
+} from 'react';
 import { FieldErrors, RegisterOptions, UseFormRegister } from 'react-hook-form';
 import styles from './commonInput.module.scss';
 
 const cn = classNames.bind(styles);
 
-export interface CommonInputProps {
+export interface CommonInputProps
+  extends InputHTMLAttributes<HTMLInputElement> {
   errors: FieldErrors;
   register: UseFormRegister<any>;
-  name?: string;
   registerOptions?: RegisterOptions;
 }
 
