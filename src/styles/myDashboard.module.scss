@@ -69,6 +69,7 @@
 
   input {
     font-size: 1.4rem;
+    width: 100%;
   }
 
   input::placeholder {
@@ -102,15 +103,23 @@
 }
 
 .columns {
+  display: grid;
+  grid-template-columns: 0.36fr 0.31fr 0.32fr;
+
   span {
     color: var(--gray40, #9fa6b2);
     font-size: 1.6rem;
   }
 }
 
-.invitor {
-  margin-left: 154px;
-  margin-right: 70px;
+.invitedDashboard {
+  padding: 0 28px 0 58px;
+  display: flex;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    padding: 0 64px;
+  }
 }
 
 .empty {

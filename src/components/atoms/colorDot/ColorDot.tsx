@@ -13,7 +13,12 @@ export default function ColorDot({ colorName }: ColorDotProp) {
       viewBox="0 0 8 8"
       fill="none"
     >
-      <circle cx="4" cy="4" r="4" fill={colors[colorName]} />
+      <circle
+        cx="4"
+        cy="4"
+        r="4"
+        fill={colorName[0] === '#' ? colorName : colors[colorName]}
+      />
     </svg>
   );
 }

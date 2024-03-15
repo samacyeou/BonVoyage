@@ -63,15 +63,26 @@ export default function MyDashboard() {
           </div>
           <input placeholder="검색" />
         </div>
-        <div className={cn('columns')}>
-          <span className={cn('name')}>이름</span>
-          <span className={cn('invitor')}>초대자</span>
-          <span className={cn('acceptOrNot')}>수락 여부</span>
-        </div>
-        {/* 초대된 대시보드 목록을 이용하여 내용을 채워야 합니다.
-        {invitedDashboardList.map(({ invitations }) => {
-          return <div className={cn('invitedDashboard']}></div>
-        })} */}
+        {isMobile ? (
+          <div></div>
+        ) : (
+          <>
+            <div className={cn('columns')}>
+              <span className={cn('name')}>이름</span>
+              <span className={cn('invitor')}>초대자</span>
+              <span className={cn('acceptOrNot')}>수락 여부</span>
+            </div>
+            {invitedDashboardList.map((element) => {
+              return (
+                <div className={cn('invitedDashboard')}>
+                  <span>{element.dashboard.title}</span>
+                  <span>{element.inviter.nickname}</span>
+                  <div className={cn('inviteButtons')}></div>
+                </div>
+              );
+            })}
+          </>
+        )}
       </>
     );
   } else {
@@ -159,13 +170,28 @@ export default function MyDashboard() {
       }
     }
 
+    async function getInvitedDashboardList() {
+      const response = await instance.get('/invitations', {
+        params: {
+          size: 6,
+        },
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      });
+
+      setInvitedDashboardList(response.data.invitations);
+    }
+
     login();
+    getInvitedDashboardList();
   }, [dashboardListPage]);
 
   return (
     <div className={cn('background')}>
       <MyHeader
-        profileImageUrl={user?.profileImageUrl ?? '/assets/icon/logo.svg'}
+        profileImageUrl={user?.profileImageUrl ?? '/assets/icon/checkIcon.svg'}
         nickname={user?.nickname ?? 'unknown'}
       />
       <section className={cn('section')}>

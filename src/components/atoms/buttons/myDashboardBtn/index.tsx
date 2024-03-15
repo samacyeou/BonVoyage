@@ -15,7 +15,7 @@ const MyDashboardBtn = ({
       <div className={styles.container}>
         {src}
         {name}
-        <Image src={src2 ?? ''} alt={iconAlt} width={20} height={20} />
+        {src2 && <Image src={src2} alt={iconAlt} width={20} height={20} />}
       </div>
       <Image
         src={forwardArrowIcon}

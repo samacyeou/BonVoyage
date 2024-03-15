@@ -31,7 +31,6 @@ export interface MemberProfile {
 }
 
 export interface MyDashboardProps extends ButtonProps {
-<<<<<<< HEAD
   src: JSX.Element;
   src2?: StaticImageData;
   iconAlt?: string;
@@ -64,9 +63,3 @@ export interface Dashboard {
   createdByMe: boolean;
   userId: number;
 }
-=======
-  src: StaticImageData;
-  src2?: StaticImageData;
-  iconAlt?: string;
-}
->>>>>>> ffaae27 ([Feat] 할 일 페이지 atoms 구현 (#18))

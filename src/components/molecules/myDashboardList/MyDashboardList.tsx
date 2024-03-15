@@ -9,14 +9,6 @@ import { Dashboard } from '@/@types/type';
 
 const cn = classNames.bind(styles);
 
-const COLOR_LIST: { [value: string]: string } = {
-  '#7AC555': 'green',
-  '#FFA500': 'orange',
-  '#E876EA': 'pink',
-  '#760DDE': 'purple',
-  '#76A5EA': 'blue',
-};
-
 interface Props {
   dashboardList: Dashboard[];
   dashboardListPage: number;
@@ -47,7 +39,7 @@ export default function MyDashboardList({
             <MyDashboardBtn
               key={element.id}
               name={element.title}
-              src={<ColorDot colorName={COLOR_LIST[element.color]} />}
+              src={<ColorDot colorName={element.color} />}
             />
           );
         })}
