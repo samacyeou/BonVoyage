@@ -1,14 +1,13 @@
 .sidebar {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 67px;
   align-items: center;
-  border-right: solid 1px var(--gray20, #eee);
   min-height: 100vh;
   height: 100%;
   padding: 20px 24px;
+  border-right: solid 1px var(--gray20, #eee);
+  position: fixed;
   z-index: 1;
+  background-color: var(--white);
 }
 .logoArea {
   display: flex;
