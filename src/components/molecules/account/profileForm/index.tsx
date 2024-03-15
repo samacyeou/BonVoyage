@@ -1,16 +1,14 @@
 import styles from './profileForm.module.scss';
 import ImageInput from '@/components/molecules/imageInput/ImageInput';
 import Button from '@/components/atoms/buttons/button';
-import EmailInput from '@/components/atoms/input/emailInput/EmailInput';
-import NicknameInput from '@/components/atoms/input/nicknameInput/NicknameInput';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import {userChangeNickname } from '@/api/acountApi/acountApi';
+import { userChangeNickname } from '@/api/acountApi/acountApi';
 import { useContext } from 'react';
 import { userContext } from '@/pages/mypage/index';
+import CommonInput from '@/components/atoms/input/common/CommonInput';
 
 const ProfileForm = () => {
-
   const userInfo = useContext(userContext);
 
   const [nickname, setNickname] = useState('');
@@ -29,23 +27,36 @@ const ProfileForm = () => {
     }
   };
 
-
   return (
     <div className={styles.container}>
       <h1>프로필</h1>
       <ImageInput size="big" />
       <div className={styles.inputContainer}>
-        <EmailInput disabled={true} placeholder={userInfo.email} />
-        <NicknameInput value={nickname} onChange={handleNicknameChange} />
+        <CommonInput
+          label="이메일"
+          placeholder={userInfo.email}
+          disabled={true}
+        />
+        <CommonInput
+          label="닉네임"
+          placeholder="닉네임을 입력해주세요"
+          value={nickname}
+          onChange={handleNicknameChange}
+        />
       </div>
       <div className={styles.ButtonContainer}>
-        <Button name="저장" type="modal" color="blue" onClick={handleSaveClick} />
+        <Button
+          name="저장"
+          type="modal"
+          color="blue"
+          onClick={handleSaveClick}
+        />
       </div>
     </div>
   );
 };
 
-
 export default ProfileForm;
 
 //여기에는 프로필 수정 폼
+

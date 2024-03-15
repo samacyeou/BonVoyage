@@ -6,7 +6,7 @@ import Button from '@/components/atoms/buttons/button';
 const PasswordChangeForm = () => {
   return (
     <div className={styles.container}>
-      <h1>비밀번호 변경</h1>
+      {/* <h1>비밀번호 변경</h1>
       <div className={styles.inputContainer}>
         <PasswordInput text="현재 비밀번호" />
         <PasswordInput text="새 비밀번호" />
@@ -14,7 +14,7 @@ const PasswordChangeForm = () => {
       </div>
       <div className={styles.ButtonContainer}>
         <Button name="변경" type="modal" color="blue" />
-      </div>
+      </div> */}
     </div>
   );
 };
