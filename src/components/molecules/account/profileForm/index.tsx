@@ -36,6 +36,7 @@ const ProfileForm = () => {
           placeholder={userInfo.email}
           disabled={true}
           errors={{}} 
+          type='email'
         />
         <CommonInput
           label="닉네임"
@@ -43,6 +44,7 @@ const ProfileForm = () => {
           value={nickname}
           onChange={handleNicknameChange}
           errors={{}}
+          type='text'
         />
       </div>
       <div className={styles.ButtonContainer}>

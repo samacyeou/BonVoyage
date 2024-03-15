@@ -17,7 +17,7 @@ export default function LogoWithTitle() {
             alt="logo"
           />
         </Link>
-        {notMobile && (
+        {/* {notMobile && ( */}
           <Link href={'/'}>
             <Image
               src="/assets/icon/logoText.svg"
@@ -26,7 +26,7 @@ export default function LogoWithTitle() {
               alt="logoText"
             />
           </Link>
-        )} 
+        {/* )}  */}
       </div>
     </>
   );
