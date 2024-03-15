@@ -40,7 +40,7 @@ body {
 }
 
 body,
-input,
+input:not([type='checkbox']),
 textarea,
 a {
   all: unset;

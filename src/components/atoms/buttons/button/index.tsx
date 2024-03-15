@@ -7,8 +7,8 @@ const Button = ({ name, disabled, type, color, onClick }: ButtonProps) => {
     color: ButtonProps['color'],
   ) => {
     switch (type) {
-      case 'acount':
-        return styles.acountBtn;
+      case 'account':
+        return styles.accountBtn;
       case 'small':
         return color === 'blue' ? styles.acceptBtn : styles.declineBtn;
       case 'delete':
@@ -41,10 +41,10 @@ export default Button;
 
 //사용법 적기
 
-// <Button name="로그인" type="acount" />
+// <Button name="로그인" type="account" />
 //-> 로그인버튼
 
-// <Button name="로그인" type="acount" disabled={true} />
+// <Button name="로그인" type="account" disabled={true} />
 //-> 비활성화된 로그인버튼
 
 // <Button name="수락" type="small" color="blue" />
@@ -65,4 +65,4 @@ export default Button;
 // <Button name="입력" type="modal" />;
 //-> 입력버튼, 입력버튼은 color props가 없어도 됨
 
-// 새컬럼 생성 모달의 생성버튼,  컬럼 관리 모달의 변경버튼도 (type="modal") 활용하면 될 것 같아요 
+// 새컬럼 생성 모달의 생성버튼,  컬럼 관리 모달의 변경버튼도 (type="modal") 활용하면 될 것 같아요
