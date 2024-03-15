@@ -16,25 +16,31 @@ interface CardProps {
 export default function Card({ title, date, userProfile }: CardProps) {
   return (
     <div className={styles['card']}>
-      <Image className={styles['cardImage']} src={testImage}></Image>
+      <img
+        className={styles['cardImage']}
+        src="assets/image/testImage.png"
+      ></img>
       <div className={styles['infoArea']}>
         <span className={styles['cardTitle']}>{title}</span>
-        <div className={styles['tagArea']}>
-          <ChipTag tag="일반" color="pink" />
-        </div>
-        <div className={styles['dateProfileArea']}>
-          <div className={styles['dateArea']}>
-            <Image
-              className={styles['calendarIcon']}
-              src={calendarIcon}
-            ></Image>
-            <span className={styles['date']}>{date}</span>
+        <div className={styles['tagDateArea']}>
+          <div className={styles['tagArea']}>
+            <ChipTag tag="일반" color="pink" />
           </div>
-          <Image
-            className={styles['userProfile']}
-            src={testProfile}
-            alt="userProfile"
-          ></Image>
+
+          <div className={styles['dateProfileArea']}>
+            <div className={styles['dateArea']}>
+              <Image
+                className={styles['calendarIcon']}
+                src={calendarIcon}
+              ></Image>
+              <span className={styles['date']}>{date}</span>
+            </div>
+            <Image
+              className={styles['userProfile']}
+              src={testProfile}
+              alt="userProfile"
+            ></Image>
+          </div>
         </div>
       </div>
     </div>

@@ -7,27 +7,68 @@
   margin-top: 10px;
   padding: 12px;
   gap: 10px;
+
+  @media (min-width: 376px) {
+    flex-direction: row;
+    padding: 20px;
+    gap: 20px;
+  }
 }
 .cardImage {
+  @media (min-width: 376px) {
+    width: 90px;
+    height: 53px;
+  }
 }
+
 .infoArea {
   gap: 6px;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 376px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .cardTitle {
   font-size: 1.4rem;
+  @media (min-width: 376px) {
+    margin-top: 6px;
+  }
 }
+.tagDateArea {
+  @media (min-width: 376px) {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+.tagArea {
+  margin-top: 6px;
 
+  @media (min-width: 376px) {
+    margin-top: 10px;
+  }
+}
 .dateProfileArea {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  @media (min-width: 376px) {
+    align-items: flex-end;
+    display: flex;
+  }
 }
 .dateArea {
   display: flex;
   align-items: center;
+
+  @media (min-width: 376px) {
+    margin-bottom: 3px;
+  }
 }
 .date {
   font-size: 1rem;
@@ -39,4 +80,13 @@
 .userProfile {
   width: 22px;
   height: 22px;
+  @media (min-width: 376px) {
+    position: relative;
+  }
+}
+
+@media (min-width: 376px) {
+}
+
+@media (min-width: 769px) {
 }
