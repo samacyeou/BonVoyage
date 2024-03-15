@@ -21,7 +21,6 @@ const ProfileForm = () => {
   const handleSaveClick = async () => {
     try {
       await userChangeNickname(nickname); // 닉네임 변경 API 호출
-      console.log('닉네임 변경 성공');
     } catch (error) {
       console.error('닉네임 변경 실패:', error);
     }
@@ -36,12 +35,14 @@ const ProfileForm = () => {
           label="이메일"
           placeholder={userInfo.email}
           disabled={true}
+          errors={{}} 
         />
         <CommonInput
           label="닉네임"
           placeholder="닉네임을 입력해주세요"
           value={nickname}
           onChange={handleNicknameChange}
+          errors={{}}
         />
       </div>
       <div className={styles.ButtonContainer}>

@@ -34,3 +34,8 @@ export interface MyDashboardProps extends ButtonProps {
   src2?: StaticImageData;
   iconAlt?: string;
 }
+
+export interface ChnagePasswordProps{
+  password: string;
+  newPassword: string;
+}

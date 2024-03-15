@@ -12,7 +12,7 @@ import styles from './commonInput.module.scss';
 const cn = classNames.bind(styles);
 
 export interface Props extends PropsWithChildren<UseFormRegisterReturn> {
-  errors?: FieldErrors;
+  errors: FieldErrors;
   label: string;
   placeholder: string;
   type: HTMLInputTypeAttribute;
@@ -23,8 +23,8 @@ const CommonInput = forwardRef<HTMLInputElement, Props>(function CommonInput(
   { children, errors, label, icon, ...props },
   ref,
 ) {
-  const error = errors?.[props.name as string]; 
-  const invalid = error !== undefined; 
+  const error = errors[props.name as string];
+  const invalid = error !== undefined;
 
   return (
     <div className={styles.inputForm}>

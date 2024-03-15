@@ -6,9 +6,6 @@ import styles from './logoWithTitle.module.scss';
 export default function LogoWithTitle() {
   const notMobile = useMediaQuery({ minWidth: 376 });
 
-if(notMobile){
-  return null
-}
   return (
     <>
       <div className={styles['logo']}>
@@ -20,7 +17,7 @@ if(notMobile){
             alt="logo"
           />
         </Link>
-        {/* {notMobile && (
+        {notMobile && (
           <Link href={'/'}>
             <Image
               src="/assets/icon/logoText.svg"
@@ -29,7 +26,7 @@ if(notMobile){
               alt="logoText"
             />
           </Link>
-         )}  */}
+        )} 
       </div>
     </>
   );

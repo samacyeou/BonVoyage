@@ -9,7 +9,7 @@ import { userContext } from '@/pages/mypage/index';
 
 const Account = () => {
 
-  const userInfo = useContext(userContext);
+  // const userInfo = useContext(userContext);
   // console.log(userInfo)
 
   const router = useRouter();

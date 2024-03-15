@@ -10,7 +10,7 @@ const Layout = ({children}:PropsWithChildren) => {
   return (
     <div className={styles.container}>
       <MyHeader nickname='지용' profileImageUrl={ellopseGreen}/>
-      {/* <SideBar /> */}
+      <SideBar />
       {children}
     </div>
   );
