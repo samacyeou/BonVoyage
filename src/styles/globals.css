@@ -24,6 +24,7 @@
 
 * {
   box-sizing: border-box;
+  font-size: 1.6rem;
 }
 
 html {
@@ -40,11 +41,7 @@ body {
 }
 
 body,
-<<<<<<< HEAD
-input,
-=======
 input:not([type='checkbox']),
->>>>>>> aa651f3b8199386f117015637dc75a2fce5440a3
 textarea,
 a {
   all: unset;
