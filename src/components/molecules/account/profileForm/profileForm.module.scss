@@ -32,7 +32,19 @@
     width: 560px;
     height: 370px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+
+    // flex-wrap: wrap;
+    // flex: 1;
+
+    .imgContainer{
+      width: 240px;
+      display: flex;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+     
+    }
 
     .inputContainer{
       width: 275px;

@@ -6,14 +6,16 @@ import { userChangeNickname } from '@/api/accountApi/accountApi';
 import { useContext } from 'react';
 import { userContext } from '@/pages/mypage/index';
 import CommonInput from '@/components/atoms/input/common/CommonInput';
-import { useForm, SubmitHandler }from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 const ProfileForm = () => {
+
+  const { register } = useForm({ mode: 'all' }); // 사용하지는 않지만 register 에러 막기용
+
   const userInfo = useContext(userContext);
 
   const [nickname, setNickname] = useState('');
 
- 
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setNickname(e.target.value);
@@ -27,33 +29,31 @@ const ProfileForm = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<SignInProps> = (data: any) => {
-    // Handle form submission
-    console.log(data);
-  };
-
   return (
     <div className={styles.container}>
-      <h1>프로필</h1>
-      <ImageInput size="big" />
-      <form className={styles.inputContainer} onSubmit={handleSubmit(onSubmit)}>
-        {/* <CommonInput
+      <div className={styles.imgContainer}>
+        <h1>프로필</h1>
+        <ImageInput size="big" />
+      </div>
+      <div className={styles.inputContainer}>
+        <CommonInput
           label="이메일"
           placeholder={userInfo.email}
           disabled={true}
           errors={{}}
           type="email"
-        /> */}
+          name='email'
+          register={register}
+        />
         <CommonInput
           label="닉네임"
           placeholder="닉네임을 입력해주세요"
-          // value={nickname}
-          // onChange={handleNicknameChange}
+          value={nickname}
+          onChange={handleNicknameChange}
           errors={{}}
           type="text"
+          name='nickname'
           register={register}
-          name="nickname"
-          registerOptions={}
         />
         <div className={styles.ButtonContainer}>
           <Button
@@ -63,7 +63,7 @@ const ProfileForm = () => {
             onClick={handleSaveClick}
           />
         </div>
-      </form>
+      </div>
     </div>
   );
 };

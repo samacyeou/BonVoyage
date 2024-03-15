@@ -3,10 +3,12 @@ import styles from './passwordChangeForm.module.scss';
 import Button from '@/components/atoms/buttons/button';
 import { useEffect, useState } from 'react';
 import { userChangePassword } from '@/api/accountApi/accountApi';
-import { stat } from 'fs';
-import { register } from 'module';
+import { useForm } from 'react-hook-form';
 
 const PasswordChangeForm = () => {
+  const { register } = useForm({ mode: 'all' }); // 사용하지는 않지만 register 에러 막기용
+
+
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -44,13 +46,15 @@ const PasswordChangeForm = () => {
     <div className={styles.container}>
       <h1>비밀번호 변경</h1>
       <div className={styles.inputContainer}>
-        {/* <CommonInput
+        <CommonInput
           label="현재 비밀번호"
           placeholder="현재 비밀번호 입력"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           errors={{}}
+          register={register}
+          name='password'
         />
         <CommonInput
           label="새 비밀번호"
@@ -59,6 +63,8 @@ const PasswordChangeForm = () => {
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           errors={{}}
+          register={register}
+          name='newPassword'
         />
         <CommonInput
           label="새 비밀번호 확인"
@@ -67,7 +73,9 @@ const PasswordChangeForm = () => {
           value={confirmNewPassword}
           onChange={(e) => setConfirmNewPassword(e.target.value)}
           errors={{}}
-        /> */}
+          register={register}
+          name='confirmNewPassword'
+        />
       </div>
       <div className={styles.error_text_wrapper}>
         {error && <p className={styles.error_text}>{error}</p>}

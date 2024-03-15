@@ -1,9 +1,10 @@
 .container {
   margin-top: 60px;
-  // flex: 1;
   padding: 12px;
-  // border-top: 1px solid gray; //예비설정
-  // border-left: 1px solid gray; //예비설정
+  display: flex;
+  flex-direction: column;
+  margin-left: 220px;//예비용
+
 
   .return {
     margin-top: 8px;

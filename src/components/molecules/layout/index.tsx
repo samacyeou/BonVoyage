@@ -9,9 +9,9 @@ const Layout = ({children}:PropsWithChildren) => {
 
   return (
     <div className={styles.container}>
-      <MyHeader nickname='지용' profileImageUrl={ellopseGreen}/>
+      {/* <MyHeader nickname='지용' profileImageUrl={ellopseGreen}/>
       <SideBar />
-      {children}
+      {children} */}
     </div>
   );
 };
