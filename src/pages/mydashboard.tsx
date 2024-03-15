@@ -4,7 +4,7 @@ import MyHeader from '@/components/molecules/myHeader/MyHeader';
 import styles from '@/styles/myDashboard.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { CreateDashboard, Dashboard, User } from '@/@types/type';
 import { useRouter } from 'next/router';
 import CreateDashboardModal from '@/components/molecules/createDashboardModal/CreateDashboardModal';
@@ -46,62 +46,6 @@ export default function MyDashboard() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const router = useRouter();
 
-  let invitation;
-
-  if (invitedDashboardList.length) {
-    invitation = (
-      <>
-        <div className={cn('search')}>
-          <div className={cn('icon')}>
-            <Image
-              layout="fill"
-              objectFit="cover"
-              src="/assets/icon/searchIcon.svg"
-              alt="돋보기 아이콘"
-              priority={true}
-            />
-          </div>
-          <input placeholder="검색" />
-        </div>
-        {isMobile ? (
-          <div></div>
-        ) : (
-          <>
-            <div className={cn('columns')}>
-              <span className={cn('name')}>이름</span>
-              <span className={cn('invitor')}>초대자</span>
-              <span className={cn('acceptOrNot')}>수락 여부</span>
-            </div>
-            {invitedDashboardList.map((element) => {
-              return (
-                <div className={cn('invitedDashboard')}>
-                  <span>{element.dashboard.title}</span>
-                  <span>{element.inviter.nickname}</span>
-                  <div className={cn('inviteButtons')}></div>
-                </div>
-              );
-            })}
-          </>
-        )}
-      </>
-    );
-  } else {
-    invitation = (
-      <div className={cn('empty')}>
-        <div className={cn('emptyMessage')}>
-          <Image
-            layout="fill"
-            src="/assets/icon/unsubscribeIcon.svg"
-            alt="편지지 아이콘"
-            priority={true}
-            objectFit="cover"
-          />
-        </div>
-        <span>아직 초대받은 대시보드가 없어요</span>
-      </div>
-    );
-  }
-
   const onClcikNewDashboard = () => {
     setIsOpenModal(true);
   };
@@ -133,6 +77,158 @@ export default function MyDashboard() {
   const onClickPageButtonRight = () => {
     setDashboardListPage((prevPage) => prevPage + 1);
   };
+
+  const onClickInviteAnswer = async (
+    e: MouseEvent<HTMLButtonElement>,
+    id: number,
+  ) => {
+    const target = e.target as HTMLButtonElement;
+    const answer = target.value === 'true';
+    await instance.put(
+      `/invitations/${id}`,
+      {
+        inviteAccepted: answer,
+      },
+      {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    setInvitedDashboardList((preList) => [
+      ...preList.filter((element) => element.id !== id),
+    ]);
+  };
+
+  let invitation;
+
+  if (invitedDashboardList.length) {
+    invitation = (
+      <>
+        <div className={cn('search')}>
+          <div className={cn('icon')}>
+            <Image
+              layout="fill"
+              objectFit="cover"
+              src="/assets/icon/searchIcon.svg"
+              alt="돋보기 아이콘"
+              priority={true}
+            />
+          </div>
+          <input placeholder="검색" />
+        </div>
+        {isMobile ? (
+          invitedDashboardList.map((element, index) => {
+            return (
+              <>
+                <div className={cn('mobileInvitedDashboard')}>
+                  <div className={cn('dashboardInfo')}>
+                    <div className={cn('propertyValuePair')}>
+                      <div className={cn('property')}>이름</div>
+                      <span className={cn('value')}>
+                        {element.dashboard.title}
+                      </span>
+                    </div>
+                    <div className={cn('propertyValuePair')}>
+                      <div className={cn('property')}>초대자</div>
+                      <span className={cn('value')}>
+                        {element.inviter.nickname}
+                      </span>
+                    </div>
+                  </div>
+                  <div className={cn('invitedDashboardButtons')}>
+                    <button
+                      className={cn('inviteAccept')}
+                      onClick={(e) => onClickInviteAnswer(e, element.id)}
+                      value="true"
+                    >
+                      수락
+                    </button>
+                    <button
+                      className={cn('inviteReject')}
+                      onClick={(e) => onClickInviteAnswer(e, element.id)}
+                      value="false"
+                    >
+                      거절
+                    </button>
+                  </div>
+                </div>
+                {invitedDashboardList.length - 1 !== index && <hr />}
+              </>
+            );
+          })
+        ) : (
+          <>
+            <div className={cn('columns')}>
+              <span className={cn('name')}>이름</span>
+              <span className={cn('invitor')}>초대자</span>
+              <span className={cn('acceptOrNot')}>수락 여부</span>
+            </div>
+            {invitedDashboardList.map((element) => {
+              return (
+                <div className={cn('invitedDashboard')}>
+                  <span>{element.dashboard.title}</span>
+                  <span>{element.inviter.nickname}</span>
+                  <div className={cn('invitedDashboardButtons')}>
+                    <button
+                      className={cn('inviteAccept')}
+                      onClick={(e) => onClickInviteAnswer(e, element.id)}
+                      value="true"
+                    >
+                      수락
+                    </button>
+                    <button
+                      className={cn('inviteReject')}
+                      onClick={(e) => onClickInviteAnswer(e, element.id)}
+                      value="false"
+                    >
+                      거절
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </>
+        )}
+      </>
+    );
+  } else {
+    invitation = (
+      <div className={cn('empty')}>
+        <div className={cn('emptyMessage')}>
+          <Image
+            layout="fill"
+            src="/assets/icon/unsubscribeIcon.svg"
+            alt="편지지 아이콘"
+            priority={true}
+            objectFit="cover"
+          />
+        </div>
+        <span>아직 초대받은 대시보드가 없어요</span>
+      </div>
+    );
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 769) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    }
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     async function login() {

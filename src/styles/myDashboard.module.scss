@@ -43,13 +43,28 @@
 .invitedDashboardList {
   max-width: 1022px;
   min-height: 310px;
-  padding: 32px 28px 0;
+  padding: 24px 16px 20px;
 
   border-radius: 8px;
   background: var(--white, #fff);
 
+  hr {
+    position: relative;
+    width: calc(100% + 32px);
+    height: 1px;
+    left: -16px;
+    right: 16px;
+    margin: 16px 0;
+
+    border-color: var(--gray20, #eee);
+  }
+
   @media (min-width: 375px) {
     min-height: 400px;
+  }
+
+  @media (min-width: 769px) {
+    padding: 32px 28px 24px;
   }
 }
 
@@ -81,6 +96,7 @@
   background: var(--white, #fff);
 
   input {
+    border: none;
     font-size: 1.4rem;
     width: 100%;
   }
@@ -117,7 +133,7 @@
 
 .columns {
   display: grid;
-  grid-template-columns: 0.36fr 0.31fr 0.32fr;
+  grid-template-columns: 36fr 31fr 32fr;
 
   span {
     color: var(--gray40, #9fa6b2);
@@ -132,6 +148,63 @@
 
   @media (min-width: 1024px) {
     padding: 0 64px;
+  }
+}
+
+.dashboardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+
+  .propertyValuePair {
+    display: grid;
+    grid-template-columns: 42px 2fr;
+    gap: 10px;
+  }
+
+  .property {
+    width: 42px;
+    color: var(--gray40, #9fa6b2);
+  }
+
+  .value {
+    color: var(--black20, #333236);
+  }
+}
+
+.invitedDashboardButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  button {
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    border-radius: 4px;
+  }
+
+  .inviteAccept {
+    color: var(--white, #fff);
+
+    border: none;
+    background: var(--blue30, #026fb0);
+  }
+
+  .inviteReject {
+    color: var(--blue30, #026fb0);
+
+    border: 1px solid var(--gray30, #d9d9d9);
+    background: var(--white, #fff);
   }
 }
 
