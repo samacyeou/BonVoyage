@@ -55,21 +55,6 @@
   font-weight: 500;
 }
 
-.myIcon {
-  width: 34px;
-  height: 34px;
-  background-color: #a3c4a2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--white, #fff);
-  font-family: Montserrat;
-  font-size: 1.4rem;
-  font-weight: 600;
-  border-radius: 50%;
-  border: solid 2px var(--white, #fff);
-}
-
 @media (min-width: 769px) {
   .header {
     height: 70px;
