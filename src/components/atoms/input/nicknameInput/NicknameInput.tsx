@@ -1,25 +1,20 @@
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import CommonInput from '../common/CommonInput';
+import CommonInput, { CommonInputProps } from '../common/CommonInput';
 
-interface Props {
-  errors: FieldErrors;
-  register: UseFormRegister<any>;
-}
-
-export default function NicknameInput({ errors, register }: Props) {
+export default function NicknameInput(props: CommonInputProps) {
   return (
     <CommonInput
-      errors={errors}
       label="닉네임"
+      name="nickname"
       placeholder="닉네임을 입력해 주세요"
       type="text"
-      {...register('nickname', {
+      registerOptions={{
         maxLength: {
           value: 10,
           message: '10자 이하로 작성해 주세요.',
         },
         required: '닉네임을 입력해 주세요.',
-      })}
+      }}
+      {...props}
     />
   );
 }
