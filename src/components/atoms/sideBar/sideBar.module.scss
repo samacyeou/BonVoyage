@@ -9,16 +9,6 @@
   z-index: 1;
   background-color: var(--white);
 }
-.logoArea {
-  display: flex;
-  // align-items: center;
-}
-
-.logo {
-  width: 40px;
-  height: 45px;
-}
-
 .logoText {
   display: none;
 }
@@ -68,7 +58,19 @@
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 160px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 160px;
+  }
+}
+
+@media (min-width: 1024px) {
   .sidebar {
     width: 160px;
     padding: 20px 24px;

@@ -1,0 +1,29 @@
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal {
+  position: relative;
+  width: 32.7rem;
+  height: auto;
+  flex-shrink: 0;
+  padding: 2.8rem 2rem;
+
+  border-radius: 8px;
+  background: var(--white, #fff);
+
+  @media (min-width: 769px) {
+    width: 54rem;
+    padding: 3.2rem 2.8rem 2.8rem;
+  }
+}

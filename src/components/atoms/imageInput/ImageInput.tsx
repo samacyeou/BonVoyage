@@ -41,6 +41,8 @@ export default function ImageInput() {
             layout="fill"
             src={imageUrl ? imageUrl : '/assets/icon/plusIcon.svg'}
             alt="+ 아이콘"
+            priority={true}
+            objectFit="cover"
           />
         </div>
         {imageUrl && (
@@ -50,6 +52,8 @@ export default function ImageInput() {
                 layout="fill"
                 src="/assets/icon/editIcon.svg"
                 alt="연필 아이콘"
+                priority={true}
+                objectFit="cover"
               />
             </div>
           </div>
