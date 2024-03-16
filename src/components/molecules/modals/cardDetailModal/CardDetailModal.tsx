@@ -4,6 +4,7 @@ import styles from './cardDetailModal.module.scss';
 import ChipProgress from '../../ChipProgress/ChipProgress';
 import ChipTag from '@/components/molecules/chipTag/ChipTag';
 import image from '../../../../../public/assets/image/testImage.png';
+import CreateDoItYourselfComment from '@/components/atoms/input/commentInput/CreateDoItYourselfComment';
 
 interface ModalProps {
   onClose: () => void;
@@ -56,7 +57,9 @@ export default function CardDetailModal({ onClose }: ModalProps) {
             <div className={styles['imageArea']}>
               <Image className={styles['image']} src={image}></Image>
             </div>
-            <div className={styles['commentArea']}></div>
+            <div className={styles['commentArea']}>
+              <CreateDoItYourselfComment></CreateDoItYourselfComment>
+            </div>
           </div>
         </div>
       </div>
