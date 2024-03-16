@@ -39,6 +39,7 @@ const PasswordChangeForm = () => {
       setPassword('');
       setNewPassword('');
       setConfirmNewPassword('');
+      setError('');
       setIsModalOpen(true)
       setModalMessage('비밀번호가 변경되었어요.');
       return;
@@ -118,4 +119,3 @@ const PasswordChangeForm = () => {
 };
 export default PasswordChangeForm;
 
-//여기에는 비밀번호 변경 폼
