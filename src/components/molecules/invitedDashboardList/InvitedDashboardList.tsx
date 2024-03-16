@@ -1,22 +1,29 @@
 import Image from 'next/image';
 import styles from './invitedDashboardList.module.scss';
 import classNames from 'classnames/bind';
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Invitation } from '@/@types/type';
 
 const cn = classNames.bind(styles);
 
 interface Props {
   invitedDashboardList: Invitation[];
+  isLoading: boolean;
+  isMoreData: boolean;
   onClickInviteAnswer: (e: MouseEvent<HTMLButtonElement>, id: number) => void;
+  getInivtedDashboardList: () => void;
 }
 
 export default function InvitedDashboardList({
   invitedDashboardList,
+  isLoading,
+  isMoreData,
   onClickInviteAnswer,
+  getInivtedDashboardList,
 }: Props) {
   const [searchValue, setSearchValue] = useState('');
   const [isMobile, setIsMobile] = useState(false);
+  const observer = useRef<IntersectionObserver>();
 
   useEffect(() => {
     function handleResize() {
@@ -27,14 +34,29 @@ export default function InvitedDashboardList({
       }
     }
 
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !isLoading && isMoreData) {
+        getInivtedDashboardList();
+      }
+    });
+
+    const target = document.querySelector('.intersectionElement');
+
+    if (target) {
+      observer.current.observe(target);
+    }
+
     handleResize();
 
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      if (observer.current) {
+        observer.current.disconnect();
+      }
     };
-  }, []);
+  }, [isMoreData]);
 
   return (
     <>
@@ -149,6 +171,7 @@ export default function InvitedDashboardList({
             })}
         </>
       )}
+      <div className={cn('intersectionElement')}></div>
     </>
   );
 }

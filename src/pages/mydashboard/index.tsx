@@ -19,12 +19,18 @@ export default function MyDashboard() {
   const [invitedDashboardList, setInvitedDashboardList] = useState<
     Invitation[]
   >([]);
+  const [cursorId, setCursorId] = useState(-1);
+  const [statusForUpdate, setStatusForUpdate] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isMoreData, setIsMoreData] = useState(true);
 
   const onClickPageButtonLeft = () => {
+    setIsLoading(true);
     setDashboardListPage((prevPage) => prevPage - 1);
   };
 
   const onClickPageButtonRight = () => {
+    setIsLoading(true);
     setDashboardListPage((prevPage) => prevPage + 1);
   };
 
@@ -51,7 +57,49 @@ export default function MyDashboard() {
     setInvitedDashboardList((preList) => [
       ...preList.filter((element) => element.id !== id),
     ]);
+    setIsLoading(true);
+    setStatusForUpdate((preStatus) => !preStatus);
   };
+
+  async function getInvitedDashboardList() {
+    if (!isMoreData) {
+      return;
+    }
+
+    setIsLoading(true);
+    const params = cursorId === -1 ? { size: 10 } : { size: 10, cursorId };
+
+    try {
+      const { data } = await instance.get('/invitations', {
+        params,
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      });
+
+      if (!data.cursorId) {
+        setIsMoreData(false);
+      }
+
+      setInvitedDashboardList((preArray) => [
+        ...preArray,
+        ...data.invitations.filter((newItem: Invitation) => {
+          return !preArray.some((element) => element.id === newItem.id);
+        }),
+      ]);
+
+      if (data.cursorId) {
+        setCursorId(data.cursorId);
+      } else {
+        setCursorId(-2);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   let invitation;
 
@@ -59,7 +107,10 @@ export default function MyDashboard() {
     invitation = (
       <InvitedDashboardList
         invitedDashboardList={invitedDashboardList}
+        isLoading={isLoading}
+        isMoreData={isMoreData}
         onClickInviteAnswer={onClickInviteAnswer}
+        getInivtedDashboardList={getInvitedDashboardList}
       />
     );
   } else {
@@ -112,26 +163,14 @@ export default function MyDashboard() {
         setDashboardList(response.data.dashboards);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
-    }
-
-    async function getInvitedDashboardList() {
-      const response = await instance.get('/invitations', {
-        params: {
-          size: 6,
-        },
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-      });
-
-      setInvitedDashboardList(response.data.invitations);
     }
 
     login();
     getInvitedDashboardList();
-  }, [dashboardListPage]);
+  }, [dashboardListPage, statusForUpdate]);
 
   return (
     <div className={cn('background')}>
