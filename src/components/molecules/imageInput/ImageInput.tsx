@@ -2,6 +2,7 @@ import { ChangeEvent, useRef, useState } from 'react';
 import styles from './imageInput.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
+import { userImageUpload } from '@/api/accountApi/accountApi';
 
 const cn = classNames.bind(styles);
 
@@ -24,9 +25,15 @@ export default function ImageInput({ size }: Props) {
 
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e: ProgressEvent<FileReader>) => {
+      reader.onload = async (e: ProgressEvent<FileReader>) => {
         if (e.target?.result) {
-          setImageUrl(e.target.result.toString());
+          const binaryData = e.target.result.toString().split(',')[1];
+          try {
+            await userImageUpload(binaryData);
+            setImageUrl(e.target.result.toString());
+          } catch (error) {
+            console.error('이미지 업로드 실패:', error);
+          }
         }
       };
       reader.readAsDataURL(file);

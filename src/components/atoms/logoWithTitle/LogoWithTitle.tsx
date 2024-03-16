@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import styles from './logoWithTitle.module.scss';
 import Image from 'next/image';
 import { useMediaQuery } from 'react-responsive';
+import styles from './logoWithTitle.module.scss';
 
 export default function LogoWithTitle() {
   // const notMobile = useMediaQuery({ minWidth: 376 });

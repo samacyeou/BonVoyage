@@ -63,3 +63,8 @@ export interface Dashboard {
   createdByMe: boolean;
   userId: number;
 }
+
+export interface ChangePasswordProps{
+  password: string;
+  newPassword: string;
+}
