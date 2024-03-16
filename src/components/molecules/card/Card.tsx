@@ -4,7 +4,7 @@ import Image from 'next/image';
 import testImage from '../../../../public/assets/image/testImage.png';
 import testProfile from '../../../../public/assets/image/testProfile.png';
 import calendarIcon from '../../../../public/assets/icon/calendarIcon.svg';
-import ChipTag from '@/components/molecules/chipTag/ChipTag';
+import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
 
 interface CardProps {
   title: string;
@@ -24,7 +24,7 @@ export default function Card({ title, date, userProfile, onClick }: CardProps) {
         <span className={styles['cardTitle']}>{title}</span>
         <div className={styles['tagDateArea']}>
           <div className={styles['tagArea']}>
-            <ChipTag tag="일반" color="pink" />
+            <ChipTagWithoutX tag="일반" color="pink" />
           </div>
 
           <div className={styles['dateProfileArea']}>

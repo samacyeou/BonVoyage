@@ -1,50 +1,56 @@
-import { useState } from "react";
-import styles from "./passwordInput.module.scss";
-import Image from "next/image";
-import eyeOffIcon from "../../../../../public/assets/icon/eyeOffIcon.svg";
-import eyeOnIcon from "../../../../../public/assets/icon/eyeOnIcon.svg";
+import Image from 'next/image';
+import { useState } from 'react';
+import eyeOffIcon from '../../../../../public/assets/icon/eyeOffIcon.svg';
+import eyeOnIcon from '../../../../../public/assets/icon/eyeOnIcon.svg';
+import CommonInput, { CommonInputProps } from '../common/CommonInput';
 
-export default function PasswordInput() {
-  const [password, setPassword] = useState<string>("");
-  const [isValid, setIsValid] = useState<boolean>(true);
+export interface Props extends CommonInputProps {
+  placeholder?: string;
+  text?: string;
+}
+
+function PasswordInput({
+  errors,
+  register,
+  name = 'password',
+  placeholder = '비밀번호를 입력해주세요',
+  registerOptions = {
+    required: '비밀번호를 입력해주세요.',
+  },
+  text = '비밀번호',
+}: Props) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-  };
-
-  const handleBlur = (): void => {
-    if (password.length < 8) {
-      setIsValid(false);
-    } else {
-      setIsValid(true);
-    }
-  };
 
   const handleClick = (): void => {
     setIsClicked(!isClicked);
   };
+
+  const passwordIcon = (
+    <Image
+      alt="EyeIcon"
+      onClick={handleClick}
+      src={isClicked ? eyeOnIcon : eyeOffIcon}
+    />
+  );
+
   return (
-    <div className={styles["inputForm"]}>
-      <label className={styles["inputLabel"]}>비밀번호</label>
-      <input
-        className={`${styles["inputBox"]} ${isValid ? "" : styles["invalid"]}`}
-        placeholder="비밀번호를 입력해 주세요"
-        type={isClicked ? "text" : "password"}
-        value={password}
-        onChange={handleInputChange}
-        onBlur={handleBlur}
-      ></input>
-      <Image
-        className={styles["eyeIcon"]}
-        onClick={handleClick}
-        src={isClicked ? eyeOnIcon : eyeOffIcon}
-        alt="EyeIcon"
-      ></Image>
-      {!isValid && (
-        <span className={styles["errorMsg"]}>8자 이상 입력해 주세요.</span>
-      )}
-    </div>
+    <CommonInput
+      errors={errors}
+      icon={passwordIcon}
+      label={text}
+      name={name}
+      placeholder={placeholder}
+      register={register}
+      registerOptions={{
+        minLength: {
+          value: 8,
+          message: '8자 이상 입력해주세요.',
+        },
+        ...registerOptions,
+      }}
+      type={isClicked ? 'text' : 'password'}
+    />
   );
 }
+
+export default PasswordInput;

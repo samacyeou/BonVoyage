@@ -13,9 +13,9 @@ const MyDashboardBtn = ({
   return (
     <button className={styles.myDashboardBtn} onClick={onClick}>
       <div className={styles.container}>
-        <Image src={src} alt={iconAlt} width={10} height={10} />
+        {src}
         {name}
-        <Image src={src2 ?? ''} alt={iconAlt} width={20} height={20} />
+        {src2 && <Image src={src2} alt={iconAlt} width={20} height={20} />}
       </div>
       <Image
         src={forwardArrowIcon}

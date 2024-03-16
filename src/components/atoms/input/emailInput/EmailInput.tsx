@@ -1,40 +1,25 @@
-import { useState } from "react";
-import styles from "./emailInput.module.scss";
+import CommonInput, { CommonInputProps } from '../common/CommonInput';
 
 function validateEmail(email: string): boolean {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  console.log({ email, regex, test: regex.test(email) });
   return regex.test(email);
 }
 
-export default function EmailInput() {
-  const [email, setEmail] = useState<string>("");
-  const [isValid, setIsValid] = useState<boolean>(true);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const newEmail = e.target.value;
-    setEmail(newEmail);
-  };
-
-  const handleBlur = (): void => {
-    setIsValid(validateEmail(email));
-  };
-
+export default function EmailInput(props: CommonInputProps) {
   return (
-    <div className={styles["inputForm"]}>
-      <label className={styles["inputLabel"]}>이메일</label>
-      <input
-        className={`${styles["inputBox"]} ${isValid ? "" : styles["invalid"]}`}
-        placeholder="이메일을 입력해 주세요"
-        type="email"
-        value={email}
-        onChange={handleInputChange}
-        onBlur={handleBlur}
-      ></input>
-      {!isValid && (
-        <span className={styles["errorMsg"]}>
-          이메일 형식으로 작성해 주세요.
-        </span>
-      )}
-    </div>
+    <CommonInput
+      label="이메일"
+      name="email"
+      placeholder="이메일을 입력해 주세요"
+      type="email"
+      registerOptions={{
+        validate: (email: string) => {
+          const isValid = validateEmail(email);
+          return isValid ? true : '이메일 형식으로 작성해 주세요.';
+        },
+      }}
+      {...props}
+    />
   );
 }

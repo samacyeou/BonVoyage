@@ -2,9 +2,9 @@ import Image from 'next/image';
 import React from 'react';
 import styles from './cardDetailModal.module.scss';
 import ChipProgress from '../../ChipProgress/ChipProgress';
-import ChipTag from '@/components/molecules/chipTag/ChipTag';
 import image from '../../../../../public/assets/image/testImage.png';
 import CreateDoItYourselfComment from '@/components/atoms/input/commentInput/CreateDoItYourselfComment';
+import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
 
 interface ModalProps {
   onClose: () => void;
@@ -46,7 +46,7 @@ export default function CardDetailModal({ onClose }: ModalProps) {
             <div className={styles['tagArea']}>
               <ChipProgress column="To Do"></ChipProgress>
               <div className={styles['line']}></div>
-              <ChipTag tag="프로젝트" color="pink"></ChipTag>
+              <ChipTagWithoutX tag="프로젝트" color="pink"></ChipTagWithoutX>
             </div>
             <p className={styles['description']}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -59,6 +59,20 @@ export default function CardDetailModal({ onClose }: ModalProps) {
             </div>
             <div className={styles['commentArea']}>
               <CreateDoItYourselfComment></CreateDoItYourselfComment>
+              <div className={styles['commentListArea']}>
+                <div className={styles['commentWriterArea']}>
+                  <img src="/assets/image/testProfile.png"></img>
+                  <h1 className={styles['writerName']}> 정만철</h1>
+                  <span className={styles['createDate']}>2022.12.27 14:00</span>
+                </div>
+                <span className={styles['commentText']}>
+                  오늘안에 CCC 까지 만들 수 있을까요?
+                </span>
+                <div className={styles['buttonArea']}>
+                  <span className={styles['button']}> 수정</span>
+                  <span className={styles['button']}> 삭제</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
