@@ -79,3 +79,42 @@
     }
   }
 }
+
+.name {
+  position: relative;
+}
+
+.nickname {
+  cursor: pointer;
+}
+
+.nicknameMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+  padding: 13px;
+  top: 20px;
+  left: -75px;
+  width: 112px;
+  height: 80px;
+
+  border-radius: 8px;
+  border: 1px solid var(--gray20, #eee);
+  background: var(--white, #fff);
+
+  button {
+    border: none;
+    cursor: pointer;
+
+    background: var(--white);
+  }
+
+  hr {
+    width: 100%;
+
+    border-color: var(--gray30);
+  }
+}
