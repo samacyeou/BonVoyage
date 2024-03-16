@@ -1,5 +1,5 @@
 import axios from '@/api/axios';
-import { ChangePasswordProps,UserChangeNicknameProps } from '@/@types/type';
+import { ChangePasswordProps, UserChangeNicknameProps } from '@/@types/type';
 
 export const userInfoData = async () => {
   try {
@@ -31,25 +31,7 @@ export const userChangePassword = async ({
 
 //비밀번호 변경 api
 
-// export const userChangeNickname = async (nickname:string ,profileImageUrl:string) => {
-//   console.log(nickname,profileImageUrl);
-//   try {
-//     const res = await axios.put('/users/me', {
-//       nickname: nickname,
-//       // profileImageUrl: null,
-//       profileImageUrl: profileImageUrl,
-//     });
-//     return res.data;
-//   } catch (error) {
-//     console.error('nicknameError:', error);
-//     return error
-//   }
-// };
-
-
-//닉네임및 프로필이미지 변경 api
-
-export const userChangeNickname = async (nickname : string) => {
+export const userChangeNickname = async (nickname: string) => {
   console.log(nickname);
   try {
     const res = await axios.put('/users/me', {
@@ -58,41 +40,41 @@ export const userChangeNickname = async (nickname : string) => {
     return res.data;
   } catch (error) {
     console.error('nicknameError:', error);
-    return error
+    return error;
   }
 };
 // 이거 닉네임 변경
 
-export const userChangeProfileImage = async (profileImageUrl : string) => {
-  console.log(profileImageUrl);
+export const userChangeProfileImage = async (profileImageUrl: string) => {
   try {
     const res = await axios.put('/users/me', {
       profileImageUrl: profileImageUrl,
     });
+    console.log('profileImage:', res.data);
     return res.data;
   } catch (error) {
     console.error('profileImage:', error);
-    return error
+    return error;
   }
 };
 //이건 프로필 이미지 변경
 //따로따로 변경하고 싶을 수 있으니까 분리해놓음
 
 export const userUploadImage = async (profileImage: File) => {
-  console.log(profileImage);
   try {
     const formData = new FormData();
-    formData.append('file', profileImage);
-    await axios.post('/users/me/image', formData, {
+    formData.append('image', profileImage);
+    const res = await axios.post('/users/me/image', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
-    console.log('프로필 이미지 변경 성공');
+    const imageUrl = res.data.profileImageUrl;
+    console.log('프로필 이미지 업로드 성공:', imageUrl);
+    return imageUrl;
   } catch (error) {
     console.error('프로필 이미지 변경 실패:', error);
-    return error;
+    return null;
   }
 };
 // 이미지 업로드해서 서버로 보내는 api
-

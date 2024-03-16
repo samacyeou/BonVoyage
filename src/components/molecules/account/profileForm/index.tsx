@@ -4,7 +4,6 @@ import Button from '@/components/atoms/buttons/button';
 import { useState } from 'react';
 import {
   userChangeNickname,
-  userUploadImage,
   userChangeProfileImage,
 } from '@/api/accountApi/accountApi';
 import { useContext } from 'react';
@@ -40,10 +39,7 @@ const ProfileForm = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.imgContainer}>
-        <h1>프로필</h1>
-        <ImageInput size="big" onImageSelected={setProfileImageUrl} />
-      </div>
+      <ImageInput size="big" onImageSelected={setProfileImageUrl} />
       <div className={styles.inputContainer}>
         <CommonInput
           label="이메일"
