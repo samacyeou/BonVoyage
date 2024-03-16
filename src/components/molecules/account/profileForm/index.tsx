@@ -6,7 +6,7 @@ import { userChangeNickname } from '@/api/accountApi/accountApi';
 import { useContext } from 'react';
 import { userContext } from '@/pages/mypage/index';
 import CommonInput from '@/components/atoms/input/common/CommonInput';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, set } from 'react-hook-form';
 
 const ProfileForm = () => {
 
@@ -27,6 +27,7 @@ const ProfileForm = () => {
     } catch (error) {
       console.error('닉네임 변경 실패:', error);
     }
+    setNickname('');
   };
 
   return (

@@ -3,7 +3,7 @@
   padding: 12px;
   display: flex;
   flex-direction: column;
-  margin-left: 220px;//예비용
+  margin-left: 300px;//예비용
 
 
   .return {
@@ -28,5 +28,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+  @media (min-width: 1024px) {
+    // .container{
+    //   margin-left: 0;
+    // }
   }
 }
