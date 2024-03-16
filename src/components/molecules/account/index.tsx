@@ -4,22 +4,16 @@ import ProfileForm from './profileForm';
 import styles from './account.module.scss';
 import leftArrowIcon from '../../../../public/assets/icon/leftArrowIcon.svg';
 import Image from 'next/image';
-import { useContext } from 'react';
-import { userContext } from '@/pages/mypage/index';
 
 const Account = () => {
-
-  // const userInfo = useContext(userContext);
-  // console.log(userInfo)
-
   const router = useRouter();
-  const goBack = ()=>{
+  const goBack = () => {
     router.back();
-  }
+  };
 
   return (
     <div className={styles.container}>
-      <button className={styles.return} onClick={goBack} >
+      <button className={styles.return} onClick={goBack}>
         <Image src={leftArrowIcon} alt="돌아가기" width={20} height={20} />
         돌아가기
       </button>
