@@ -21,7 +21,7 @@ export default function EditColumnModal({ onClose }: ModalProps) {
   return (
     <div className={styles['cardDetailModal']}>
       <div className={styles['modalContent']}>
-        <h1 className={styles['modalTitle']}>새 컬럼 생성</h1>
+        <h1 className={styles['modalTitle']}>컬럼 관리</h1>
         <ColumnNameInput></ColumnNameInput>
         <span className={styles['deleteButton']} onClick={handleDeleteClick}>
           삭제하기

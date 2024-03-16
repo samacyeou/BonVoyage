@@ -5,6 +5,7 @@ import ChipProgress from '../../ChipProgress/ChipProgress';
 import image from '../../../../../public/assets/image/testImage.png';
 import CreateDoItYourselfComment from '@/components/atoms/input/commentInput/CreateDoItYourselfComment';
 import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
+import CardDetailKebap from '../../cardDetailKebap/CardDetailKebap';
 
 interface ModalProps {
   onClose: () => void;
@@ -16,10 +17,11 @@ export default function CardDetailModal({ onClose }: ModalProps) {
       <div className={styles['modalContent']}>
         <div className={styles['topArea']}>
           <div className={styles['menuArea']}>
-            <img
+            {/* <img
               className={styles['kebabIcon']}
               src="/assets/icon/kebabMenuIcon.svg"
-            />
+            /> */}
+            <CardDetailKebap></CardDetailKebap>
             <img
               className={styles['closeIcon']}
               src="/assets/icon/closeIcon.svg"
