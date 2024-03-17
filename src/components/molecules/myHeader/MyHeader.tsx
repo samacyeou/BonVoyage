@@ -4,9 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-// import { useContext } from 'react';
-// import { userContext } from '@/pages/mypage/index';
-
 const cn = classNames.bind(styles);
 
 interface Props {
@@ -16,8 +13,6 @@ interface Props {
 
 export default function MyHeader({ profileImageUrl, nickname }: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
-
-  // const userInfo = useContext(userContext);
 
   const onBlurName = () => {
     setTimeout(() => setIsOpenNicknameMenu(false), 100);
