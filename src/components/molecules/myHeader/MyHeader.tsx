@@ -6,6 +6,8 @@ import { useState } from 'react';
 
 const cn = classNames.bind(styles);
 
+const cn = classNames.bind(styles);
+
 interface Props {
   profileImageUrl: string;
   nickname: string;
@@ -13,6 +15,8 @@ interface Props {
 
 export default function MyHeader({ profileImageUrl, nickname }: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
+
+  // const userInfo = useContext(userContext);
 
   const onBlurName = () => {
     setTimeout(() => setIsOpenNicknameMenu(false), 100);

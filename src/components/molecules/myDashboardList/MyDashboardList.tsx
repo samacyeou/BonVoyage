@@ -10,6 +10,7 @@ import CreateDashboardModal from '../createDashboardModal/CreateDashboardModal';
 import instance from '@/api/axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const cn = classNames.bind(styles);
 
@@ -66,11 +67,13 @@ export default function MyDashboardList({
           />
           {dashboardList.map((element) => {
             return (
-              <MyDashboardBtn
-                key={element.id}
-                name={element.title}
-                src={<ColorDot colorName={element.color} />}
-              />
+              <Link href={`/dashboard/${element.id}`}>
+                <MyDashboardBtn
+                  key={element.id}
+                  name={element.title}
+                  src={<ColorDot colorName={element.color} />}
+                />
+              </Link>
             );
           })}
         </div>
