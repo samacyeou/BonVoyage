@@ -73,10 +73,3 @@ export interface UserChangeNicknameProps{
   nickname: string ;
   profileImageUrl: string;
 }
-
-export interface UserInfoProps {
-  id: string;
-  email: string;
-  nickname: string;
-  profileImageUrl: string;
-}

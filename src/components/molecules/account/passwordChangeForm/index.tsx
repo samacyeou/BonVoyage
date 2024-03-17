@@ -1,7 +1,7 @@
 import CommonInput from '@/components/atoms/input/common/CommonInput';
 import styles from './passwordChangeForm.module.scss';
 import Button from '@/components/atoms/buttons/button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { userChangePassword } from '@/api/accountApi/accountApi';
 import { useForm } from 'react-hook-form';
 import BaseModal from '@/components/atoms/baseModal/BaseModal';

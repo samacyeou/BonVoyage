@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { userInfoData } from '@/api/accountApi/accountApi';
 import React from 'react';
 import Layout from '@/components/molecules/layout';
-import { User, UserInfoProps } from '@/@types/type';
+import { User } from '@/@types/type';
 
 export const userContext = React.createContext<User>({
   id: 0,

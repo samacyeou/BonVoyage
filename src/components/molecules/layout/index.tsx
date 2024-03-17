@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from 'react';
+import React from 'react';
 import SideBar from '@/components/atoms/sideBar/SideBar';
 import styles from './layout.module.scss';
 import MyHeader from '../myHeader/MyHeader';
