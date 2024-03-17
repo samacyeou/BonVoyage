@@ -31,8 +31,6 @@ export interface MemberProfile {
 }
 
 export interface MyDashboardProps extends ButtonProps {
-<<<<<<< HEAD
-<<<<<<< HEAD
   src: JSX.Element;
   src2?: StaticImageData;
   iconAlt?: string;
@@ -65,14 +63,8 @@ export interface Dashboard {
   createdByMe: boolean;
   userId: number;
 }
-=======
-=======
->>>>>>> aa651f3b8199386f117015637dc75a2fce5440a3
-  src: StaticImageData;
-  src2?: StaticImageData;
-  iconAlt?: string;
+
+export interface ChangePasswordProps{
+  password: string;
+  newPassword: string;
 }
-<<<<<<< HEAD
->>>>>>> ffaae27 ([Feat] 할 일 페이지 atoms 구현 (#18))
-=======
->>>>>>> aa651f3b8199386f117015637dc75a2fce5440a3

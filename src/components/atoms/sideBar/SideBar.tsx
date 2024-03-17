@@ -19,7 +19,7 @@ export default function SideBar({ path }: prop) {
           className={styles['logoText']}
           src={'/assets/icon/taskify.svg'}
         ></img> */}
-        <LogoWithTitle></LogoWithTitle>
+        <LogoWithTitle />
       </div>
       <div className={styles['menuArea']}>
         <div className={styles['menuTitleArea']}>
