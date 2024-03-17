@@ -31,6 +31,7 @@ const ProfileForm = () => {
 
   return (
     <div className={styles.container}>
+      <h1>프로필</h1>
       <ImageInput size="big" onImageSelected={setProfileImageUrl} />
       <div className={styles.inputContainer}>
         <CommonInput
