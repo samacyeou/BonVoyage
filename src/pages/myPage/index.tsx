@@ -1,33 +1,27 @@
 import Account from '@/components/molecules/account';
-import Layout from '@/components/molecules/layout';
-import styles from './mypage.module.scss';
 import { useEffect, useState } from 'react';
 import { userInfoData } from '@/api/accountApi/accountApi';
 import React from 'react';
-import MyHeader from '@/components/molecules/myHeader/MyHeader';
-import SideBar from '@/components/atoms/sideBar/SideBar';
-import ellipseGreen from '../../../public/assets/icon/ellipseGreen.svg';
+import Layout from '@/components/molecules/layout';
+import { User } from '@/@types/type';
 
-export const userContext = React.createContext<UserInfoProps>({
-  id: '',
+export const userContext = React.createContext<User>({
+  id: 0,
   email: '',
   nickname: '',
   profileImageUrl: '',
+  createdAt: '',
+  updatedAt: '',
 });
-
-interface UserInfoProps {
-  id: string;
-  email: string;
-  nickname: string;
-  profileImageUrl: string;
-}
 
 const Mypage = () => {
   const [userInfo, setUserInfo] = useState({
-    id: '',
+    id: 0,
     email: '',
     nickname: '',
     profileImageUrl: '',
+    createdAt: '',
+    updatedAt: '',
   });
 
   const getUserInfo = async () => {
@@ -41,13 +35,8 @@ const Mypage = () => {
 
   return (
     <userContext.Provider value={userInfo}>
-      <div className={styles.container}>
-        <MyHeader nickname="지용" profileImageUrl={ellipseGreen} />
-        <SideBar />
-        <div className={styles.accountContainer}>
-          <Account />
-        </div>
-      </div>
+      <Layout />
+      <Account />
     </userContext.Provider>
   );
 };

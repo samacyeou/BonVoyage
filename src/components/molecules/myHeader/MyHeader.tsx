@@ -4,8 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-// import { useContext } from 'react';
-// import { userContext } from '@/pages/mypage/index';
+const cn = classNames.bind(styles);
 
 const cn = classNames.bind(styles);
 

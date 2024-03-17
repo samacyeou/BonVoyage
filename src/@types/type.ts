@@ -91,3 +91,9 @@ export interface ChangePasswordProps {
   password: string;
   newPassword: string;
 }
+
+export interface UserChangeNicknameProps{
+  nickname: string ;
+  profileImageUrl: string;
+}
+
