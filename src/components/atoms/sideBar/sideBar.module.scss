@@ -1,4 +1,5 @@
 .sidebar {
+  top: 0;
   width: 67px;
   align-items: center;
   min-height: 100vh;
@@ -14,9 +15,14 @@
   display: none;
 }
 
-.menuArea {
-  margin-top: 20px;
-}
+// .ellipseGreen {
+//   display: block;
+// }
+
+// .logoText {
+//   display: none;
+// }
+//height: 100% 이거 없애도 될 것 같아요
 
 .menuTitleArea {
   display: flex;
@@ -61,22 +67,18 @@
   .menuArea {
     margin-top: 20px;
   }
-}
 
-@media (min-width: 1024px) {
-  .sidebar {
-    width: 160px;
-    padding: 20px 24px;
+  @media (min-width: 1024px) {
+    .menuTitle {
+      display: none;
+    }
   }
-  .menuArea {
-    margin-top: 20px;
+  // 태블릿일때 사이드바 전체크기
+
+  @media (min-width: 1024px) {
+    .sidebar {
+      width: 300px;
+      padding: 20px 24px;
+    }
   }
 }
-
-// 위와 아래 중 어떤 게 맞는거죠..?
-
-// @media (min-width: 1024px) {
-//   .sidebar {
-//     width: 300px;
-//   }
-// }

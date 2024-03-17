@@ -1,5 +1,5 @@
 import axios from '@/api/axios';
-import { ChangePasswordProps } from '@/@types/type';
+import { ChangePasswordProps, UserChangeNicknameProps } from '@/@types/type';
 
 export const userInfoData = async () => {
   try {
@@ -12,21 +12,6 @@ export const userInfoData = async () => {
 };
 
 //내정보 조회 할 수 있는 api, email, nickname, profileImage이 들어가있다.
-
-export const userChangeNickname = async (nickname: string) => {
-  try {
-    const res = await axios.put('/users/me', {
-      nickname: nickname,
-      profileImage: null,
-    });
-    return res.data;
-  } catch (error) {
-    console.error('nicknameError:', error);
-    return error
-  }
-};
-
-//닉네임 변경 api
 
 export const userChangePassword = async ({
   password,
@@ -46,15 +31,38 @@ export const userChangePassword = async ({
 
 //비밀번호 변경 api
 
-export const userImageUpload = async (binaryData: string) => {
+export const userChangeAccount = async ({nickname, profileImageUrl}: UserChangeNicknameProps) => {
   try {
-    await axios.post('https://sp-taskify-api.vercel.app/3-1/users/me/image', {
-      profileImageUrl:  `data:image/jpeg;base64,${binaryData}`,
-    });
-    console.log('이미지 업로드 성공');
+    const requestData = {};
+    if (nickname) {
+      requestData.nickname = nickname;
+    }
+    if (profileImageUrl) {
+      requestData.profileImageUrl = profileImageUrl;
+    }
+    const res = await axios.put('/users/me', requestData);
+    return res.data;
   } catch (error) {
-    console.error('이미지 업로드 실패:', error);
-    throw error;
+    console.error('nicknameError:', error);
+    return error;
   }
 };
-// 이거 하는중
+// 닉네임, 프로필이미지 변경, 에러해결 필요
+
+export const userUploadImage = async (profileImage: File) => {
+  try {
+    const formData = new FormData();
+    formData.append('image', profileImage);
+    const res = await axios.post('/users/me/image', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    const imageUrl = res.data.profileImageUrl;
+    return imageUrl;
+  } catch (error) {
+    console.error('프로필 이미지 변경 실패:', error);
+    return null;
+  }
+};
+// 이미지 업로드해서 서버로 보내는 api

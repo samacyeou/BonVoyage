@@ -1,0 +1,31 @@
+.dropdown {
+  width: 86px;
+  box-shadow: 0 4px 5px 0 #00000026;
+  position: absolute;
+  // margin-top: 30px;
+  // margin-left: 240px;
+  border: 1px solid var(--gray30);
+  border-radius: 6px;
+  padding: 6px;
+  background-color: white;
+}
+.dropdownMenu {
+  display: flex;
+  list-style: none;
+  width: 100%;
+  background-color: white;
+  // background: white;
+  margin-top: 6px;
+  padding: 7px 12px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--black20);
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.dropdownMenu:hover {
+  background: #e7effb;
+  color: #6d6afe;
+}

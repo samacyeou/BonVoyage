@@ -1,5 +1,5 @@
 .container {
-  width: 325px;
+  width: 285px;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
@@ -29,36 +29,27 @@
 
   //태블릿
   @media (min-width: 769px) {
-    width: 560px;
+    width: 544px;
     height: 370px;
-    display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
 
-    // flex-wrap: wrap;
-    // flex: 1;
-
-    .imgContainer{
-      width: 240px;
-      display: flex;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-     
+    h1{
+      margin-bottom: 30px;
     }
 
     .inputContainer{
       width: 275px;
-      margin-top: 40px;
+      margin-top: 75px;
     }
   }
 
   //데스크탑
   @media (min-width: 1024px) {
-    width: 630px;
+    width: 620px;
 
     .inputContainer{
       width: 340px;
-      margin-top: 40px;
+      margin-top: 75px;
     }
   }
 }
