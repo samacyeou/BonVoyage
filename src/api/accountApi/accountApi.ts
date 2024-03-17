@@ -34,7 +34,6 @@ export const userChangePassword = async ({
 export const userChangeAccount = async ({nickname, profileImageUrl}: UserChangeNicknameProps) => {
   try {
     const requestData = {};
-    console.log(requestData);
     if (nickname) {
       requestData.nickname = nickname;
     }
@@ -60,7 +59,6 @@ export const userUploadImage = async (profileImage: File) => {
       },
     });
     const imageUrl = res.data.profileImageUrl;
-    console.log('프로필 이미지 업로드 성공:', imageUrl);
     return imageUrl;
   } catch (error) {
     console.error('프로필 이미지 변경 실패:', error);

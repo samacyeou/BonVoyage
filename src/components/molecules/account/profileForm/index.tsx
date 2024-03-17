@@ -2,9 +2,7 @@ import styles from './profileForm.module.scss';
 import ImageInput from '@/components/molecules/imageInput/ImageInput';
 import Button from '@/components/atoms/buttons/button';
 import { useState } from 'react';
-import {
-  userChangeAccount
-} from '@/api/accountApi/accountApi';
+import { userChangeAccount } from '@/api/accountApi/accountApi';
 import { useContext } from 'react';
 import { userContext } from '@/pages/mypage/index';
 import CommonInput from '@/components/atoms/input/common/CommonInput';
@@ -20,7 +18,7 @@ const ProfileForm = () => {
     e.preventDefault();
     setNickname(e.target.value);
   };
-  
+
   const handleSaveClick = async () => {
     try {
       await userChangeAccount({ nickname, profileImageUrl });
@@ -68,4 +66,3 @@ const ProfileForm = () => {
 };
 
 export default ProfileForm;
-
