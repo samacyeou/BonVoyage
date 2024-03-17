@@ -1,45 +1,31 @@
-import {
-  FieldErrors,
-  UseFormRegisterReturn,
-  UseFormReturn,
-} from 'react-hook-form';
+import { CommonInputProps } from '../common/CommonInput';
 import PasswordInput from '../passwordInput/PasswordInput';
-import { forwardRef } from 'react';
 
-export interface Props extends UseFormRegisterReturn {
-  errors: FieldErrors;
-  form: UseFormReturn;
+export interface Props extends CommonInputProps {
   text?: string;
 }
 
-const PasswordConfirmInput = forwardRef<HTMLInputElement, Props>(
-  function PasswordConfirmInput(
-    { errors, form, text = '비밀번호 확인', ...props },
-    ref,
-  ) {
-    const { register, watch } = form;
-    const password = watch('password');
-    return (
-      <PasswordInput
-        errors={errors}
-        placeholder="비밀번호를 한번 더 입력해주세요"
-        register={register}
-        text={text}
-        {...register('passwordConfirm', {
-          minLength: {
-            value: 8,
-            message: '8자 이상 입력해주세요.',
-          },
-          validate: {
-            matchesConfirmation: (value) =>
-              value === password || '비밀번호가 일치하지 않습니다.',
-          },
-        })}
-        {...props}
-        ref={ref}
-      />
-    );
-  },
-);
+function PasswordConfirmInput({
+  errors,
+  register,
+  name = 'passwordConfirm',
+  text = '비밀번호 확인',
+}: Props) {
+  return (
+    <PasswordInput
+      errors={errors}
+      name={name}
+      placeholder="비밀번호를 한번 더 입력해주세요"
+      register={register}
+      registerOptions={{
+        validate: {
+          matchesConfirmation: (value, { password }) =>
+            value === password || '비밀번호가 일치하지 않습니다.',
+        },
+      }}
+      text={text}
+    />
+  );
+}
 
 export default PasswordConfirmInput;

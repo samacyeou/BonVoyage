@@ -3,6 +3,9 @@ import styles from './myHeader.module.scss';
 import Image from 'next/image';
 import { useState } from 'react';
 
+// import { useContext } from 'react';
+// import { userContext } from '@/pages/mypage/index';
+
 interface Props {
   profileImageUrl: string;
   nickname: string;
@@ -11,6 +14,7 @@ interface Props {
 export default function MyHeader({ profileImageUrl, nickname }: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
 
+  // const userInfo = useContext(userContext);
   return (
     <div className={styles['header']}>
       <span className={styles['dashboardName']}>내 대시보드</span>
@@ -37,6 +41,8 @@ export default function MyHeader({ profileImageUrl, nickname }: Props) {
               </div>
             )}
           </div>
+          <span>{nickname}</span>
+          {/* <span>{userInfo.nickname}</span> */}
         </div>
       </div>
     </div>

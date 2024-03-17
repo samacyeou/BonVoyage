@@ -5,7 +5,10 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
+  @media (min-width: 375px) {
+    gap: 24px;
+  }
 }
 
 .titleAndColor{
@@ -14,8 +17,10 @@
   align-items: center;
   justify-content: space-between;
   color: var(--black20);
-  font-size: 2rem;
-  font-weight: 700;
+  span{
+    font-size: 2rem;
+    font-weight: 700;
+  }
 }
 
 .changeTitle{

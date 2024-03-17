@@ -1,0 +1,32 @@
+.container {
+  margin-top: 60px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 220px;//예비용
+
+
+  .return {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 5px;
+    border: none;
+    background: var(--gray10, #fafafa);
+    color: var(--black20, #333236);
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .return:hover {
+    transition: all 0.3s;
+    scale: 1.1;
+  }
+
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

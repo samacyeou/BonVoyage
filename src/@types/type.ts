@@ -86,3 +86,8 @@ export interface Invitation {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface ChangePasswordProps {
+  password: string;
+  newPassword: string;
+}

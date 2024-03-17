@@ -87,6 +87,11 @@
   font-weight: 500;
   cursor: pointer;
 
+  &:disabled {
+    background: var(--gray40, #9fa6b2);
+    cursor: not-allowed;
+  }
+
   @media (min-width: 769px) {
     width: 120px;
     height: 48px;

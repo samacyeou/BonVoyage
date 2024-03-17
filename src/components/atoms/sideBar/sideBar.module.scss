@@ -10,16 +10,6 @@
   background-color: var(--white);
 }
 
-.logoArea {
-  display: flex;
-  // align-items: center;
-}
-
-.logo {
-  width: 40px;
-  height: 45px;
-}
-
 .logoText {
   display: none;
 }
@@ -73,7 +63,7 @@
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
   .sidebar {
     width: 160px;
     padding: 20px 24px;
@@ -82,8 +72,11 @@
     margin-top: 20px;
   }
 }
-@media (min-width: 1024px) {
-  .sidebar {
-    width: 300px;
-  }
-}
+
+// 위와 아래 중 어떤 게 맞는거죠..?
+
+// @media (min-width: 1024px) {
+//   .sidebar {
+//     width: 300px;
+//   }
+// }
