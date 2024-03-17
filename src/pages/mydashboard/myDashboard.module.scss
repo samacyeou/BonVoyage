@@ -18,11 +18,11 @@
   }
 
   @media (min-width: 769px) {
-    padding: 40px 40px 0 200px;
+    padding: 40px 40px 117px 200px;
   }
 
   @media (min-width: 1024px) {
-    padding: 40px 40px 0 340px;
+    padding: 40px 40px 122px 340px;
   }
 }
 
@@ -43,13 +43,17 @@
 .invitedDashboardList {
   max-width: 1022px;
   min-height: 310px;
-  padding: 32px 28px 0;
+  padding: 24px 16px 20px;
 
   border-radius: 8px;
   background: var(--white, #fff);
 
   @media (min-width: 375px) {
     min-height: 400px;
+  }
+
+  @media (min-width: 769px) {
+    padding: 32px 28px 24px;
   }
 }
 
@@ -64,74 +68,6 @@
 
   @media (min-width: 769px) {
     font-size: 2.4rem;
-  }
-}
-
-.search {
-  width: 100%;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  padding: 7px 12px;
-  margin-top: 20px;
-  margin-bottom: 24px;
-
-  border-radius: 6px;
-  border: 1px solid var(--gray30, #d9d9d9);
-  background: var(--white, #fff);
-
-  input {
-    font-size: 1.4rem;
-    width: 100%;
-  }
-
-  input::placeholder {
-    color: var(--gray40, #9fa6b2);
-  }
-
-  @media (min-width: 769px) {
-    height: 40px;
-
-    input {
-      font-size: 1.6rem;
-    }
-  }
-}
-
-.icon {
-  position: relative;
-  min-width: 20px;
-  min-height: 20px;
-  margin-right: 10px;
-
-  @media (min-width: 375px) {
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (min-width: 769px) {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-.columns {
-  display: grid;
-  grid-template-columns: 0.36fr 0.31fr 0.32fr;
-
-  span {
-    color: var(--gray40, #9fa6b2);
-    font-size: 1.6rem;
-  }
-}
-
-.invitedDashboard {
-  padding: 0 28px 0 58px;
-  display: flex;
-  align-items: center;
-
-  @media (min-width: 1024px) {
-    padding: 0 64px;
   }
 }
 
