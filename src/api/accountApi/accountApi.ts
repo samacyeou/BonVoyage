@@ -31,34 +31,24 @@ export const userChangePassword = async ({
 
 //비밀번호 변경 api
 
-export const userChangeNickname = async (nickname: string) => {
-  console.log(nickname);
+export const userChangeAccount = async ({nickname, profileImageUrl}: UserChangeNicknameProps) => {
   try {
-    const res = await axios.put('/users/me', {
-      nickname: nickname,
-    });
+    const requestData = {};
+    console.log(requestData);
+    if (nickname) {
+      requestData.nickname = nickname;
+    }
+    if (profileImageUrl) {
+      requestData.profileImageUrl = profileImageUrl;
+    }
+    const res = await axios.put('/users/me', requestData);
     return res.data;
   } catch (error) {
     console.error('nicknameError:', error);
     return error;
   }
 };
-// 이거 닉네임 변경
-
-export const userChangeProfileImage = async (profileImageUrl: string) => {
-  try {
-    const res = await axios.put('/users/me', {
-      profileImageUrl: profileImageUrl,
-    });
-    console.log('profileImage:', res.data);
-    return res.data;
-  } catch (error) {
-    console.error('profileImage:', error);
-    return error;
-  }
-};
-//이건 프로필 이미지 변경
-//따로따로 변경하고 싶을 수 있으니까 분리해놓음
+// 닉네임, 프로필이미지 변경, 에러해결 필요
 
 export const userUploadImage = async (profileImage: File) => {
   try {

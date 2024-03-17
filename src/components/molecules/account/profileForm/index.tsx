@@ -3,8 +3,7 @@ import ImageInput from '@/components/molecules/imageInput/ImageInput';
 import Button from '@/components/atoms/buttons/button';
 import { useState } from 'react';
 import {
-  userChangeNickname,
-  userChangeProfileImage,
+  userChangeAccount
 } from '@/api/accountApi/accountApi';
 import { useContext } from 'react';
 import { userContext } from '@/pages/mypage/index';
@@ -21,20 +20,15 @@ const ProfileForm = () => {
     e.preventDefault();
     setNickname(e.target.value);
   };
-
+  
   const handleSaveClick = async () => {
     try {
-      if (profileImageUrl) {
-        await userChangeProfileImage(profileImageUrl); // 프로필 이미지 변경 요청
-      }
-      if (nickname) {
-        await userChangeNickname(nickname); // 닉네임 변경 요청
-      }
+      await userChangeAccount({ nickname, profileImageUrl });
+      setNickname('');
+      setProfileImageUrl('');
     } catch (error) {
       console.error('닉네임 또는 프로필 이미지 변경 실패:', error);
     }
-    setNickname('');
-    setProfileImageUrl('');
   };
 
   return (
