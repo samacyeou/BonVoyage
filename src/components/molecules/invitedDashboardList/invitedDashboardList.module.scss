@@ -1,0 +1,179 @@
+.mobileHr {
+  position: relative;
+  width: calc(100% + 32px);
+  height: 1px;
+  left: -16px;
+  right: 16px;
+  margin: 16px 0;
+
+  border-color: var(--gray20, #eee);
+}
+
+.search {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 7px 12px;
+  margin-top: 20px;
+  margin-bottom: 24px;
+
+  border-radius: 6px;
+  border: 1px solid var(--gray30, #d9d9d9);
+  background: var(--white, #fff);
+
+  input {
+    border: none;
+    font-size: 1.4rem;
+    width: 100%;
+  }
+
+  input::placeholder {
+    color: var(--gray40, #9fa6b2);
+  }
+
+  @media (min-width: 769px) {
+    height: 40px;
+
+    input {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.icon {
+  position: relative;
+  min-width: 20px;
+  min-height: 20px;
+  margin-right: 10px;
+
+  @media (min-width: 375px) {
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (min-width: 769px) {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 36fr 31fr 32fr;
+  margin-bottom: 24px;
+
+  span {
+    color: var(--gray40, #9fa6b2);
+    font-size: 1.6rem;
+  }
+}
+
+.invitedDashboard {
+  display: grid;
+  grid-template-columns: 36fr 31fr 32fr;
+  align-items: center;
+
+  span {
+    color: var(--black20, #333236);
+    font-size: 1.6rem;
+  }
+
+  .spaceHelper {
+    padding-left: 30px;
+
+    @media (min-width: 1024px) {
+      padding-left: 36px;
+    }
+  }
+}
+
+.dashboardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+
+  .propertyValuePair {
+    display: grid;
+    grid-template-columns: 42px 2fr;
+    gap: 10px;
+  }
+
+  .property {
+    width: 42px;
+    color: var(--gray40, #9fa6b2);
+  }
+
+  .value {
+    color: var(--black20, #333236);
+  }
+}
+
+.invitedDashboardButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  button {
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    border-radius: 4px;
+  }
+
+  .inviteAccept {
+    color: var(--white, #fff);
+
+    border: none;
+    background: var(--blue30, #026fb0);
+  }
+
+  .inviteReject {
+    color: var(--blue30, #026fb0);
+
+    border: 1px solid var(--gray30, #d9d9d9);
+    background: var(--white, #fff);
+  }
+
+  @media (min-width: 769px) {
+    display: flex;
+
+    button {
+      width: 72px;
+      height: 30px;
+
+      font-size: 1.4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    button {
+      width: 84px;
+      height: 32px;
+
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.hr {
+  width: calc(100% + 56px);
+  position: relative;
+  left: -28px;
+  margin: 25px 0 26px;
+  border-color: var(--gray20);
+
+  @media (min-width: 1024px) {
+    margin: 26px 0 27px;
+  }
+}

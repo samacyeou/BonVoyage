@@ -1,18 +1,20 @@
 import CommonInput from '@/components/atoms/input/common/CommonInput';
 import styles from './passwordChangeForm.module.scss';
 import Button from '@/components/atoms/buttons/button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { userChangePassword } from '@/api/accountApi/accountApi';
 import { useForm } from 'react-hook-form';
+import BaseModal from '@/components/atoms/baseModal/BaseModal';
 
 const PasswordChangeForm = () => {
   const { register } = useForm({ mode: 'all' }); // 사용하지는 않지만 register 에러 막기용
-
 
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [error, setError] = useState('');
+  const [ismodalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const isDisabled =
     password === '' || newPassword === '' || confirmNewPassword === '';
@@ -37,9 +39,17 @@ const PasswordChangeForm = () => {
       setPassword('');
       setNewPassword('');
       setConfirmNewPassword('');
+      setError('');
+      setIsModalOpen(true)
+      setModalMessage('비밀번호가 변경되었어요.');
       return;
     }
-    setError('현재 비밀번호가 틀렸습니다.');
+    setIsModalOpen(true);
+    setModalMessage('현재 비밀번호를 확인해주세요.');
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -54,7 +64,7 @@ const PasswordChangeForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           errors={{}}
           register={register}
-          name='password'
+          name="password"
         />
         <CommonInput
           label="새 비밀번호"
@@ -64,7 +74,7 @@ const PasswordChangeForm = () => {
           onChange={(e) => setNewPassword(e.target.value)}
           errors={{}}
           register={register}
-          name='newPassword'
+          name="newPassword"
         />
         <CommonInput
           label="새 비밀번호 확인"
@@ -74,7 +84,7 @@ const PasswordChangeForm = () => {
           onChange={(e) => setConfirmNewPassword(e.target.value)}
           errors={{}}
           register={register}
-          name='confirmNewPassword'
+          name="confirmNewPassword"
         />
       </div>
       <div className={styles.error_text_wrapper}>
@@ -88,10 +98,24 @@ const PasswordChangeForm = () => {
           onClick={handlePasswordChange}
           disabled={isDisabled}
         />
+        {ismodalOpen && (
+          <BaseModal closeModal={closeModal}>
+            <div className={styles.modalContainer}>
+              <p>{modalMessage}</p>
+              <div className={styles.modalBtn}>
+                <Button
+                  name="확인"
+                  type="modal"
+                  color="blue"
+                  onClick={closeModal}
+                />
+              </div>
+            </div>
+          </BaseModal>
+        )}
       </div>
     </div>
   );
 };
 export default PasswordChangeForm;
 
-//여기에는 비밀번호 변경 폼

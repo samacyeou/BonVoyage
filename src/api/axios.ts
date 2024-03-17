@@ -35,5 +35,4 @@ instance.interceptors.response.use(
   },
 );
 
-//axios instance 생성, baseURL 설정
 export default instance;
