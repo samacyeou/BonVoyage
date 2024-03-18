@@ -7,6 +7,7 @@ export interface ButtonProps {
   type?: string;
   color?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  icon?: ReactNode;
 }
 
 // 할 일 모달 Input props

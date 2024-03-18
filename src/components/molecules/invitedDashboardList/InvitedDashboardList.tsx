@@ -86,7 +86,7 @@ export default function InvitedDashboardList({
           })
           .map((element, index, array) => {
             return (
-              <>
+              <div key={element.id}>
                 <div className={cn('mobileInvitedDashboard')}>
                   <div className={cn('dashboardInfo')}>
                     <div className={cn('propertyValuePair')}>
@@ -122,7 +122,7 @@ export default function InvitedDashboardList({
                 {array.length - 1 !== index && (
                   <hr className={cn('mobileHr')} />
                 )}
-              </>
+              </div>
             );
           })
       ) : (
@@ -142,7 +142,7 @@ export default function InvitedDashboardList({
             })
             .map((element, index, array) => {
               return (
-                <>
+                <div key={element.id}>
                   <div className={cn('invitedDashboard')}>
                     <div className={cn('spaceHelper')}>
                       <span>{element.dashboard.title}</span>
@@ -166,7 +166,7 @@ export default function InvitedDashboardList({
                     </div>
                   </div>
                   {array.length - 1 !== index && <hr className={cn('hr')} />}
-                </>
+                </div>
               );
             })}
         </>

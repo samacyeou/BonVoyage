@@ -113,9 +113,18 @@
   .signUpLinkText {
     color: var(--blue30);
     text-decoration: underline;
-    font-weight: 500;
     cursor: pointer;
+    font-size: 1.3rem;
+
+    @media (min-width: 769px) {
+      font-size: 1.6rem;
+    }
   }
+}
+
+.divider {
+  color: var(--gray40);
+  width: 100%;
 }
 
 .errorMessage {

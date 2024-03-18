@@ -11,6 +11,7 @@ import instance from '@/api/axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { postNewDashboard } from '@/api/dashboardListApi/dashboardListApi';
 
 const cn = classNames.bind(styles);
 
@@ -41,17 +42,7 @@ export default function MyDashboardList({
   };
 
   const onClickCreateDashboard = async (createDashboard: CreateDashboard) => {
-    const response = await instance.post(
-      'dashboards',
-      { ...createDashboard },
-      {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-          'Content-Type': 'application/json',
-        },
-      },
-    );
+    const response = await postNewDashboard(createDashboard);
 
     router.push(`/dashboard/${response.data.id}`);
   };
@@ -67,13 +58,15 @@ export default function MyDashboardList({
           />
           {dashboardList.map((element) => {
             return (
-              <Link href={`/dashboard/${element.id}`}>
-                <MyDashboardBtn
-                  key={element.id}
-                  name={element.title}
-                  src={<ColorDot colorName={element.color} />}
-                />
-              </Link>
+              <div key={element.id}>
+                <Link href={`/dashboard/${element.id}`}>
+                  <MyDashboardBtn
+                    key={element.id}
+                    name={element.title}
+                    src={<ColorDot colorName={element.color} />}
+                  />
+                </Link>
+              </div>
             );
           })}
         </div>
