@@ -8,6 +8,10 @@ import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Dashboard, Invitation, User } from '@/@types/type';
 import MyDashboardList from '@/components/molecules/myDashboardList/MyDashboardList';
 import InvitedDashboardList from '@/components/molecules/invitedDashboardList/InvitedDashboardList';
+import {
+  getInvitedDashboardList,
+  getMyDashboardList,
+} from '@/api/dashboardListApi/getDashboardListApi';
 
 const cn = classNames.bind(styles);
 
@@ -19,7 +23,7 @@ export default function MyDashboard() {
   const [invitedDashboardList, setInvitedDashboardList] = useState<
     Invitation[]
   >([]);
-  const [statusForUpdate, setStatusForUpdate] = useState(false);
+  const [stateForUpdate, setStateForUpdate] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isMoreData, setIsMoreData] = useState(true);
   const cursorId = useRef<number>(0);
@@ -47,7 +51,7 @@ export default function MyDashboard() {
       },
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
         },
       },
     );
@@ -56,10 +60,10 @@ export default function MyDashboard() {
       ...preList.filter((element) => element.id !== id),
     ]);
     setIsLoading(true);
-    setStatusForUpdate((preStatus) => !preStatus);
+    setStateForUpdate((preStatus) => !preStatus);
   };
 
-  async function getInvitedDashboardList() {
+  async function setMyInvitedDashboardList() {
     if (!isMoreData) {
       return;
     }
@@ -70,14 +74,9 @@ export default function MyDashboard() {
       : { size: 10 };
 
     try {
-      const { data } = await instance.get('/invitations', {
-        params,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-      });
+      const response = await getInvitedDashboardList(params);
 
-      if (!data.cursorId) {
+      if (!response.cursorId) {
         setIsMoreData(false);
       }
 
@@ -85,23 +84,23 @@ export default function MyDashboard() {
         let nextList: Invitation[];
         if (
           preArray.length > 0 &&
-          data.cursorId <= preArray[preArray.length - 1].id
+          response.cursorId <= preArray[preArray.length - 1].id
         ) {
           nextList = [
             ...preArray,
-            ...data.invitations.filter((newItem: Invitation) => {
+            ...response.invitations.filter((newItem: Invitation) => {
               return !preArray.some((element) => element.id === newItem.id);
             }),
           ];
         } else {
-          nextList = [...preArray, ...data.invitations];
+          nextList = [...preArray, ...response.invitations];
         }
 
         return nextList;
       });
 
-      if (data.cursorId) {
-        cursorId.current = data.cursorId;
+      if (response.cursorId) {
+        cursorId.current = response.cursorId;
       } else {
         cursorId.current = 0;
       }
@@ -121,7 +120,7 @@ export default function MyDashboard() {
         isLoading={isLoading}
         isMoreData={isMoreData}
         onClickInviteAnswer={onClickInviteAnswer}
-        getInivtedDashboardList={getInvitedDashboardList}
+        getInivtedDashboardList={setMyInvitedDashboardList}
       />
     );
   } else {
@@ -142,29 +141,17 @@ export default function MyDashboard() {
   }
 
   useEffect(() => {
-    async function login() {
+    const user = sessionStorage.getItem('user');
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+
+    async function setMyDashboardList() {
       try {
-        const login = await instance.post('/auth/login', {
-          email: 'test@codeit.com',
-          password: 'sprint101',
-        });
+        const response = await getMyDashboardList(dashboardListPage);
 
-        setUser(login.data.user);
-        localStorage.setItem('accessToken', login.data.accessToken);
-
-        const response = await instance.get('/dashboards', {
-          params: {
-            navigationMethod: 'pagination',
-            page: dashboardListPage,
-            size: 5,
-          },
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-          },
-        });
-
-        setDashboardListTotalPage(Math.ceil(response.data.totalCount / 5));
-        setDashboardList(response.data.dashboards);
+        setDashboardListTotalPage(Math.ceil(response.totalCount / 5));
+        setDashboardList(response.dashboards);
       } catch (error) {
         console.log(error);
       } finally {
@@ -172,14 +159,15 @@ export default function MyDashboard() {
       }
     }
 
-    login();
-    getInvitedDashboardList();
-  }, [dashboardListPage, statusForUpdate]);
+    setMyDashboardList();
+    setMyInvitedDashboardList();
+  }, [dashboardListPage, stateForUpdate]);
 
   return (
     <div className={cn('background')}>
       <SideBar />
       <MyHeader
+        title="내 대시보드"
         profileImageUrl={user?.profileImageUrl ?? '/assets/icon/logo.svg'}
         nickname={user?.nickname ?? 'unknown'}
       />
