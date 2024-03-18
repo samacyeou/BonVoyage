@@ -15,8 +15,6 @@ interface Props {
 export default function MyHeader({ title, profileImageUrl, nickname }: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
 
-  // const userInfo = useContext(userContext);
-
   const onBlurName = () => {
     setTimeout(() => setIsOpenNicknameMenu(false), 100);
   };
@@ -43,7 +41,7 @@ export default function MyHeader({ title, profileImageUrl, nickname }: Props) {
                 onBlur={() => setIsOpenNicknameMenu(false)}
               >
                 <button className={cn('menuItem')}>
-                  <Link href="/myPage">마이페이지</Link>
+                  <Link href="/mypage">마이페이지</Link>
                 </button>
                 <hr />
                 <button className={cn('menuItem', 'logout')}>
@@ -52,7 +50,6 @@ export default function MyHeader({ title, profileImageUrl, nickname }: Props) {
               </div>
             )}
           </div>
-          {/* <span>{userInfo.nickname}</span> */}
         </div>
       </div>
     </div>
