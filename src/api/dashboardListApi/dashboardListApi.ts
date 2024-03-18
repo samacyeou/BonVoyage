@@ -56,7 +56,7 @@ export async function postNewDashboard(createDashboard: CreateDashboard) {
   }
 }
 
-export async function puInviteAnswer(id: number, answer: boolean) {
+export async function putInviteAnswer(id: number, answer: boolean) {
   const response = await instance.put(
     `/invitations/${id}`,
     {

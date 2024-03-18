@@ -11,7 +11,7 @@ import instance from '@/api/axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { postNewDashboard } from '@/api/dashboardListApi/getDashboardListApi';
+import { postNewDashboard } from '@/api/dashboardListApi/dashboardListApi';
 
 const cn = classNames.bind(styles);
 

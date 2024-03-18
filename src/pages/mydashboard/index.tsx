@@ -11,7 +11,8 @@ import InvitedDashboardList from '@/components/molecules/invitedDashboardList/In
 import {
   getInvitedDashboardList,
   getMyDashboardList,
-} from '@/api/dashboardListApi/getDashboardListApi';
+  putInviteAnswer,
+} from '@/api/dashboardListApi/dashboardListApi';
 
 const cn = classNames.bind(styles);
 
@@ -44,17 +45,7 @@ export default function MyDashboard() {
   ) => {
     const target = e.target as HTMLButtonElement;
     const answer = target.value === 'true';
-    await instance.put(
-      `/invitations/${id}`,
-      {
-        inviteAccepted: answer,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
-        },
-      },
-    );
+    putInviteAnswer(id, answer);
 
     setInvitedDashboardList((preList) => [
       ...preList.filter((element) => element.id !== id),
