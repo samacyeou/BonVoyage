@@ -12,6 +12,7 @@ const Layout = () => {
   return (
     <div className={styles.container}>
       <MyHeader
+        title="계정관리"
         nickname={userInfo.nickname ? userInfo.nickname : '익명'}
         profileImageUrl={
           userInfo.profileImageUrl ? userInfo.profileImageUrl : ellopseGreen
