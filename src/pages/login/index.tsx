@@ -37,8 +37,31 @@ const DesktopLogo = () => (
     alt="Desktop Logo"
   />
 );
+
+const GoogleIcon = () => (
+  <DynamicImage
+    src="/assets/icon/googleIcon.svg"
+    width={20}
+    height={20}
+    alt="Google Icon"
+  />
+);
+
+const KakaoIcon = () => (
+  <DynamicImage
+    src="/assets/icon/kakaotalkIcon.svg"
+    width={20}
+    height={20}
+    alt="Kakao Icon"
+  />
+);
+
 export default function Login() {
-  const [accessToken, setAccessToken] = useSessionStorage('accessToken');
+  const [accessToken, setAccessToken] = useSessionStorage(
+    'accessToken', // key for sessionStorage
+    '', // 초기값
+    true, // JSON 형태로 저장하지 않음
+  );
   const [user, setUser] = useSessionStorage<User | {}>('user', {});
   const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
@@ -112,6 +135,9 @@ export default function Login() {
         {errors.root && (
           <div className={styles.errorMessage}>{errors.root.message}</div>
         )}
+        <hr className={styles.divider} />
+        <Button name="구글로 로그인" type="google" icon={GoogleIcon()} />
+        <Button name="카카오 로그인" type="kakao" icon={KakaoIcon()} />
       </form>
       <div className={styles.signUpLinkBox}>
         회원이 아니신가요?
