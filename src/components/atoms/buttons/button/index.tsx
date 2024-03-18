@@ -1,12 +1,26 @@
+import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 import { ButtonProps } from '@/@types/type';
 
-const Button = ({ name, disabled, type, color, onClick }: ButtonProps) => {
+const cn = classNames.bind(styles);
+
+const Button = ({
+  name,
+  disabled,
+  type,
+  color,
+  onClick,
+  icon,
+}: ButtonProps) => {
   const classNames = (
     type: ButtonProps['type'],
     color: ButtonProps['color'],
   ) => {
     switch (type) {
+      case 'google':
+        return styles.googleBtn;
+      case 'kakao':
+        return styles.kakaoBtn;
       case 'account':
         return styles.accountBtn;
       case 'small':
@@ -27,11 +41,12 @@ const Button = ({ name, disabled, type, color, onClick }: ButtonProps) => {
   return (
     <>
       <button
-        className={classNames(type, color)}
+        className={cn(classNames(type, color), 'button')}
         disabled={disabled}
         onClick={onClick}
       >
-        {name}
+        {icon && <span className={styles.icon}>{icon}</span>}
+        <span className={styles.buttonText}>{name}</span>
       </button>
     </>
   );
