@@ -86,14 +86,20 @@ export interface Invitation {
   updatedAt: string;
 }
 
-export interface ChangePasswordProps {
+export interface UserChangePasswordProps {
   password: string;
   newPassword: string;
 }
 
-export interface UserChangeNicknameProps {
+export interface UserChangeAccountProps {
   nickname: string;
   profileImageUrl: string;
+}
+
+export interface passwordFromProps {
+  password: string;
+  newPassword: string;
+  newPasswordConfirm: string;
 }
 
 export interface AuthResponse extends ErrorResponse {
