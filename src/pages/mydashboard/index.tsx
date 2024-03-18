@@ -47,9 +47,7 @@ export default function MyDashboard() {
       },
       {
         headers: {
-          Accept: 'application/json',
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-          'Content-Type': 'application/json',
         },
       },
     );
@@ -75,7 +73,6 @@ export default function MyDashboard() {
       const { data } = await instance.get('/invitations', {
         params,
         headers: {
-          Accept: 'application/json',
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
       });
@@ -147,16 +144,10 @@ export default function MyDashboard() {
   useEffect(() => {
     async function login() {
       try {
-        const login = await instance.post(
-          '/auth/login',
-          { email: 'test@codeit.com', password: 'sprint101' },
-          {
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-          },
-        );
+        const login = await instance.post('/auth/login', {
+          email: 'test@codeit.com',
+          password: 'sprint101',
+        });
 
         setUser(login.data.user);
         localStorage.setItem('accessToken', login.data.accessToken);
@@ -168,7 +159,6 @@ export default function MyDashboard() {
             size: 5,
           },
           headers: {
-            accept: 'application/json',
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
         });

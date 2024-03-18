@@ -46,9 +46,7 @@ export default function MyDashboardList({
       { ...createDashboard },
       {
         headers: {
-          Accept: 'application/json',
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-          'Content-Type': 'application/json',
         },
       },
     );
@@ -67,13 +65,15 @@ export default function MyDashboardList({
           />
           {dashboardList.map((element) => {
             return (
-              <Link href={`/dashboard/${element.id}`}>
-                <MyDashboardBtn
-                  key={element.id}
-                  name={element.title}
-                  src={<ColorDot colorName={element.color} />}
-                />
-              </Link>
+              <div key={element.id}>
+                <Link href={`/dashboard/${element.id}`}>
+                  <MyDashboardBtn
+                    key={element.id}
+                    name={element.title}
+                    src={<ColorDot colorName={element.color} />}
+                  />
+                </Link>
+              </div>
             );
           })}
         </div>
