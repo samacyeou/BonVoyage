@@ -1,5 +1,5 @@
 import axios from '@/api/axios';
-import { UserChangePasswordProps, UserChangeAccountProps } from '@/@types/type';
+import { UserChangePasswordProps, UserChangeAccountProps,User } from '@/@types/type';
 
 export const userInfoData = async () => {
   try {
@@ -36,7 +36,7 @@ export const userChangeAccount = async ({
   profileImageUrl,
 }: UserChangeAccountProps) => {
   try {
-    const requestData = {};
+    const requestData : Partial<User>= {};
     if (nickname) {
       requestData.nickname = nickname;
     }

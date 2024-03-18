@@ -2,6 +2,8 @@ import styles from './errprPage.module.scss';
 import errorPage from '@/../../public/assets/icon/errorPage.png';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import bonVoyageLofo from '@/../../public/assets/icon/bonVoyageLogo.svg';
+
 const ErrorPage = () => {
   const router = useRouter();
 
@@ -10,7 +12,7 @@ const ErrorPage = () => {
   };
   return (
     <div className={styles.container}>
-      <div>로고이미지 들어갈곳</div>
+      <Image src={bonVoyageLofo} alt="bonVoyageLofo" width={400} height={200} />
       <div className={styles.errprContainer}>
         <Image src={errorPage} alt="errorPage" width={100} height={100} />
         <p className={styles.errorText}>
