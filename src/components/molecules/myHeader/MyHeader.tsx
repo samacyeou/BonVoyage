@@ -7,11 +7,12 @@ import { useState } from 'react';
 const cn = classNames.bind(styles);
 
 interface Props {
+  title: string;
   profileImageUrl: string;
   nickname: string;
 }
 
-export default function MyHeader({ profileImageUrl, nickname }: Props) {
+export default function MyHeader({ title, profileImageUrl, nickname }: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
 
   // const userInfo = useContext(userContext);
@@ -22,7 +23,7 @@ export default function MyHeader({ profileImageUrl, nickname }: Props) {
 
   return (
     <div className={cn('header')}>
-      <span className={cn('dashboardName')}>내 대시보드</span>
+      <span className={cn('dashboardName')}>{title}</span>
       <div className={cn('management')}>
         <div className={cn('user')}>
           <div className={cn('profile')}>
