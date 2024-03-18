@@ -1,0 +1,193 @@
+.container {
+  margin:40px 0 100px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  .pointOne,
+  .pointTwo {
+    width: 100%;
+    height: 686px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white, #ffffff);
+    border-radius: 8px;
+    overflow: hidden;
+
+    .pointOneText,
+    .pointTwoText {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .pointOneText span,
+    .pointTwoText span {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .pointOneText p,
+    .pointTwoText p {
+      margin-top: 60px;
+      font-size: 3.3rem;
+      font-weight: 700;
+    }
+
+    .pointOneImgWrapper {
+      width: 100%;
+      padding-left: 47px;
+      padding-top: 70px;
+      .pointOneImg {
+        border-top-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        object-fit: cover;
+      }
+    }
+
+    .pointTwoImgWrapper {
+      width: 100%;
+      padding: 70px 47px 0 47px;
+
+      .pointTwoImg {
+        height: 415px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .pointThr {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+
+    //대시보드
+    .dashboard {
+      width: 100%;
+      height: 347px;
+      background: var(--white, #ffffff);
+      border-radius: 8px;
+      display: block; //responsive
+
+      .dashboardImg {
+        height: 235px;
+        padding: 64px 30px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          border-radius: 8px;
+          object-fit: cover;
+        }
+      }
+
+      .dashboardText {
+        height: 112px;
+        padding: 25px 30px;
+        background-color: var(white);
+        border-top: 1px solid var(--orange2, #fac171);
+      }
+
+      .dashboardText p {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0 0 10px 0;
+      }
+
+      .dashboardText span {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+    }
+
+    //초대하기
+    .invite {
+      width: 100%;
+      height: 347px;
+      background: var(--white, #ffffff);
+      border-radius: 8px;
+      display: block; //responsive
+
+      .inviteImg {
+        height: 235px;
+        padding: 18px 41px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          border-radius: 8px;
+          object-fit: cover;
+        }
+      }
+
+      .inviteText {
+        height: 112px;
+        padding: 25px 30px;
+        background-color: var(white);
+        border-top: 1px solid var(--orange2, #fac171);
+      }
+
+      .inviteText p {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0 0 10px 0;
+      }
+
+      .inviteText span {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+    }
+
+    //구성원
+    .member {
+      width: 100%;
+      height: 347px;
+      background: var(--white, #ffffff);
+      border-radius: 8px;
+      display: block; //responsive
+
+      .memberImg {
+        height: 235px;
+        padding: 33px 41px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          border-radius: 8px;
+          object-fit: cover;
+        }
+      }
+
+      .memberText {
+        height: 112px;
+        padding: 25px 30px;
+        background-color: var(white);
+        border-top: 1px solid var(--orange2, #fac171);
+      }
+
+      .memberText p {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0 0 10px 0;
+      }
+
+      .memberText span {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
