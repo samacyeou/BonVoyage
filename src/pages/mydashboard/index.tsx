@@ -4,7 +4,7 @@ import MyHeader from '@/components/molecules/myHeader/MyHeader';
 import styles from './myDashboard.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Dashboard, Invitation, User } from '@/@types/type';
 import MyDashboardList from '@/components/molecules/myDashboardList/MyDashboardList';
 import InvitedDashboardList from '@/components/molecules/invitedDashboardList/InvitedDashboardList';
@@ -19,10 +19,10 @@ export default function MyDashboard() {
   const [invitedDashboardList, setInvitedDashboardList] = useState<
     Invitation[]
   >([]);
-  const [cursorId, setCursorId] = useState(-1);
   const [statusForUpdate, setStatusForUpdate] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isMoreData, setIsMoreData] = useState(true);
+  const cursorId = useRef<number>(0);
 
   const onClickPageButtonLeft = () => {
     setIsLoading(true);
@@ -67,7 +67,9 @@ export default function MyDashboard() {
     }
 
     setIsLoading(true);
-    const params = cursorId === -1 ? { size: 10 } : { size: 10, cursorId };
+    const params = cursorId.current
+      ? { size: 10, cursorId: cursorId.current }
+      : { size: 10 };
 
     try {
       const { data } = await instance.get('/invitations', {
@@ -82,17 +84,29 @@ export default function MyDashboard() {
         setIsMoreData(false);
       }
 
-      setInvitedDashboardList((preArray) => [
-        ...preArray,
-        ...data.invitations.filter((newItem: Invitation) => {
-          return !preArray.some((element) => element.id === newItem.id);
-        }),
-      ]);
+      setInvitedDashboardList((preArray) => {
+        let nextList: Invitation[];
+        if (
+          preArray.length > 0 &&
+          data.cursorId <= preArray[preArray.length - 1].id
+        ) {
+          nextList = [
+            ...preArray,
+            ...data.invitations.filter((newItem: Invitation) => {
+              return !preArray.some((element) => element.id === newItem.id);
+            }),
+          ];
+        } else {
+          nextList = [...preArray, ...data.invitations];
+        }
+
+        return nextList;
+      });
 
       if (data.cursorId) {
-        setCursorId(data.cursorId);
+        cursorId.current = data.cursorId;
       } else {
-        setCursorId(-2);
+        cursorId.current = 0;
       }
     } catch (error) {
       console.log(error);
