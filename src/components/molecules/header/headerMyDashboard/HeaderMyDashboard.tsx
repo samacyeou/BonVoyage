@@ -42,7 +42,7 @@ export default function HeaderMyDashboard({
           )}
         </div>
         <div className={styles['headerRight']}>
-          {isNotDashboardHome && (
+          {isNotDashboardHome && isMyDashboard && (
             <div className={styles['headerBtn']}>
               <HeaderBtn name="관리" type="edit" />
               <HeaderBtn name="초대하기" type="invite" />
