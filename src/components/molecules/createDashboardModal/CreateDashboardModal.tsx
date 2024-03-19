@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import { ChangeEvent, useState } from 'react';
 import CheckIcon from '@/components/icon/CheckIcon';
 import { CreateDashboard } from '@/@types/type';
-import CreateDoItYourselfInput from '@/components/atoms/input/createDoItYourselfCommonInput/CreateDoItYourselfInput';
 
 const cn = classNames.bind(styles);
 
