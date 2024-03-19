@@ -16,10 +16,33 @@ import { DashboardListContext } from '@/contexts/DashboardListContext';
 
 const cn = classNames.bind(styles);
 
+// export async function getServerSideProps() {
+//   const [allDashboardList, setAllDashboardList] = useState<Dashboard[]>([]);
+//   const { dashboardList, setDashboardList } = useContext(DashboardListContext);
+//   let page = 1;
+//   while (true) {
+//     const response = await getMyDashboardList(page, 10);
+//     setAllDashboardList((preList) => [...preList, ...response.dashboards]);
+//     if (allDashboardList.length === response.totalCount) {
+//       break;
+//     } else {
+//       page++;
+//     }
+//   }
+
+//   setDashboardList(allDashboardList);
+
+//   return {
+//     props: {
+
+//     }
+//   }
+// }
+
 export default function MyDashboard() {
   const [user, setUser] = useState<User | null>(null);
-  const { dashboardList, setDashboardList } = useContext(DashboardListContext);
-  // const [dashboardList, setDashboardList] = useState<Dashboard[]>([]);
+  // const { dashboardList, setDashboardList } = useContext(DashboardListContext);
+  const [dashboardList, setDashboardList] = useState<Dashboard[]>([]);
   const [dashboardListPage, setDashboardListPage] = useState(1);
   const [dashboardListTotalPage, setDashboardListTotalPage] = useState(0);
   const [invitedDashboardList, setInvitedDashboardList] = useState<
