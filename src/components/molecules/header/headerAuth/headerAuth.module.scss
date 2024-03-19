@@ -25,4 +25,20 @@
     border: 2px solid var(--orange20, #fac171);
   }
 
+  @media (min-width: 769px) {
+    padding: 20px 48px;
+    .loginBtn, .signUpBtn {
+      width: 120px;
+      height: 48px;
+      font-size: 2rem;
+      padding: 8px;
+    }
+  }
+  .loginBtn:hover, .signUpBtn:hover {
+    background: var(--orange20, #fac171);
+    color: var(--white, #ffffff);
+    transition: 0.3s;
+    scale: 1.1;
+  }
+
 }

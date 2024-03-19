@@ -19,4 +19,15 @@
     padding-top: 60px;
   }
 
+  @media (min-width: 769px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between ;
+    padding:0 150px 50px;
+
+    .footerlogo{
+      padding-top: 0;
+    }
+  }
+
 }
