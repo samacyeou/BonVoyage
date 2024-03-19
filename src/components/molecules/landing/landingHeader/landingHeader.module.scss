@@ -5,22 +5,18 @@
   .logoBox {
     width: 100%;
     height: 200px;
-  }
 
-  .logoContainer {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    background-image: url('../../../../../public//assets//image/bgLogin.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-
-    .bonVoyageLogoMain {
-      width: 200px;
-      margin-top: 30px;
+    .logoContainer {
+      height: 100%;
+      padding-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background-image: url('../../../../../public//assets//image/bgLogin.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
     }
   }
 
@@ -63,9 +59,6 @@
     .logoBox {
       padding: 0 60px;
       height: 314px;
-      .bonVoyageLogoMain {
-        width: 300px;
-      }
     }
 
     .textContainer {
@@ -96,11 +89,6 @@
     .logoBox {
       width: 1100px;
       height: 430px;
-
-      .bonVoyageLogoMain {
-        width: 300px;
-        object-fit: cover;
-      }
     }
     .textContainer {
       padding: 150px 0 100px 0;

@@ -1,16 +1,18 @@
 import styles from './landingHeader.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
+import bonVoyageLogo from '@/../../public/assets/icon/bonVoyageLogo.svg'
 const LandingHeader = () => {
-  const bonVoyageLogo = '/assets/icon/bonVoyageLogo.svg';
   return (
     <div className={styles.container}>
       <div className={styles.logoBox}>
         <div className={styles.logoContainer}>
-          <img
+           <Image
             src={bonVoyageLogo}
             className={styles.bonVoyageLogoMain}
             alt="bonVoyageLogo"
+            width={340}
+            height={100}
           />
         </div>
       </div>
