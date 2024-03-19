@@ -107,3 +107,21 @@ export interface AuthResponse extends ErrorResponse {
   user: User;
   accessToken: string;
 }
+
+export interface ProfileDownProps {
+  onBlur: React.FocusEventHandler<HTMLDivElement>;
+}
+
+export interface UserContextProps {
+  userInfo: {
+    id: number;
+    email: string;
+    nickname: string;
+    profileImageUrl: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  setUserInfo: (userInfo: any) => void;
+}
+// userInfo에 들어가야 하는 타입 
+

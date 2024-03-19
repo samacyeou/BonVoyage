@@ -41,7 +41,7 @@ export default function MyHeader({
               {nickname}
             </button>
             {isOpenNicknameMenu && (
-              <ProfileDown onBlur={onBlurName}/>
+              <ProfileDown onBlur={() => setIsOpenNicknameMenu(false)}/>
             )}
           </div>
         </div>

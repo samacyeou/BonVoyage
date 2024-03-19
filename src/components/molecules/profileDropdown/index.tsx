@@ -3,12 +3,9 @@ import classNames from 'classnames/bind';
 import Link from 'next/link';
 import styles from './profileDropdown.module.scss';
 import { useRouter } from 'next/router';
+import { ProfileDownProps } from '@/@types/type';
 
 const cn = classNames.bind(styles);
-
-interface ProfileDownProps {
-  onBlur: <FocusEvent>(e: FocusEvent) => void;
-}
 
 const ProfileDown = ({ onBlur }: ProfileDownProps) => {
   const router = useRouter();
