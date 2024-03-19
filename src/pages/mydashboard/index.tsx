@@ -3,7 +3,7 @@ import MyHeader from '@/components/molecules/myHeader/MyHeader';
 import styles from './myDashboard.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import { MouseEvent, useContext, useEffect, useRef, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Dashboard, Invitation, User } from '@/@types/type';
 import MyDashboardList from '@/components/molecules/myDashboardList/MyDashboardList';
 import InvitedDashboardList from '@/components/molecules/invitedDashboardList/InvitedDashboardList';
@@ -12,36 +12,12 @@ import {
   getMyDashboardList,
   putInviteAnswer,
 } from '@/api/dashboardListApi/dashboardListApi';
-import { DashboardListContext } from '@/contexts/DashboardListContext';
+import HeaderMyDashboard from '@/components/molecules/header/headerMyDashboard/HeaderMyDashboard';
 
 const cn = classNames.bind(styles);
 
-// export async function getServerSideProps() {
-//   const [allDashboardList, setAllDashboardList] = useState<Dashboard[]>([]);
-//   const { dashboardList, setDashboardList } = useContext(DashboardListContext);
-//   let page = 1;
-//   while (true) {
-//     const response = await getMyDashboardList(page, 10);
-//     setAllDashboardList((preList) => [...preList, ...response.dashboards]);
-//     if (allDashboardList.length === response.totalCount) {
-//       break;
-//     } else {
-//       page++;
-//     }
-//   }
-
-//   setDashboardList(allDashboardList);
-
-//   return {
-//     props: {
-
-//     }
-//   }
-// }
-
 export default function MyDashboard() {
   const [user, setUser] = useState<User | null>(null);
-  // const { dashboardList, setDashboardList } = useContext(DashboardListContext);
   const [dashboardList, setDashboardList] = useState<Dashboard[]>([]);
   const [dashboardListPage, setDashboardListPage] = useState(1);
   const [dashboardListTotalPage, setDashboardListTotalPage] = useState(0);
@@ -183,11 +159,12 @@ export default function MyDashboard() {
   return (
     <div className={cn('background')}>
       <SideBar />
-      <MyHeader
+      <HeaderMyDashboard />
+      {/* <MyHeader
         title="내 대시보드"
         profileImageUrl={user?.profileImageUrl ?? '/assets/icon/logo.svg'}
         nickname={user?.nickname ?? 'unknown'}
-      />
+      /> */}
       <section className={cn('section')}>
         <MyDashboardList
           dashboardList={dashboardList}
