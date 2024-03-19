@@ -7,12 +7,16 @@ import { useState } from 'react';
 const cn = classNames.bind(styles);
 
 interface Props {
-  title: string;
+  title?: string;
   profileImageUrl: string;
   nickname: string;
 }
 
-export default function MyHeader({ title, profileImageUrl, nickname }: Props) {
+export default function MyHeader({
+  title = '내 대시보드',
+  profileImageUrl,
+  nickname,
+}: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
 
   const onBlurName = () => {
