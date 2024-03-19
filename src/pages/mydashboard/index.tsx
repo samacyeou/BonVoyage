@@ -158,13 +158,8 @@ export default function MyDashboard() {
 
   return (
     <div className={cn('background')}>
+      <HeaderMyDashboard isNotDashboardHome={false} koName={user?.nickname} />
       <SideBar />
-      <HeaderMyDashboard />
-      {/* <MyHeader
-        title="내 대시보드"
-        profileImageUrl={user?.profileImageUrl ?? '/assets/icon/logo.svg'}
-        nickname={user?.nickname ?? 'unknown'}
-      /> */}
       <section className={cn('section')}>
         <MyDashboardList
           dashboardList={dashboardList}
