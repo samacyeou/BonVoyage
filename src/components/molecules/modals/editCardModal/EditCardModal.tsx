@@ -5,7 +5,7 @@ import CreateDoItYourselfDescription from '@/components/atoms/input/descriptionI
 import CreateDoItYourselfDate from '@/components/atoms/input/dateInput/CreateDoItYourselfDate';
 import CreateDoItYourselfTag from '../../input/CreateDoItYourselfTag';
 import ManagerDropDown from '../../managerDropDown/ManagerDropDown';
-import ProfileImageInput from '../../profileImageInput/ProfileImageInput';
+import ProfileImageInput from '../../imageInput/ImageInput';
 import Button from '@/components/atoms/buttons/button';
 import StatusDropDown from '../../statusDropDown/StatusDropDown';
 

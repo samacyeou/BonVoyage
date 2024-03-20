@@ -1,7 +1,7 @@
 import styles from './profileForm.module.scss';
-import ProfileImageInput from '@/components/molecules/profileImageInput/ProfileImageInput';
+import ProfileImageInput from '@/components/molecules/profileImageInput/index';
 import Button from '@/components/atoms/buttons/button';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { userContext } from '@/pages/mypage/index';
 import { userChangeAccount } from '@/api/accountApi/accountApi';
 import CommonInput from '@/components/atoms/input/common/CommonInput';

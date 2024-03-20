@@ -14,7 +14,7 @@ export const userContext = React.createContext<UserContextProps>({
     createdAt: '',
     updatedAt: '',
   },
-  setUserInfo: () => {}, 
+  setUserInfo: () => {},
 });
 
 const Mypage = () => {
