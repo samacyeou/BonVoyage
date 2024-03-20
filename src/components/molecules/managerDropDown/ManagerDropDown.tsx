@@ -3,6 +3,7 @@ import styles from './managerDropDown.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
 import { MemberProfile } from '@/@types/type';
+import defaultImage from '../../../../public/assets/image/testProfile.png';
 
 const cn = classNames.bind(styles);
 
@@ -13,7 +14,6 @@ interface Props {
 export default function ManagerDropDown({ members }: Props) {
   const [manager, setManager] = useState<MemberProfile | null>(null);
   const [inputValue, setInputValue] = useState('');
-  const [memberList] = useState(members);
   const [isOpenMemberList, setIsOpenMemberList] = useState(false);
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,17 +38,29 @@ export default function ManagerDropDown({ members }: Props) {
             onChange={onChangeInput}
             onFocus={() => setIsOpenMemberList(true)}
           />
-          {manager && !inputValue && (
+
+          {manager && !inputValue ? (
             <div className={cn('member', 'selected')}>
-              <Image
-                width={26}
-                height={26}
-                src={manager.imageUrl}
-                alt="프로필 이미지"
-              />
+              {manager.profileImageUrl ? (
+                <Image
+                  width={26}
+                  height={26}
+                  src={manager.profileImageUrl}
+                  alt="프로필 이미지"
+                />
+              ) : (
+                <Image
+                  width={26}
+                  height={26}
+                  src={defaultImage}
+                  alt="기본 프로필 이미지"
+                />
+              )}
+
               <span>{manager.nickname}</span>
             </div>
-          )}
+          ) : null}
+
           <Image
             className={cn('dropDownMenu')}
             width={26}
@@ -60,7 +72,7 @@ export default function ManagerDropDown({ members }: Props) {
         </div>
         {isOpenMemberList && (
           <div className={cn('itemList')}>
-            {memberList
+            {members
               .filter((element) => {
                 return inputValue
                   ? element.nickname.includes(inputValue)
@@ -68,7 +80,7 @@ export default function ManagerDropDown({ members }: Props) {
               })
               .map((element) => {
                 let check = false;
-                if (manager?.nickname === element.nickname) {
+                if (members?.nickname === element.nickname) {
                   check = true;
                 }
 
@@ -89,12 +101,21 @@ export default function ManagerDropDown({ members }: Props) {
                       )}
                     </div>
                     <div className={cn('member')}>
-                      <Image
-                        width={26}
-                        height={26}
-                        src={element.imageUrl}
-                        alt="프로필 이미지"
-                      />
+                      {element.profileImageUrl ? (
+                        <Image
+                          width={26}
+                          height={26}
+                          src={element.profileImageUrl}
+                          alt="프로필 이미지"
+                        />
+                      ) : (
+                        <Image
+                          width={26}
+                          height={26}
+                          src={defaultImage}
+                          alt="기본 프로필 이미지"
+                        />
+                      )}
                       <span>{element.nickname}</span>
                     </div>
                   </div>

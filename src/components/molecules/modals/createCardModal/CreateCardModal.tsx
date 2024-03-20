@@ -28,12 +28,13 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
     },
     mode: 'all',
   });
+  const dashboardId = column.dashboardId;
 
   useEffect(() => {
     async function fetchMembers() {
       try {
-        const memberData = await getMember(); // 멤버 목록 가져오기
-        setMembers([memberData]); // Fix: Pass memberData as an array
+        const memberData = await getMember(dashboardId); // 멤버 목록 가져오기
+        setMembers(memberData.members); // Fix: Pass memberData as an array
       } catch (error) {
         console.error('Error fetching members:', error);
       }
@@ -41,6 +42,7 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
 
     fetchMembers();
   }, []); // 컴포넌트가 마운트될 때만 실행
+  console.log(members);
 
   const onSubmit = async () => {
     try {

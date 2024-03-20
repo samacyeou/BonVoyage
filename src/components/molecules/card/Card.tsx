@@ -4,6 +4,7 @@ import Image from 'next/image';
 import calendarIcon from '../../../../public/assets/icon/calendarIcon.svg';
 import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
 import instance from '@/api/axios';
+import { format } from 'date-fns';
 
 interface Card {
   id: number;
@@ -58,6 +59,8 @@ export default function Card({ onClick, columnId }: CardProps) {
               className={styles['cardImage']}
               src={card.imageUrl}
               alt="Card Image"
+              width={300}
+              height={200}
             />
           )}
           <div className={styles['infoArea']}>
@@ -74,7 +77,9 @@ export default function Card({ onClick, columnId }: CardProps) {
                     src={calendarIcon}
                     alt="calendarIcon"
                   />
-                  <span className={styles['date']}>{card.createdAt}</span>
+                  <span className={styles['date']}>
+                    {format(card.createdAt, 'yyyy-MM-dd HH:mm')}
+                  </span>
                 </div>
                 <Image
                   className={styles['userProfile']}
