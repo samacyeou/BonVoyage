@@ -15,7 +15,6 @@ export const userContext = React.createContext<UserContextProps>({
     updatedAt: '',
   },
   setUserInfo: () => {}, 
-  //userInfo를 업데이트 
 });
 
 const Mypage = () => {
