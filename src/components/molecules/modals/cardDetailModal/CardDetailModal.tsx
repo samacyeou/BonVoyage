@@ -49,8 +49,6 @@ export default function CardDetailModal({
       console.error('Error fetching cardDetail:', error);
     }
   }
-  console.log(cardDetail);
-  console.log(cardId);
 
   useEffect(() => {
     getCardDetail();
@@ -68,6 +66,7 @@ export default function CardDetailModal({
             <CardDetailKebap
               cardId={cardId}
               getCards={getCards}
+              cardData={cardDetail}
             ></CardDetailKebap>
             <img
               className={styles['closeIcon']}

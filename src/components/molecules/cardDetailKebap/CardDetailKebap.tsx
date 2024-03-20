@@ -7,7 +7,7 @@ interface ModalProps {
   cardId: number;
 }
 
-const CardDetailKebap = ({ cardId, getCards }: ModalProps) => {
+const CardDetailKebap = ({ cardId, getCards, cardData }: ModalProps) => {
   const [view, setView] = useState(false);
 
   const handleView = () => {
@@ -19,19 +19,19 @@ const CardDetailKebap = ({ cardId, getCards }: ModalProps) => {
       onClick={(e) => {
         e.stopPropagation();
         handleView();
-        // console.log(link);
       }}
     >
       <img
         className={styles['kebabIcon']}
         src="/assets/icon/kebabMenuIcon.svg"
       />
-      {/* <img
-        className="kebabIcon"
-        src={process.env.PUBLIC_URL + `/assets/kebab.png`}
-        alt="케밥 버튼"
-      /> */}
-      {view && <KebapMenu cardId={cardId} getCards={getCards}></KebapMenu>}
+      {view && (
+        <KebapMenu
+          cardId={cardId}
+          getCards={getCards}
+          cardData={cardData}
+        ></KebapMenu>
+      )}
     </div>
   );
 };

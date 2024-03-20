@@ -8,15 +8,19 @@ interface ModalProps {
   cardId: number;
 }
 
-const KebapMenu = ({ cardId, getCards }: ModalProps) => {
+const KebapMenu = ({ cardId, getCards, cardData }: ModalProps) => {
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [showDeleteCardModal, setShowDeleteCardModal] = useState(false);
 
   const handleEditButton = () => {
-    setShowEditCardModal(!showDeleteCardModal);
+    setShowEditCardModal(true);
   };
   const handleDeleteButton = () => {
-    setShowDeleteCardModal(!showEditCardModal);
+    setShowDeleteCardModal(true);
+  };
+  const closeModal = () => {
+    setShowEditCardModal(false);
+    setShowDeleteCardModal(false);
   };
 
   return (
@@ -40,11 +44,11 @@ const KebapMenu = ({ cardId, getCards }: ModalProps) => {
         삭제하기
       </div>
       {showEditCardModal && (
-        <EditCardModal onClose={handleEditButton}></EditCardModal>
+        <EditCardModal onClose={closeModal} cardData={cardData}></EditCardModal>
       )}
       {showDeleteCardModal && (
         <DeleteCardModal
-          onClose={handleDeleteButton}
+          onClose={closeModal}
           cardId={cardId}
           getCards={getCards}
         ></DeleteCardModal>

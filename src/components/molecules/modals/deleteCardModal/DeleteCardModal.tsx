@@ -25,9 +25,14 @@ export default function DeleteCardModal({
     }
   };
 
-  console.log(cardId);
+  const handleModalClick = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+  };
+
   return (
-    <div className={styles['cardDetailModal']}>
+    <div className={styles['cardDetailModal']} onClick={handleModalClick}>
       <div className={styles['modalContent']}>
         <h1 className={styles['modalTitle']}>할일을 삭제합니다.</h1>
 

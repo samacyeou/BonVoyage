@@ -53,6 +53,7 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
       }
       await createCard(card);
       onClose();
+      window.location.reload();
     } catch (error) {
       throw error;
     }

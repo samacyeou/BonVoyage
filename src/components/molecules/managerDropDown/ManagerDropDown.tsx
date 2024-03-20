@@ -31,7 +31,6 @@ export default function ManagerDropDown({ members }: Props) {
     setIsOpenMemberList(false);
   };
 
-  console.log(selectedManagerId);
   return (
     <div className={cn('container')}>
       <span className={cn('dropDownName')}>담당자</span>
