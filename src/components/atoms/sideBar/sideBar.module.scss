@@ -9,6 +9,7 @@
   position: fixed;
   z-index: 2;
   background-color: var(--white);
+  overflow: auto;
 }
 
 .logoText {
@@ -27,6 +28,15 @@
   display: none;
 }
 
+.pagenation {
+  position: relative;
+  left: -10px;
+}
+
+.pagenation.hasScroll {
+  left: -16px;
+}
+
 @media (min-width: 769px) {
   .sidebar {
     width: 160px;
@@ -43,6 +53,10 @@
 
   .menuArea {
     margin-top: 20px;
+  }
+
+  .pagenation {
+    position: static;
   }
 
   @media (min-width: 1024px) {

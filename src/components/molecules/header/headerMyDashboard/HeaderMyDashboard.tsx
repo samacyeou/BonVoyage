@@ -16,7 +16,7 @@ export default function HeaderMyDashboard({
   isNotDashboardHome = true,
 }) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
-  console.log(isNotDashboardHome);
+
   return (
     <>
       <div

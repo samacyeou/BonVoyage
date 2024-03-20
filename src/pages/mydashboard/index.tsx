@@ -1,5 +1,4 @@
 import SideBar from '@/components/atoms/sideBar/SideBar';
-import MyHeader from '@/components/molecules/myHeader/MyHeader';
 import styles from './myDashboard.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
