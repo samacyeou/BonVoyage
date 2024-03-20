@@ -58,6 +58,8 @@ export default function Card({ onClick, columnId }: CardProps) {
               className={styles['cardImage']}
               src={card.imageUrl}
               alt="Card Image"
+              width={300}
+              height={200}
             />
           )}
           <div className={styles['infoArea']}>
