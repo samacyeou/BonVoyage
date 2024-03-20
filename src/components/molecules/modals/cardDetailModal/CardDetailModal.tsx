@@ -12,6 +12,7 @@ interface ModalProps {
   onClose: () => void;
   cardId: number;
   columnTitle: string;
+  getCards: () => void;
 }
 
 interface CardDetail {
@@ -30,6 +31,7 @@ export default function CardDetailModal({
   onClose,
   cardId,
   columnTitle,
+  getCards,
 }: ModalProps) {
   const [cardDetail, setCardDetail] = useState<CardDetail | null>(null);
 
@@ -63,7 +65,10 @@ export default function CardDetailModal({
               className={styles['kebabIcon']}
               src="/assets/icon/kebabMenuIcon.svg"
             /> */}
-            <CardDetailKebap></CardDetailKebap>
+            <CardDetailKebap
+              cardId={cardId}
+              getCards={getCards}
+            ></CardDetailKebap>
             <img
               className={styles['closeIcon']}
               src="/assets/icon/closeIcon.svg"

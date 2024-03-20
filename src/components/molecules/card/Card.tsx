@@ -112,6 +112,7 @@ export default function Card({ columnId, columnTitle }: CardProps) {
           onClose={closeModal}
           cardId={clickedCardId}
           columnTitle={columnTitle}
+          getCards={getCards}
         ></CardDetailModal>
       )}
     </div>
