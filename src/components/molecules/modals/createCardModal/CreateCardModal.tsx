@@ -62,7 +62,12 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
     <div className={styles.cardDetailModal}>
       <form className={styles.modalContent} onSubmit={handleSubmit(onSubmit)}>
         <h1 className={styles.modalTitle}>할 일 생성</h1>
-        <ManagerDropDown members={members} />
+        <ManagerDropDown
+          members={members}
+          {...register('assigneeUserId', {
+            required: '담당자를 선택해주세요.',
+          })}
+        />
         <CreateDoItYourselfTitle
           {...register('title', {
             required: '제목을 입력해주세요.',
@@ -88,6 +93,7 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
             type="modal"
             color="blue"
             buttonProps={{ type: 'submit' }}
+            onClick={onSubmit}
           />
         </div>
       </form>

@@ -17,7 +17,6 @@ interface CardSectionProps {
 }
 
 export default function CardSection({ dashboardId }: CardSectionProps) {
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isCreateCardModalOpen, setIsCreateCardModalOpen] = useState(false);
   const [isEditColumnModalOpen, setIsEditColumnModalOpen] = useState(false);
   const [columns, setColumns] = useState<Column[]>([]);
@@ -40,10 +39,6 @@ export default function CardSection({ dashboardId }: CardSectionProps) {
     }
   }
 
-  const handleCardClick = () => {
-    setIsDetailModalOpen(true);
-  };
-
   const handleAddCardButtonClick = (column: Column) => {
     setSelectedColumn(column);
     setIsCreateCardModalOpen(true);
@@ -56,7 +51,6 @@ export default function CardSection({ dashboardId }: CardSectionProps) {
 
   const closeModal = () => {
     setSelectedColumn(null);
-    setIsDetailModalOpen(false);
     setIsCreateCardModalOpen(false);
     setIsEditColumnModalOpen(false);
   };
@@ -86,10 +80,9 @@ export default function CardSection({ dashboardId }: CardSectionProps) {
             type="addTodo"
             onClick={() => handleAddCardButtonClick(column)}
           />
-          <Card columnId={column.id} onClick={handleCardClick} />
+          <Card columnId={column.id} columnTitle={column.title} />
         </div>
       ))}
-      {isDetailModalOpen && <CardDetailModal onClose={closeModal} />}
       {isCreateCardModalOpen && (
         <CreateCardModal column={selectedColumn!} onClose={closeModal} />
       )}

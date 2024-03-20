@@ -15,6 +15,9 @@ export default function ManagerDropDown({ members }: Props) {
   const [manager, setManager] = useState<MemberProfile | null>(null);
   const [inputValue, setInputValue] = useState('');
   const [isOpenMemberList, setIsOpenMemberList] = useState(false);
+  const [selectedManagerId, setSelectedManagerId] = useState<string | null>(
+    null,
+  );
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -23,10 +26,12 @@ export default function ManagerDropDown({ members }: Props) {
 
   const onClickItem = (element: MemberProfile) => {
     setManager(element);
+    setSelectedManagerId(element.id);
     setInputValue('');
     setIsOpenMemberList(false);
   };
 
+  console.log(selectedManagerId);
   return (
     <div className={cn('container')}>
       <span className={cn('dropDownName')}>담당자</span>
@@ -78,9 +83,15 @@ export default function ManagerDropDown({ members }: Props) {
                   ? element.nickname.includes(inputValue)
                   : true;
               })
+              // .map((element) => {
+              //   let check = false;
+              //   if (members?.nickname === element.nickname) {
+              //     check = true;
+              //   }
               .map((element) => {
                 let check = false;
-                if (members?.nickname === element.nickname) {
+                if (selectedManagerId === element.id) {
+                  // 선택된 담당자인 경우 check 변수를 true로 설정
                   check = true;
                 }
 
