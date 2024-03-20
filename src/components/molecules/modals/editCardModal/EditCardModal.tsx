@@ -5,7 +5,7 @@ import CreateDoItYourselfDescription from '@/components/atoms/input/descriptionI
 import CreateDoItYourselfDate from '@/components/atoms/input/dateInput/CreateDoItYourselfDate';
 import CreateDoItYourselfTag from '../../input/CreateDoItYourselfTag';
 import ManagerDropDown from '../../managerDropDown/ManagerDropDown';
-import ImageInput from '../../imageInput/ImageInput';
+import ProfileImageInput from '../../profileImageInput/ProfileImageInput';
 import Button from '@/components/atoms/buttons/button';
 import StatusDropDown from '../../statusDropDown/StatusDropDown';
 
@@ -26,7 +26,7 @@ export default function EditCardModal({ onClose }: ModalProps) {
         <CreateDoItYourselfTag></CreateDoItYourselfTag>
         <div>
           <h2>이미지</h2>
-          <ImageInput size="big"></ImageInput>
+          <ProfileImageInput size="big"></ProfileImageInput>
         </div>
         <div className={styles['buttonArea']}>
           <Button

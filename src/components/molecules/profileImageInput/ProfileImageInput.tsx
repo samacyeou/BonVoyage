@@ -1,5 +1,5 @@
 import { ChangeEvent, useRef, useState } from 'react';
-import styles from './imageInput.module.scss';
+import styles from './ProfileImageInput.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
 import { userUploadImage } from '@/api/accountApi/accountApi';
@@ -8,7 +8,8 @@ interface Props {
   size: 'small' | 'big';
   onImageSelected: (imageUrl: string) => void; //추가, 이미지 선택시 부모 컴포넌트에게 이미지 url 전달
 }
-export default function ImageInput({ size,onImageSelected }: Props) { // onImageSelected 추가
+export default function ProfileImageInput({ size, onImageSelected }: Props) {
+  // onImageSelected 추가
   const [imageUrl, setImageUrl] = useState('');
   const imageInput = useRef<HTMLInputElement>(null);
 
@@ -21,7 +22,7 @@ export default function ImageInput({ size,onImageSelected }: Props) { // onImage
   const onChangeImage = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const imageUrl = await userUploadImage(file) //추가 이미지 업로드 api 호출
+      const imageUrl = await userUploadImage(file); //추가 이미지 업로드 api 호출
       const reader = new FileReader();
       reader.onload = (e: ProgressEvent<FileReader>) => {
         if (e.target?.result) {
@@ -61,7 +62,7 @@ export default function ImageInput({ size,onImageSelected }: Props) { // onImage
                 layout="fill"
                 src="/assets/icon/editIcon.svg"
                 alt="연필 아이콘"
-                priority={true} 
+                priority={true}
                 objectFit="cover"
               />
             </div>

@@ -1,7 +1,7 @@
 import styles from './profileForm.module.scss';
-import ImageInput from '@/components/molecules/imageInput/ImageInput';
+import ProfileImageInput from '@/components/molecules/profileImageInput/ProfileImageInput';
 import Button from '@/components/atoms/buttons/button';
-import { useState, useContext,useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { userContext } from '@/pages/mypage/index';
 import { userChangeAccount } from '@/api/accountApi/accountApi';
 import CommonInput from '@/components/atoms/input/common/CommonInput';
@@ -25,7 +25,6 @@ const ProfileForm = () => {
   });
 
   const onSubmit = async (data: UserChangeAccountProps) => {
- 
     try {
       await userChangeAccount({
         nickname: data.nickname,
@@ -55,7 +54,7 @@ const ProfileForm = () => {
   return (
     <div className={styles.container}>
       <h1>프로필</h1>
-      <ImageInput size="big" onImageSelected={setProfileImageUrl} />
+      <ProfileImageInput size="big" onImageSelected={setProfileImageUrl} />
       <form className={styles.inputContainer} onSubmit={handleSubmit(onSubmit)}>
         <CommonInput
           label="이메일"
