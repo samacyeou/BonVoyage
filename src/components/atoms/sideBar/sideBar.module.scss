@@ -2,8 +2,7 @@
   top: 0;
   width: 67px;
   align-items: center;
-  min-height: 100vh;
-  height: 100%;
+  height: 100vh;
   padding: 20px 24px;
   border-right: solid 1px var(--gray20, #eee);
   position: fixed;
@@ -22,6 +21,14 @@
   margin-top: 40px;
 }
 
+.sidebar.hasScroll {
+  padding: 20px 16px;
+
+  .menuTitleArea {
+    justify-content: center;
+  }
+}
+
 .menuTitle {
   font-size: 1.2rem;
   color: var(--gray50);
@@ -29,12 +36,9 @@
 }
 
 .pagenation {
-  position: relative;
-  left: -10px;
-}
-
-.pagenation.hasScroll {
-  left: -16px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 @media (min-width: 769px) {
@@ -56,7 +60,7 @@
   }
 
   .pagenation {
-    position: static;
+    justify-content: left;
   }
 
   @media (min-width: 1024px) {

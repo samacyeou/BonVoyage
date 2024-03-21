@@ -6,7 +6,7 @@ import addBoxIcon from '../../../../public/assets/icon/addBoxIcon.svg';
 import SideBarMenu from '../sideBarMenu/SideBarMenu';
 import Link from 'next/link';
 import LogoWithTitle from '../logoWithTitle/LogoWithTitle';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getMyDashboardList } from '@/api/dashboardListApi/dashboardListApi';
 import { Dashboard } from '@/@types/type';
 import PagenationBtn from '../buttons/pagenationBtn';
@@ -21,6 +21,7 @@ export default function SideBar({ path }: prop) {
   const [dashboardListPage, setDashboardListPage] = useState(1);
   const [dashboardListTotalPage, setDashboardListTotalPage] = useState(0);
   const [hasScroll, setHasScroll] = useState(false);
+  const sideBar = useRef<HTMLDivElement>(null);
 
   const onClickPageButtonLeft = () => {
     setDashboardListPage((prevPage) => prevPage - 1);
@@ -32,16 +33,14 @@ export default function SideBar({ path }: prop) {
 
   useEffect(() => {
     function isScroll() {
-      const sideBar = document.querySelector('.sideBar');
-      console.log(sideBar);
-      if (sideBar) {
-        if (sideBar.scrollHeight > sideBar.clientHeight) {
-          console.log('뭐라고 말좀 해봐');
-          setHasScroll(true);
-        } else {
-          console.log('제발');
-          setHasScroll(false);
-        }
+      if (!sideBar.current) {
+        return;
+      }
+
+      if (sideBar.current.scrollHeight > sideBar.current.clientHeight) {
+        setHasScroll(true);
+      } else {
+        setHasScroll(false);
       }
     }
 
@@ -70,20 +69,24 @@ export default function SideBar({ path }: prop) {
   }, [dashboardListPage]);
 
   return (
-    <div className={cn('sidebar')}>
+    <div className={cn('sidebar', { hasScroll: hasScroll })} ref={sideBar}>
       <div className={styles['logoArea']}>
         <LogoWithTitle />
       </div>
       <div className={styles['menuArea']}>
         <div className={styles['menuTitleArea']}>
           <h1 className={styles['menuTitle']}>Dash Boards</h1>
-          <Image src={addBoxIcon}></Image>
+          <Image src={addBoxIcon} width={20} height={20}></Image>
         </div>
         {dashboardList.map((element) => {
           return (
             <Link href={`/dashboard/${element.id}`} key={element.id}>
               <a>
-                <SideBarMenu menuTitle={element.title} color={element.color} />
+                <SideBarMenu
+                  menuTitle={element.title}
+                  color={element.color}
+                  isCreatedByMe={element.createdByMe}
+                />
               </a>
             </Link>
           );
@@ -92,7 +95,7 @@ export default function SideBar({ path }: prop) {
           <SideBarMenu menuTitle="코드잇" />
         </Link> */}
       </div>
-      <div className={cn('pagenation', { hasScroll: hasScroll })}>
+      <div className={cn('pagenation')}>
         <PagenationBtn
           onClickLeft={onClickPageButtonLeft}
           onClickRight={onClickPageButtonRight}

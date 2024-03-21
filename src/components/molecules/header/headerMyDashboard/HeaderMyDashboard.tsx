@@ -8,13 +8,23 @@ import Link from 'next/link';
 
 const cn = classNames.bind(styles);
 
+interface Props {
+  enName?: string;
+  koName?: string;
+  boardTitle?: string;
+  profile?: string;
+  isMyDashboard?: boolean;
+  isNotDashboardHome?: boolean;
+}
+
 export default function HeaderMyDashboard({
   enName = 'Name',
   koName = '이름',
   boardTitle = '내 대시보드',
+  profile,
   isMyDashboard = true,
   isNotDashboardHome = true,
-}) {
+}: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
 
   return (
@@ -55,7 +65,7 @@ export default function HeaderMyDashboard({
             onClick={() => setIsOpenNicknameMenu((preState) => !preState)}
             onBlur={() => setTimeout(() => setIsOpenNicknameMenu(false), 100)}
           >
-            <ProfileIcon name={enName} />
+            <ProfileIcon name={enName} profile={profile} />
             <span className={styles['koName']}>{koName}</span>
             {isOpenNicknameMenu && (
               <div
@@ -63,7 +73,7 @@ export default function HeaderMyDashboard({
                 onBlur={() => setIsOpenNicknameMenu(false)}
               >
                 <button className={styles['menuItem']}>
-                  <Link href="/mypage">마이페이지</Link>
+                  <Link href="/myPage">마이페이지</Link>
                 </button>
                 <hr />
                 <button className={cn('menuItem', 'logout')}>
