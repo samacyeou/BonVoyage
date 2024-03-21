@@ -1,10 +1,13 @@
 import { Member } from '@/@types/type';
 import axios from 'axios';
+import instance from '../axios';
 
 // 대시보드 멤버 목록 조회
-export const getMember = async () => {
+export const getMember = async (dashboardId) => {
   try {
-    const res = await axios.get<Member>('members');
+    const res = await instance.get<Member>(
+      `members?page=1&size=20&dashboardId=${dashboardId}`,
+    );
     return res.data;
   } catch (error) {
     console.error('getMember:', error);

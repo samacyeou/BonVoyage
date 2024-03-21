@@ -28,12 +28,13 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
     },
     mode: 'all',
   });
+  const dashboardId = column.dashboardId;
 
   useEffect(() => {
     async function fetchMembers() {
       try {
-        const memberData = await getMember(); // 멤버 목록 가져오기
-        setMembers([memberData]); // Fix: Pass memberData as an array
+        const memberData = await getMember(dashboardId); // 멤버 목록 가져오기
+        setMembers(memberData.members); // Fix: Pass memberData as an array
       } catch (error) {
         console.error('Error fetching members:', error);
       }
@@ -41,6 +42,7 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
 
     fetchMembers();
   }, []); // 컴포넌트가 마운트될 때만 실행
+  console.log(members);
 
   const onSubmit = async () => {
     try {
@@ -51,6 +53,7 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
       }
       await createCard(card);
       onClose();
+      window.location.reload();
     } catch (error) {
       throw error;
     }
@@ -60,7 +63,12 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
     <div className={styles.cardDetailModal}>
       <form className={styles.modalContent} onSubmit={handleSubmit(onSubmit)}>
         <h1 className={styles.modalTitle}>할 일 생성</h1>
-        <ManagerDropDown members={members} />
+        <ManagerDropDown
+          members={members}
+          {...register('assigneeUserId', {
+            required: '담당자를 선택해주세요.',
+          })}
+        />
         <CreateDoItYourselfTitle
           {...register('title', {
             required: '제목을 입력해주세요.',
@@ -86,6 +94,7 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
             type="modal"
             color="blue"
             buttonProps={{ type: 'submit' }}
+            onClick={onSubmit}
           />
         </div>
       </form>

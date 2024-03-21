@@ -4,6 +4,8 @@ import Image from 'next/image';
 import calendarIcon from '../../../../public/assets/icon/calendarIcon.svg';
 import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
 import instance from '@/api/axios';
+import { format } from 'date-fns';
+import CardDetailModal from '../modals/cardDetailModal/CardDetailModal';
 
 interface Card {
   id: number;
@@ -17,12 +19,14 @@ interface Card {
 }
 
 interface CardProps {
-  onClick: () => void;
   columnId: number;
+  columnTitle: string;
 }
 
-export default function Card({ onClick, columnId }: CardProps) {
+export default function Card({ columnId, columnTitle }: CardProps) {
   const [cards, setCards] = useState<Card[]>([]);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [clickedCardId, setClickedCardId] = useState<number | null>(null);
 
   async function getCards() {
     try {
@@ -44,27 +48,42 @@ export default function Card({ onClick, columnId }: CardProps) {
 
   useEffect(() => {
     if (columnId !== undefined) {
-      // columnId가 undefined가 아닐 때에만 호출
+      // columnId가 undefined가 아닐 때에만 호 출
       getCards();
     }
   }, [columnId]);
 
+  const handleCardClick = (cardId: number) => {
+    setClickedCardId(cardId);
+    setIsDetailModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsDetailModalOpen(false);
+  };
+
   return (
     <div>
       {cards?.map((card) => (
-        <div key={card.id} className={styles['card']} onClick={onClick}>
+        <div
+          key={card.id}
+          className={styles['card']}
+          onClick={() => handleCardClick(card.id)}
+        >
           {card.imageUrl && (
             <Image
               className={styles['cardImage']}
               src={card.imageUrl}
               alt="Card Image"
+              width={300}
+              height={200}
             />
           )}
           <div className={styles['infoArea']}>
             <span className={styles['cardTitle']}>{card.title}</span>
             <div className={styles['tagDateArea']}>
               <div className={styles['tagArea']}>
-                <ChipTagWithoutX tag={card.tags.join(', ')} color="pink" />
+                <ChipTagWithoutX tag={card.tags.join(' ')} color="pink" />
               </div>
 
               <div className={styles['dateProfileArea']}>
@@ -74,7 +93,9 @@ export default function Card({ onClick, columnId }: CardProps) {
                     src={calendarIcon}
                     alt="calendarIcon"
                   />
-                  <span className={styles['date']}>{card.createdAt}</span>
+                  <span className={styles['date']}>
+                    {format(card.createdAt, 'yyyy-MM-dd HH:mm')}
+                  </span>
                 </div>
                 <Image
                   className={styles['userProfile']}
@@ -86,6 +107,14 @@ export default function Card({ onClick, columnId }: CardProps) {
           </div>
         </div>
       ))}
+      {isDetailModalOpen && (
+        <CardDetailModal
+          onClose={closeModal}
+          cardId={clickedCardId}
+          columnTitle={columnTitle}
+          getCards={getCards}
+        ></CardDetailModal>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import EventDashboardBtn from '@/components/atoms/buttons/eventDashboardBtn';
 import SideBar from '@/components/atoms/sideBar/SideBar';
 import CardSection from '@/components/molecules/cardSection/CardSection';
+import HeaderMyDashboard from '@/components/molecules/header/headerMyDashboard/HeaderMyDashboard';
 import CreateColumnModal from '@/components/molecules/modals/createColumnModal/CreateColumnModal';
 import MyHeader from '@/components/molecules/myHeader/MyHeader';
 import styles from '@/styles/dashboard.module.scss';
