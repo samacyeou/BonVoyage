@@ -8,7 +8,6 @@
   position: fixed;
   z-index: 2;
   background-color: var(--white);
-  overflow: auto;
 }
 
 .logoText {
@@ -21,14 +20,6 @@
   margin-top: 40px;
 }
 
-.sidebar.hasScroll {
-  padding: 20px 16px;
-
-  .menuTitleArea {
-    justify-content: center;
-  }
-}
-
 .menuTitle {
   font-size: 1.2rem;
   color: var(--gray50);
@@ -37,8 +28,14 @@
 
 .pagenation {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 10px;
+}
+
+.page {
+  font-size: 1.6rem;
+  margin-top: 5px;
 }
 
 @media (min-width: 769px) {
