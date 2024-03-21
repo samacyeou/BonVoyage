@@ -4,7 +4,6 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import { SyntheticEvent, forwardRef, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { ChangeHandler } from 'react-hook-form';
 import CreateDoItYourselfInput from '../createDoItYourselfCommonInput/CreateDoItYourselfInput';
 import styles from './createDoItYourselfDate.module.scss';
@@ -30,7 +29,7 @@ const CreateDoItYourselfDate = forwardRef<
     <>
       <CreateDoItYourselfInput
         className={cn('datePickerWrapper')}
-        title="마감일"
+        title="예정일"
         type="hidden"
         isSpecialInput={true}
         icon={calendarIcon}
