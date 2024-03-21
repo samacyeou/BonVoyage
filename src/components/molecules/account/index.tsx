@@ -26,5 +26,3 @@ const Account = () => {
 };
 
 export default Account;
-
-//여기에 돌아가기 버튼 추가
