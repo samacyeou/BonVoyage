@@ -1,7 +1,6 @@
 import { CreateDoItYourselfProps } from '@/@types/type';
 import classNames from 'classnames/bind';
 import { PropsWithChildren, forwardRef } from 'react';
-import { ChangeHandler } from 'react-hook-form';
 import styles from './createDoItYourselfInput.module.scss';
 
 const cn = classNames.bind(styles);

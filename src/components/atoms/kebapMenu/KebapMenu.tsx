@@ -1,13 +1,28 @@
+import DeleteCardModal from '@/components/molecules/modals/deleteCardModal/DeleteCardModal';
 import EditCardModal from '@/components/molecules/modals/editCardModal/EditCardModal';
 import { useState } from 'react';
 import styles from './kebapMenu.module.scss';
 
-const KebapMenu = () => {
+interface ModalProps {
+  getCards: () => void;
+  cardId: number;
+}
+
+const KebapMenu = ({ cardId, getCards, cardData }: ModalProps) => {
   const [showEditCardModal, setShowEditCardModal] = useState(false);
+  const [showDeleteCardModal, setShowDeleteCardModal] = useState(false);
 
   const handleEditButton = () => {
-    setShowEditCardModal(!showEditCardModal);
+    setShowEditCardModal(true);
   };
+  const handleDeleteButton = () => {
+    setShowDeleteCardModal(true);
+  };
+  const closeModal = () => {
+    setShowEditCardModal(false);
+    setShowDeleteCardModal(false);
+  };
+
   return (
     <div className={styles['dropdown']}>
       <div
@@ -19,9 +34,24 @@ const KebapMenu = () => {
       >
         수정하기
       </div>
-      <div className={styles['dropdownMenu']}>삭제하기</div>
+      <div
+        className={styles['dropdownMenu']}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleDeleteButton();
+        }}
+      >
+        삭제하기
+      </div>
       {showEditCardModal && (
-        <EditCardModal onClose={handleEditButton}></EditCardModal>
+        <EditCardModal onClose={closeModal} cardData={cardData}></EditCardModal>
+      )}
+      {showDeleteCardModal && (
+        <DeleteCardModal
+          onClose={closeModal}
+          cardId={cardId}
+          getCards={getCards}
+        ></DeleteCardModal>
       )}
     </div>
   );

@@ -5,7 +5,7 @@ import CreateDoItYourselfInput from '../createDoItYourselfCommonInput/CreateDoIt
 const CreateDoItYourselfTitle = forwardRef<
   HTMLInputElement,
   Partial<CreateDoItYourselfProps>
->(function (props, ref) {
+>(function (props, ref, value, onChange) {
   return (
     <CreateDoItYourselfInput
       title="제목"
@@ -13,6 +13,8 @@ const CreateDoItYourselfTitle = forwardRef<
       ref={ref}
       required
       {...props}
+      value={value}
+      onChange={onChange}
     />
   );
 });

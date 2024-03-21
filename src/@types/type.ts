@@ -42,7 +42,7 @@ export interface CreateDoItYourselfProps {
 // 담당자 드롭다운 멤버 프로필
 export interface MemberProfile {
   nickname: string;
-  imageUrl: string;
+  profileImageUrl: string;
 }
 
 export interface MyDashboardProps extends ButtonProps {
