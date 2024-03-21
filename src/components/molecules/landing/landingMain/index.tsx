@@ -4,6 +4,8 @@ import dashboarimg from '@/../../public/assets/image/dashboardimg.png';
 import inviteimg from '@/../../public/assets/image/inviteimg.png';
 import memberimg from '@/../../public/assets/image/memberimg.png';
 import listimg from '@/../../public/assets/image/listimg.png';
+import mainboard from '@/../../public/assets/image/mainboard.png';
+
 const LandingMain = () => {
   const bgLogin = '/assets/image/bgLogin.jpg';
   return (
@@ -16,13 +18,14 @@ const LandingMain = () => {
           </p>
         </div>
         <div className={styles.pointOneImgWrapper}>
-          <Image
-            src={bgLogin}
-            alt="bgLogin"
-            className={styles.pointOneImg}
-            layout="fill"
-            objectFit="cover"
-          />
+            <Image
+              src={mainboard}
+              alt="bgLogin"
+              className={styles.pointOneImg}
+              layout="fill"
+              objectFit="cover"
+
+            />
         </div>
       </div>
       <div className={styles.pointTwo}>
@@ -38,7 +41,7 @@ const LandingMain = () => {
             alt="bgLogin"
             className={styles.pointTwoImg}
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
           />
         </div>
       </div>
@@ -50,8 +53,9 @@ const LandingMain = () => {
               <Image
                 src={dashboarimg}
                 alt="bgLogin"
-                layout="fill"
-                objectFit="cover"
+                width={260}
+                height={132}
+                className={styles.indashboardImg}
               />
             </div>
             <div className={styles.dashboardText}>
@@ -64,8 +68,9 @@ const LandingMain = () => {
               <Image
                 src={inviteimg}
                 alt="bgLogin"
-                layout="fill"
-                objectFit="contain"
+                className={styles.ininviteImg}
+                width={260}
+                height={200}
               />
             </div>
             <div className={styles.inviteText}>
@@ -75,12 +80,7 @@ const LandingMain = () => {
           </div>
           <div className={styles.member}>
             <div className={styles.memberImg}>
-              <Image
-                src={memberimg}
-                alt="bgLogin"
-                layout="fill"
-                objectFit="contain"
-              />
+              <Image src={memberimg} alt="bgLogin" width={260} height={190} />
             </div>
             <div className={styles.memberText}>
               <p>구성원</p>
