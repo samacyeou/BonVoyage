@@ -2,7 +2,6 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import styles from './cardDetailModal.module.scss';
 import ChipProgress from '../../ChipProgress/ChipProgress';
-import image from '../../../../../public/assets/image/testImage.png';
 import CreateDoItYourselfComment from '@/components/atoms/input/commentInput/CreateDoItYourselfComment';
 import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
 import CardDetailKebap from '../../cardDetailKebap/CardDetailKebap';
@@ -27,6 +26,16 @@ interface CardDetail {
   imageUrl: string;
 }
 
+interface Comment {
+  id: number;
+  content: string;
+  createdAt: string;
+  author: {
+    profileImageUrl: string | null;
+    nickname: string;
+  };
+}
+
 export default function CardDetailModal({
   onClose,
   cardId,
@@ -34,7 +43,7 @@ export default function CardDetailModal({
   getCards,
 }: ModalProps) {
   const [cardDetail, setCardDetail] = useState<CardDetail | null>(null);
-  const [commentList, setCommentList] = useState();
+  const [commentList, setCommentList] = useState<Comment[]>([]);
 
   async function getCardDetail() {
     try {
@@ -78,10 +87,6 @@ export default function CardDetailModal({
       <div className={styles['modalContent']}>
         <div className={styles['topArea']}>
           <div className={styles['menuArea']}>
-            {/* <img
-              className={styles['kebabIcon']}
-              src="/assets/icon/kebabMenuIcon.svg"
-            /> */}
             <CardDetailKebap
               cardId={cardId}
               getCards={getCards}
@@ -108,7 +113,7 @@ export default function CardDetailModal({
                 ) : (
                   <img
                     src="/assets/image/testProfile.png"
-                    alt="프로필 이미지"
+                    alt="기본 프로필 이미지"
                   />
                 )}
 
@@ -138,24 +143,42 @@ export default function CardDetailModal({
                 src={cardDetail?.imageUrl}
                 width={300}
                 height={200}
+                alt="카드 이미지"
               ></Image>
             </div>
             <div className={styles['commentArea']}>
               <CreateDoItYourselfComment></CreateDoItYourselfComment>
-              <div className={styles['commentListArea']}>
-                <div className={styles['commentWriterArea']}>
-                  <img src="/assets/image/testProfile.png"></img>
-                  <h1 className={styles['writerName']}> 정만철</h1>
-                  <span className={styles['createDate']}>2022.12.27 14:00</span>
+              {commentList?.map((comment) => (
+                <div className={styles['commentListArea']} key={comment.id}>
+                  <div className={styles['commentWriterArea']}>
+                    {comment.author.profileImageUrl ? (
+                      <Image
+                        className={styles['profileImage']}
+                        width={26}
+                        height={26}
+                        src={comment.author.profileImageUrl}
+                      />
+                    ) : (
+                      <img src="/assets/image/testProfile.png" />
+                    )}
+
+                    <h1 className={styles['writerName']}>
+                      {' '}
+                      {comment.author.nickname}
+                    </h1>
+                    <span className={styles['createDate']}>
+                      {comment.createdAt}
+                    </span>
+                  </div>
+                  <span className={styles['commentText']}>
+                    {comment.content}
+                  </span>
+                  <div className={styles['buttonArea']}>
+                    <span className={styles['button']}> 수정</span>
+                    <span className={styles['button']}> 삭제</span>
+                  </div>
                 </div>
-                <span className={styles['commentText']}>
-                  오늘안에 CCC 까지 만들 수 있을까요?
-                </span>
-                <div className={styles['buttonArea']}>
-                  <span className={styles['button']}> 수정</span>
-                  <span className={styles['button']}> 삭제</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
