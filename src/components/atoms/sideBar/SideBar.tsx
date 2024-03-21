@@ -41,9 +41,12 @@ export default function SideBar({ path }: prop) {
       if (startMenu.current) {
         const clinetRect = startMenu.current.getBoundingClientRect();
         setPageSize(
-          Math.min(
-            Math.floor((window.innerHeight - 160 - clinetRect.top) / 45),
-            8,
+          Math.max(
+            Math.min(
+              Math.floor((window.innerHeight - 160 - clinetRect.top) / 45),
+              8,
+            ),
+            1,
           ),
         );
       }
