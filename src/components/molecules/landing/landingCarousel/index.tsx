@@ -22,12 +22,10 @@ const LandingCarousel = ({ carouselList }: LandingCarouselProps) => {
   const carouselElement = carouselRef.current;
 
   const handleResize = () => {
-    console.log('resize');
     const pw = carouselRef.current?.getBoundingClientRect().width;
     const cw = (
       carouselRef.current?.childNodes[0] as HTMLLIElement
     ).getBoundingClientRect().width;
-    console.log(pw, cw);
 
     if (cw === undefined || pw === undefined) return;
     setRatio(cw / pw);
