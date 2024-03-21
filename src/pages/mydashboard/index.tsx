@@ -1,5 +1,4 @@
 import SideBar from '@/components/atoms/sideBar/SideBar';
-import MyHeader from '@/components/molecules/myHeader/MyHeader';
 import styles from './myDashboard.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
@@ -158,7 +157,11 @@ export default function MyDashboard() {
 
   return (
     <div className={cn('background')}>
-      <HeaderMyDashboard isNotDashboardHome={false} koName={user?.nickname} />
+      <HeaderMyDashboard
+        isNotDashboardHome={false}
+        koName={user?.nickname}
+        profile={user?.profileImageUrl}
+      />
       <SideBar />
       <section className={cn('section')}>
         <MyDashboardList
