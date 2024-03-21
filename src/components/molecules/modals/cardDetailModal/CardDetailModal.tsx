@@ -34,6 +34,7 @@ export default function CardDetailModal({
   getCards,
 }: ModalProps) {
   const [cardDetail, setCardDetail] = useState<CardDetail | null>(null);
+  const [commentList, setCommentList] = useState();
 
   async function getCardDetail() {
     try {
@@ -50,9 +51,27 @@ export default function CardDetailModal({
     }
   }
 
+  async function getCommentList() {
+    try {
+      const res = await instance.get(`comments?size=10&cardId=${cardId}`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+        },
+      });
+      const comments = res.data.comments;
+      setCommentList(comments);
+    } catch (error) {
+      console.error('Error fetching cardDetail:', error);
+    }
+  }
+
   useEffect(() => {
     getCardDetail();
+    getCommentList();
   }, [cardId]);
+  console.log(cardDetail);
+  console.log(commentList);
 
   return (
     <div className={styles['cardDetailModal']}>
