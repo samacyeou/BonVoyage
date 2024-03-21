@@ -79,8 +79,6 @@ export default function CardDetailModal({
     getCardDetail();
     getCommentList();
   }, [cardId]);
-  console.log(cardDetail);
-  console.log(commentList);
 
   return (
     <div className={styles['cardDetailModal']}>
@@ -147,7 +145,12 @@ export default function CardDetailModal({
               ></Image>
             </div>
             <div className={styles['commentArea']}>
-              <CreateDoItYourselfComment></CreateDoItYourselfComment>
+              <CreateDoItYourselfComment
+                cardId={cardId}
+                columnId={cardDetail ? cardDetail.columnId : null}
+                dashboardId={cardDetail ? cardDetail.dashboardId : null}
+                getCommentList={getCommentList}
+              />
               {commentList?.map((comment) => (
                 <div className={styles['commentListArea']} key={comment.id}>
                   <div className={styles['commentWriterArea']}>
