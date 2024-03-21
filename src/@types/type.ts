@@ -14,6 +14,10 @@ export interface ButtonProps {
   type?: string;
   color?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClickLeft?: () => void;
+  onClickRight?: () => void;
+  nowPage?: number;
+  totalPage?: number;
   icon?: ReactNode;
   buttonProps?: InputHTMLAttributes<HTMLButtonElement>;
 }

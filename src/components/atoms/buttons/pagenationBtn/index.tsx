@@ -4,13 +4,27 @@ import forwardArrowIcon from '../../../../../public/assets/icon/forwardArrowIcon
 import leftArrowIcon from '../../../../../public/assets/icon/leftArrowIcon.svg';
 import Image from 'next/image';
 
-const PagenationBtn = ({ onClick }: ButtonProps) => {
+const PagenationBtn = ({
+  onClick,
+  onClickLeft,
+  onClickRight,
+  nowPage,
+  totalPage,
+}: ButtonProps) => {
   return (
     <div>
-      <button className={styles.pagenationBtn} onClick={onClick}>
+      <button
+        className={styles.pagenationBtn}
+        onClick={onClickLeft || onClick}
+        disabled={!!nowPage && nowPage <= 1}
+      >
         <Image src={leftArrowIcon} alt="leftArrowIcon" width={16} height={16} />
       </button>
-      <button className={styles.pagenationBtn} onClick={onClick}>
+      <button
+        className={styles.pagenationBtn}
+        onClick={onClickRight || onClick}
+        disabled={!!nowPage && !!totalPage && nowPage >= totalPage}
+      >
         <Image
           src={forwardArrowIcon}
           alt="rightArrowIcon"
