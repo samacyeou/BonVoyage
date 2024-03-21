@@ -1,5 +1,9 @@
 import styles from './landingMain.module.scss';
 import Image from 'next/image';
+import dashboarimg from '@/../../public/assets/image/dashboardimg.png';
+import inviteimg from '@/../../public/assets/image/inviteimg.png';
+import memberimg from '@/../../public/assets/image/memberimg.png';
+import listimg from '@/../../public/assets/image/listimg.png';
 const LandingMain = () => {
   const bgLogin = '/assets/image/bgLogin.jpg';
   return (
@@ -30,7 +34,7 @@ const LandingMain = () => {
         </div>
         <div className={styles.pointTwoImgWrapper}>
           <Image
-            src={bgLogin}
+            src={listimg}
             alt="bgLogin"
             className={styles.pointTwoImg}
             layout="fill"
@@ -44,7 +48,7 @@ const LandingMain = () => {
           <div className={styles.dashboard}>
             <div className={styles.dashboardImg}>
               <Image
-                src={bgLogin}
+                src={dashboarimg}
                 alt="bgLogin"
                 layout="fill"
                 objectFit="cover"
@@ -58,10 +62,10 @@ const LandingMain = () => {
           <div className={styles.invite}>
             <div className={styles.inviteImg}>
               <Image
-                src={bgLogin}
+                src={inviteimg}
                 alt="bgLogin"
                 layout="fill"
-                objectFit="cover"
+                objectFit="contain"
               />
             </div>
             <div className={styles.inviteText}>
@@ -72,10 +76,10 @@ const LandingMain = () => {
           <div className={styles.member}>
             <div className={styles.memberImg}>
               <Image
-                src={bgLogin}
+                src={memberimg}
                 alt="bgLogin"
                 layout="fill"
-                objectFit="cover"
+                objectFit="contain"
               />
             </div>
             <div className={styles.memberText}>
