@@ -38,11 +38,8 @@
       margin-left: auto;
       box-shadow: -5px -5px 5px var(--gray40, #9fa6b2);
       position: relative;
-
-      .pointOneImg {
-        border-top-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-      }
+      border-top-left-radius: 8px;
+      border-bottom-right-radius: 8px;
     }
 
     .pointTwoImgWrapper {
@@ -51,11 +48,8 @@
       position: relative;
       margin: 0 auto;
       box-shadow: 0px 0px 15px var(--gray40, #9fa6b2);
-
-      .pointTwoImg {
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-      }
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
     }
   }
 
