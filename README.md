@@ -83,15 +83,13 @@
   <br>
 
 ## 🖥️ Dev Tools
-
-  <img src="https://img.shields.io/badge/react-skyblue?style=for-the-badge&logo=react&logoColor=white">
-  <img src="https://img.shields.io/badge/next.js-black?style=for-the-badge&logo=next.js&logoColor=white">
+<img src="https://img.shields.io/badge/react-skyblue?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/next.js-black?style=for-the-badge&logo=next.js&logoColor=white">
   <img src="https://img.shields.io/badge/scss-pink?style=for-the-badge&logo=sass&logoColor=red">
   <img src="https://img.shields.io/badge/axios-red?style=for-the-badge&logo=axios&logoColor=white">
   <img src="https://img.shields.io/badge/react hook form-purple?style=for-the-badge&logo=reacthookform&logoColor=white">
-    <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white">
-    <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">
-    <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+  <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white">
+  <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">
+  <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
 
 
   <br>
