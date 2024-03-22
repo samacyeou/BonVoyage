@@ -1,7 +1,6 @@
 import React from 'react';
 import SideBar from '@/components/atoms/sideBar/SideBar';
 import styles from './layout.module.scss';
-import MyHeader from '../myHeader/MyHeader';
 import HeaderMyDashboard from '@/components/molecules/header/headerMyDashboard/HeaderMyDashboard';
 import { useContext } from 'react';
 import { userContext } from '@/pages/mypage/index';
@@ -11,16 +10,19 @@ const Layout = () => {
 
   return (
     <div className={styles.container}>
-      <MyHeader
+      {/* <MyHeader
         title="계정관리"
         nickname={userInfo.nickname}
         profileImageUrl={userInfo.profileImageUrl}
+      /> */}
+      <HeaderMyDashboard
+        profile={userInfo.profileImageUrl}
+        boardTitle={'계정관리'}
+        name={userInfo.nickname}
       />
-      {/* <HeaderMyDashboard enName={userInfo.profileImageUrl} boardTitle={"계정관리"} koName={userInfo.nickname}/> */}
       <SideBar />
     </div>
   );
 };
 
 export default Layout;
-
