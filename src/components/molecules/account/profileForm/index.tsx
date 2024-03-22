@@ -10,15 +10,14 @@ import { UserChangeAccountProps, UserContextProps } from '@/@types/type';
 import BaseModal from '@/components/atoms/baseModal/BaseModal';
 
 const ProfileForm = () => {
-  const { handleSubmit, register, reset, watch } =
-    useForm<UserChangeAccountProps>({
-      mode: 'all',
-    });
+  const { handleSubmit, register, watch } = useForm<UserChangeAccountProps>({
+    mode: 'all',
+  });
 
   const userInfo = useContext(userContext);
   const userData = userInfo.userInfo;
 
-  const [profileImageUrl, setProfileImageUrl] = useState<string>('');
+  const [profileImage, setProfileImage] = useState<string>('');
   const [modal, setModal] = useState({
     isModalOpen: false,
     modalMessage: '',
@@ -28,15 +27,15 @@ const ProfileForm = () => {
     try {
       await userChangeAccount({
         nickname: data.nickname,
-        profileImageUrl: profileImageUrl,
+        profileImageUrl: profileImage,
       });
+
       setModal({ isModalOpen: true, modalMessage: '프로필이 변경되었습니다.' });
-      reset();
-      setProfileImageUrl('');
+
       userInfo.setUserInfo((prevState: UserContextProps) => ({
         ...prevState,
-        nickname: data.nickname,
-        profileImageUrl: profileImageUrl,
+        nickname: data.nickname || userData.nickname,
+        profileImageUrl: profileImage || userData.profileImageUrl,
       }));
     } catch (error) {
       console.error('닉네임 또는 프로필 이미지 변경 실패:', error);
@@ -47,6 +46,8 @@ const ProfileForm = () => {
     nickname: '',
   });
 
+  const isButtonDisabled = !profileImage  && !watchFiled[0] ;
+
   const closeModal = () => {
     setModal({ isModalOpen: false, modalMessage: '' });
   };
@@ -54,7 +55,7 @@ const ProfileForm = () => {
   return (
     <div className={styles.container}>
       <h1>프로필</h1>
-      <ProfileImageInput size="big" onImageSelected={setProfileImageUrl} />
+      <ProfileImageInput size="big" onImageSelected={setProfileImage} />
       <form className={styles.inputContainer} onSubmit={handleSubmit(onSubmit)}>
         <CommonInput
           label="이메일"
@@ -79,7 +80,7 @@ const ProfileForm = () => {
             type="modal"
             color="blue"
             onClick={handleSubmit(onSubmit)}
-            disabled={!watchFiled.every((field) => field)}
+            disabled={isButtonDisabled}
           />
           {modal.isModalOpen && (
             <BaseModal closeModal={closeModal}>

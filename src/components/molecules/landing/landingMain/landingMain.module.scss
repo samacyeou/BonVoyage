@@ -34,26 +34,22 @@
 
     .pointOneImgWrapper {
       width: 90%;
-      height: 250px;
-      position: relative;
+      height: 260px;
       margin-left: auto;
-
-      .pointOneImg {
-        border-top-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-      }
+      box-shadow: -5px -5px 5px var(--gray40, #9fa6b2);
+      position: relative;
+      border-top-left-radius: 8px;
+      border-bottom-right-radius: 8px;
     }
 
     .pointTwoImgWrapper {
-      width: 65%;
-      height: 250px;
+      width: 220px;
+      height: 50%;
       position: relative;
       margin: 0 auto;
-
-      .pointTwoImg {
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-      }
+      box-shadow: 0px 0px 15px var(--gray40, #9fa6b2);
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
     }
   }
 
@@ -83,29 +79,32 @@
 
         .dashboardImg {
           width: 73%;
-          height: 35%;
+          max-width: 260px;
           margin: auto;
-          position: relative;
-          img {
+          box-shadow: 5px 5px 5px 5px var(--gray40, #9fa6b2);
+          border-radius: 8px;
+          .indashboardImg {
             border-radius: 8px;
           }
         }
 
         .inviteImg {
-          width: 73%;
-          height: 60%;
+          width: 60%;
+          max-width: 260px;
           margin: auto;
-          position: relative;
-          img {
+          box-shadow: 5px 5px 5px 5px var(--gray40, #9fa6b2);
+          border-radius: 8px;
+          .ininviteImg {
             border-radius: 8px;
           }
         }
 
         .memberImg {
           width: 73%;
-          height: 50%;
+          max-width: 260px;
           margin: auto;
-          position: relative;
+          box-shadow: 5px 5px 5px 5px var(--gray40, #9fa6b2);
+          border-radius: 8px;
           img {
             border-radius: 8px;
           }
@@ -151,14 +150,14 @@
       }
 
       .pointOneImgWrapper {
-        width: 80%;
+        width: 520px;
         height: 435px;
         margin-left: auto;
       }
 
       .pointTwoImgWrapper {
-        width: 65%;
-        height: 415px;
+        width: 370px;
+        height: 502px;
         margin: 0 auto;
       }
     }
@@ -219,12 +218,16 @@
 
       .pointOneText {
         width: 600px;
+        span {
+          display: block;
+          margin-top: 52px;
+        }
       }
 
       .pointOneImgWrapper {
         height: 497px;
         margin-top: auto;
-        max-width: 600px;
+        width: 594px;
       }
 
       .pointTwoImgWrapper {
@@ -242,6 +245,10 @@
 
       .pointTwoText {
         width: 600px;
+        span {
+          display: block;
+          margin-top: 52px;
+        }
       }
 
       .pointTwoImgWrapper {
@@ -252,8 +259,8 @@
     }
 
     .pointThr {
-      min-width: 1000px;
       max-width: 1200px;
+      width: 100%;
 
       .pointThrTitle {
         text-align: left;
