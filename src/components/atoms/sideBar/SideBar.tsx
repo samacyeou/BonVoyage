@@ -19,9 +19,10 @@ interface prop {
 export default function SideBar({ path }: prop) {
   const [dashboardList, setDashboardList] = useState<Dashboard[]>([]);
   const [dashboardListPage, setDashboardListPage] = useState(1);
+  const [pageSize, setPageSize] = useState(8);
   const [dashboardListTotalPage, setDashboardListTotalPage] = useState(0);
-  const [hasScroll, setHasScroll] = useState(false);
   const sideBar = useRef<HTMLDivElement>(null);
+  const startMenu = useRef<HTMLDivElement>(null);
 
   const onClickPageButtonLeft = () => {
     setDashboardListPage((prevPage) => prevPage - 1);
@@ -37,13 +38,19 @@ export default function SideBar({ path }: prop) {
         return;
       }
 
-      if (sideBar.current.scrollHeight > sideBar.current.clientHeight) {
-        setHasScroll(true);
-      } else {
-        setHasScroll(false);
+      if (startMenu.current) {
+        const clinetRect = startMenu.current.getBoundingClientRect();
+        setPageSize(
+          Math.max(
+            Math.min(
+              Math.floor((window.innerHeight - 160 - clinetRect.top) / 45),
+              8,
+            ),
+            1,
+          ),
+        );
       }
     }
-
     isScroll();
 
     window.addEventListener('resize', isScroll);
@@ -56,9 +63,9 @@ export default function SideBar({ path }: prop) {
   useEffect(() => {
     async function setMyDashboardList() {
       try {
-        const response = await getMyDashboardList(dashboardListPage, 8);
+        const response = await getMyDashboardList(dashboardListPage, pageSize);
 
-        setDashboardListTotalPage(Math.ceil(response.totalCount / 8));
+        setDashboardListTotalPage(Math.ceil(response.totalCount / pageSize));
         setDashboardList(response.dashboards);
       } catch (error) {
         console.log(error);
@@ -66,10 +73,10 @@ export default function SideBar({ path }: prop) {
     }
 
     setMyDashboardList();
-  }, [dashboardListPage]);
+  }, [dashboardListPage, pageSize]);
 
   return (
-    <div className={cn('sidebar', { hasScroll: hasScroll })} ref={sideBar}>
+    <div className={cn('sidebar')} ref={sideBar}>
       <div className={styles['logoArea']}>
         <LogoWithTitle />
       </div>
@@ -78,6 +85,7 @@ export default function SideBar({ path }: prop) {
           <h1 className={styles['menuTitle']}>Dash Boards</h1>
           <Image src={addBoxIcon} width={20} height={20}></Image>
         </div>
+        <div ref={startMenu} />
         {dashboardList.map((element) => {
           return (
             <Link href={`/dashboard/${element.id}`} key={element.id}>
@@ -102,6 +110,9 @@ export default function SideBar({ path }: prop) {
           nowPage={dashboardListPage}
           totalPage={dashboardListTotalPage}
         />
+        <div className={styles['page']}>
+          {dashboardListPage} of {dashboardListTotalPage}
+        </div>
       </div>
     </div>
   );
