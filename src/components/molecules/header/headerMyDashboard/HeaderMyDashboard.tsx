@@ -6,6 +6,7 @@ import ProfileIcon from '@/components/atoms/profileIcon/ProfileIcon';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import ProfileDown from '@/components/molecules/profileDropdown/index';
 
 const cn = classNames.bind(styles);
 
@@ -69,18 +70,19 @@ export default function HeaderMyDashboard({
             <ProfileIcon name={name} profile={profile} />
             <span className={styles['name']}>{name}</span>
             {isOpenNicknameMenu && (
-              <div
-                className={styles['nicknameMenu']}
-                onBlur={() => setIsOpenNicknameMenu(false)}
-              >
-                <button className={styles['menuItem']}>
-                  <Link href="/myPage">마이페이지</Link>
-                </button>
-                <hr />
-                <button className={cn('menuItem', 'logout')}>
-                  <Link href="/">로그아웃</Link>
-                </button>
-              </div>
+              // <div
+              //   className={styles['nicknameMenu']}
+              //   onBlur={() => setIsOpenNicknameMenu(false)}
+              // >
+              //   <button className={styles['menuItem']}>
+              //     <Link href="/myPage">마이페이지</Link>
+              //   </button>
+              //   <hr />
+              //   <button className={cn('menuItem', 'logout')}>
+              //     <Link href="/">로그아웃</Link>
+              //   </button>
+              // </div>
+              <ProfileDown onBlur={() => setIsOpenNicknameMenu(false)}/>
             )}
           </button>
         </div>

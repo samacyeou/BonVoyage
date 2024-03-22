@@ -7,18 +7,11 @@ import { userContext } from '@/pages/_app';
 
 const Layout = () => {
   const { userInfo } = useContext(userContext);
-  console.log(userInfo)
-
   return (
     <div className={styles.container}>
-      {/* <MyHeader
-        title="계정관리"
-        nickname={userInfo.nickname}
-        profileImageUrl={userInfo.profileImageUrl}
-      /> */}
       <HeaderMyDashboard
-        profile={userInfo.profileImageUrl}
         boardTitle={'계정관리'}
+        profile={userInfo.profileImageUrl}
         name={userInfo.nickname}
       />
       <SideBar />
