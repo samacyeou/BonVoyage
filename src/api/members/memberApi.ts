@@ -3,7 +3,7 @@ import axios from 'axios';
 import instance from '../axios';
 
 // 대시보드 멤버 목록 조회
-export const getMember = async (dashboardId) => {
+export const getMember = async (dashboardId: number) => {
   try {
     const res = await instance.get<Member>(
       `members?page=1&size=20&dashboardId=${dashboardId}`,

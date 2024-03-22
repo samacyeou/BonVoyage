@@ -134,6 +134,20 @@ export interface Card {
   imageUrl: string;
 }
 
+export interface CardDetail {
+  title: string;
+  assignee?: {
+    profileImageUrl: string;
+    nickname: string;
+  };
+  dueDate: string;
+  tags: string[];
+  description: string;
+  imageUrl: string;
+  columnId: number;
+  dashboardId: number;
+}
+
 export interface Member extends MemberProfile {
   teamId: string;
   page?: number;

@@ -26,7 +26,7 @@ interface CardProps {
 export default function Card({ columnId, columnTitle }: CardProps) {
   const [cards, setCards] = useState<Card[]>([]);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  const [clickedCardId, setClickedCardId] = useState<number | null>(null);
+  const [clickedCardId, setClickedCardId] = useState<number>();
 
   async function getCards() {
     try {
@@ -113,7 +113,7 @@ export default function Card({ columnId, columnTitle }: CardProps) {
           cardId={clickedCardId}
           columnTitle={columnTitle}
           getCards={getCards}
-        ></CardDetailModal>
+        />
       )}
     </div>
   );

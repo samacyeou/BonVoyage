@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import styles from './editCardModal.module.scss';
-import CreateDoItYourselfTitle from '@/components/atoms/input/titleInput/CreateDoItYourselfTitle';
-import CreateDoItYourselfDescription from '@/components/atoms/input/descriptionInput/CreateDoItYourselfDescription';
+import { CardDetail } from '@/@types/type';
+import Button from '@/components/atoms/buttons/button';
 import CreateDoItYourselfDate from '@/components/atoms/input/dateInput/CreateDoItYourselfDate';
+import CreateDoItYourselfDescription from '@/components/atoms/input/descriptionInput/CreateDoItYourselfDescription';
+import CreateDoItYourselfTitle from '@/components/atoms/input/titleInput/CreateDoItYourselfTitle';
+import React, { useState } from 'react';
+import ImageInput from '../../imageInput/ImageInput';
 import CreateDoItYourselfTag from '../../input/CreateDoItYourselfTag';
 import ManagerDropDown from '../../managerDropDown/ManagerDropDown';
-import ImageInput from '../../imageInput/ImageInput'
-import Button from '@/components/atoms/buttons/button';
-import StatusDropDown from '../../statusDropDown/StatusDropDown';
+import styles from './editCardModal.module.scss';
 
 interface ModalProps {
   onClose: () => void;
+  cardData: CardDetail;
   // selectedManager: MemberProfile | null;
 }
 
@@ -35,25 +36,17 @@ export default function EditCardModal({ onClose, cardData }: ModalProps) {
       <div className={styles['modalContent']}>
         <h1 className={styles['modalTitle']}>할 일 수정</h1>
         {/* <StatusDropDown></StatusDropDown> */}
-        <ManagerDropDown></ManagerDropDown>
-        <CreateDoItYourselfTitle
-          value={title}
-          onChange={handleTitleChange}
-        ></CreateDoItYourselfTitle>
-        <CreateDoItYourselfDescription></CreateDoItYourselfDescription>
-        <CreateDoItYourselfDate></CreateDoItYourselfDate>
-        <CreateDoItYourselfTag></CreateDoItYourselfTag>
+        <ManagerDropDown members={[]} />
+        <CreateDoItYourselfTitle value={title} onChange={handleTitleChange} />
+        <CreateDoItYourselfDescription value={description} />
+        <CreateDoItYourselfDate value={dueDate} />
+        <CreateDoItYourselfTag onChangeTags={(tags) => setTags(tags)} />
         <div>
           <h2>이미지</h2>
-          <ImageInput size="big"></ImageInput>
+          <ImageInput size="big" />
         </div>
         <div className={styles['buttonArea']}>
-          <Button
-            name="취소"
-            type="modal"
-            color="white"
-            onClick={onClose}
-          ></Button>
+          <Button name="취소" type="modal" color="white" onClick={onClose} />
           <Button name="수정" type="modal" color="blue" />
         </div>
       </div>
