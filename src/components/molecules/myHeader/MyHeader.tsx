@@ -1,9 +1,10 @@
 import styles from './myHeader.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useState } from 'react';
 import ProfileDown from '../profileDropdown/index';
+import { useContext } from 'react';
+import { userContext } from '@/pages/_app';
 
 const cn = classNames.bind(styles);
 
@@ -19,6 +20,7 @@ export default function MyHeader({
   nickname,
 }: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
+  const { userInfo } = useContext(userContext);
 
   const onBlurName = () => {
     setTimeout(() => setIsOpenNicknameMenu(false), 100);

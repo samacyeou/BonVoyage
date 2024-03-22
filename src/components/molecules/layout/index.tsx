@@ -4,10 +4,11 @@ import styles from './layout.module.scss';
 import MyHeader from '../myHeader/MyHeader';
 import HeaderMyDashboard from '@/components/molecules/header/headerMyDashboard/HeaderMyDashboard';
 import { useContext } from 'react';
-import { userContext } from '@/pages/mypage/index';
+import { userContext } from '@/pages/_app';
 
 const Layout = () => {
   const { userInfo } = useContext(userContext);
+  console.log(userInfo)
 
   return (
     <div className={styles.container}>
@@ -16,6 +17,7 @@ const Layout = () => {
         nickname={userInfo.nickname}
         profileImageUrl={userInfo.profileImageUrl}
       />
+      {/* <HeaderMyDashboard boardTitle={"계정관리"}  koName={userInfo.nickname} profile={userInfo.profileImageUrl}/> */}
       {/* <HeaderMyDashboard enName={userInfo.profileImageUrl} boardTitle={"계정관리"} koName={userInfo.nickname}/> */}
       <SideBar />
     </div>
@@ -23,4 +25,3 @@ const Layout = () => {
 };
 
 export default Layout;
-
