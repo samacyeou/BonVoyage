@@ -6,6 +6,9 @@ import ProfileIcon from '@/components/atoms/profileIcon/ProfileIcon';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import ProfileDown from '@/components/molecules/profileDropdown/index';
+import { useContext } from 'react';
+import { userContext } from '@/pages/_app';
 
 const cn = classNames.bind(styles);
 
@@ -25,6 +28,7 @@ export default function HeaderMyDashboard({
   ismyDashboard = false,
 }: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
+  const { userInfo } = useContext(userContext);
 
   return (
     <>
@@ -66,21 +70,10 @@ export default function HeaderMyDashboard({
             onClick={() => setIsOpenNicknameMenu((preState) => !preState)}
             onBlur={() => setTimeout(() => setIsOpenNicknameMenu(false), 100)}
           >
-            <ProfileIcon name={name} profile={profile} />
-            <span className={styles['name']}>{name}</span>
+            <ProfileIcon name={name} profile={userInfo.profileImageUrl} />
+            <span className={styles['name']}>{userInfo.nickname}</span>
             {isOpenNicknameMenu && (
-              <div
-                className={styles['nicknameMenu']}
-                onBlur={() => setIsOpenNicknameMenu(false)}
-              >
-                <button className={styles['menuItem']}>
-                  <Link href="/myPage">마이페이지</Link>
-                </button>
-                <hr />
-                <button className={cn('menuItem', 'logout')}>
-                  <Link href="/">로그아웃</Link>
-                </button>
-              </div>
+              <ProfileDown onBlur={() => setIsOpenNicknameMenu(false)}/>
             )}
           </button>
         </div>
