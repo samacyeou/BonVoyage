@@ -75,7 +75,9 @@ export default function HeaderMyDashboard({
               <DefaultProfileImage />
             )}
             <span className={styles['name']}>{userInfo.nickname}</span>
-            {isOpenNicknameMenu && <ProfileDown />}
+            {isOpenNicknameMenu && (
+              <ProfileDown onBlur={() => setIsOpenNicknameMenu(false)} />
+            )}
           </button>
         </div>
       </div>
