@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './cardDetailModal.module.scss';
 import ChipProgress from '../../ChipProgress/ChipProgress';
 import CreateDoItYourselfComment from '@/components/atoms/input/commentInput/CreateDoItYourselfComment';
@@ -24,6 +24,8 @@ interface CardDetail {
   tags: [];
   description: string;
   imageUrl: string;
+  columnId: number;
+  dashboardId: number;
 }
 
 interface Comment {
@@ -44,6 +46,9 @@ export default function CardDetailModal({
 }: ModalProps) {
   const [cardDetail, setCardDetail] = useState<CardDetail | null>(null);
   const [commentList, setCommentList] = useState<Comment[]>([]);
+  const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
+  const [editedCommentContent, setEditedCommentContent] = useState<string>('');
+  const editCommentInputRef = useRef<HTMLTextAreaElement>(null);
 
   async function getCardDetail() {
     try {
@@ -79,6 +84,57 @@ export default function CardDetailModal({
     getCardDetail();
     getCommentList();
   }, [cardId]);
+  useEffect(() => {
+    if (editingCommentId !== null && editCommentInputRef.current) {
+      editCommentInputRef.current.focus();
+      // 커서를 댓글 내용의 끝으로 이동.
+      editCommentInputRef.current.setSelectionRange(
+        editedCommentContent.length,
+        editedCommentContent.length,
+      );
+    }
+  }, [editingCommentId]);
+
+  const handleEditComment = (commentId: number, initialContent: string) => {
+    setEditingCommentId(commentId);
+    setEditedCommentContent(initialContent);
+  };
+
+  const handleCommentUpdate = async (
+    updatedContent: string,
+    commentId: number,
+  ) => {
+    try {
+      await instance.put(
+        `/comments/${commentId}`,
+        { content: updatedContent },
+        {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        },
+      );
+      getCommentList();
+      setEditingCommentId(null);
+    } catch (error) {
+      console.error('Error updating comment:', error);
+    }
+  };
+
+  const handleCommentDelete = async (commentId: number) => {
+    try {
+      await instance.delete(`/comments/${commentId}`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      });
+      getCommentList();
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
+  };
 
   return (
     <div className={styles['cardDetailModal']}>
@@ -151,7 +207,7 @@ export default function CardDetailModal({
                 dashboardId={cardDetail ? cardDetail.dashboardId : null}
                 getCommentList={getCommentList}
               />
-              {commentList?.map((comment) => (
+              {commentList.map((comment) => (
                 <div className={styles['commentListArea']} key={comment.id}>
                   <div className={styles['commentWriterArea']}>
                     {comment.author.profileImageUrl ? (
@@ -173,13 +229,59 @@ export default function CardDetailModal({
                       {comment.createdAt}
                     </span>
                   </div>
-                  <span className={styles['commentText']}>
-                    {comment.content}
-                  </span>
-                  <div className={styles['buttonArea']}>
-                    <span className={styles['button']}> 수정</span>
-                    <span className={styles['button']}> 삭제</span>
-                  </div>
+                  {editingCommentId === comment.id ? (
+                    <>
+                      <textarea
+                        className={styles['editCommentInput']}
+                        value={editedCommentContent}
+                        onChange={(e) =>
+                          setEditedCommentContent(e.target.value)
+                        }
+                        ref={editCommentInputRef}
+                      />
+                      <div className={styles['buttonArea']}>
+                        <span
+                          className={styles['button']}
+                          onClick={() =>
+                            handleCommentUpdate(
+                              editedCommentContent,
+                              comment.id,
+                            )
+                          }
+                        >
+                          확인
+                        </span>
+                        <span
+                          className={styles['button']}
+                          onClick={() => setEditingCommentId(null)}
+                        >
+                          취소
+                        </span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <span className={styles['commentText']}>
+                        {comment.content}
+                      </span>
+                      <div className={styles['buttonArea']}>
+                        <span
+                          className={styles['button']}
+                          onClick={() =>
+                            handleEditComment(comment.id, comment.content)
+                          }
+                        >
+                          수정
+                        </span>
+                        <span
+                          className={styles['button']}
+                          onClick={() => handleCommentDelete(comment.id)}
+                        >
+                          삭제
+                        </span>
+                      </div>
+                    </>
+                  )}
                 </div>
               ))}
             </div>
