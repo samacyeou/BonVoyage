@@ -4,14 +4,10 @@ import CardSection from '@/components/molecules/cardSection/CardSection';
 import HeaderMyDashboard from '@/components/molecules/header/headerMyDashboard/HeaderMyDashboard';
 import CreateColumnModal from '@/components/molecules/modals/createColumnModal/CreateColumnModal';
 import styles from '@/styles/dashboard.module.scss';
-import axios from 'axios';
+import axios from '@/api/axios';
 import { useRouter } from 'next/router';
 import { User } from '@/@types/type';
 import React, { useEffect, useState } from 'react';
-
-interface Props {
-  targetId: string;
-}
 
 export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,8 +16,8 @@ export default function Dashboard() {
   const router = useRouter();
   const { id } = router.query;
 
-  async function getDashboard({ targetId }: Props) {
-    const res = await axios.get(`/dashboard/${targetId}`);
+  async function getDashboard( targetId : string) {
+    const res = await axios.get(`/dashboards/${targetId}`);
     const nextDashboard = res.data;
     setDashboard(nextDashboard);
   }
@@ -39,21 +35,13 @@ export default function Dashboard() {
     getDashboard(id);
   }, [id]);
 
-  useEffect(() => {
-    const user = sessionStorage.getItem('user');
-    if (user) {
-      setUser(JSON.parse(user));
-    }
-  }, []);
 
   if (!dashboard) return null;
 
   return (
     <div className={styles['background']}>
       <HeaderMyDashboard
-        name={user?.nickname}
-        profile={user?.profileImageUrl}
-        boardTitle={dashboard}
+        boardTitle={dashboard.title}
         isDashboard={true}
       />
       <SideBar />
