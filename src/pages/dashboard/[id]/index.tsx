@@ -42,7 +42,7 @@ export default function Dashboard() {
 
   return (
     <div className={styles['background']}>
-      <MyHeader profileImageUrl="/assets/icon/logo.svg" nickname="배유철" />
+      {/* <MyHeader profileImageUrl="/assets/icon/logo.svg" nickname="배유철" /> */}
       <SideBar />
       <section className={styles['section']}>
         <CardSection dashboardId={id} />
