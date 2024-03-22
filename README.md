@@ -15,7 +15,11 @@
 
 ## 🔗배포 링크
 
-- [Bon Voyage]()
+- [Bon Voyage 사이트]()(사이트 들어갈곳)
+
+   <br>
+- [Bon Voyage 문서](https://www.notion.so/9141e3ca4db0413e8ea89708fc51ebf1?v=5b1a6a388e5c479885b23bd9678d442a)
+
 
   <br>
 
