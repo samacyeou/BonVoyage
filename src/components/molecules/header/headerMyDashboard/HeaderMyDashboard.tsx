@@ -4,8 +4,6 @@ import HeaderBtn from '@/components/atoms/buttons/headerBtn';
 import Image from 'next/image';
 import ProfileIcon from '@/components/atoms/profileIcon/ProfileIcon';
 import { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import ProfileDown from '@/components/molecules/profileDropdown/index';
 import { useContext } from 'react';
 import { userContext } from '@/pages/_app';
