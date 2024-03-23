@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import { userContext } from '@/pages/_app';
 import { useRouter } from 'next/router';
 import axios from '@/api/axios';
+import InviteMemberModal from '../../modals/inviteMemberModal/InviteMemberModal';
 
 const cn = classNames.bind(styles);
 
@@ -25,6 +26,7 @@ export default function HeaderMyDashboard({
 }: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
   const [dashboard, setDashboard] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { userInfo } = useContext(userContext);
   const router = useRouter();
   const { id } = router.query;
@@ -39,11 +41,17 @@ export default function HeaderMyDashboard({
     getDashboard(id);
   }, [id]);
 
-  function onClickEdit() {
+  const onClickEdit = () => {
     router.push(`${id}/edit`);
-  }
+  };
 
-  function onClickInvite() {}
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const onClickInviteBtn = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <>
@@ -76,7 +84,11 @@ export default function HeaderMyDashboard({
           {isDashboard && (
             <div className={styles['headerBtn']}>
               <HeaderBtn name="관리" type="edit" onClick={onClickEdit} />
-              <HeaderBtn name="초대하기" type="invite" />
+              <HeaderBtn
+                name="초대하기"
+                type="invite"
+                onClick={onClickInviteBtn}
+              />
             </div>
           )}
           {isDashboard && <div className={styles['line']}></div>}
@@ -96,6 +108,9 @@ export default function HeaderMyDashboard({
             )}
           </button>
         </div>
+        {isModalOpen && (
+          <InviteMemberModal onClose={closeModal}></InviteMemberModal>
+        )}
       </div>
     </>
   );
