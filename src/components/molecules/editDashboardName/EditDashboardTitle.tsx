@@ -12,7 +12,6 @@ export default function EditDashboardTitle() {
   const { id } = router.query;
 
   const [dashboardInfo, setDashboardInfo] = useState();
-  console.log(id);
 
   const onClickPaletteColor = (color: string) => {
     setDashboardInfo((preData) => ({
@@ -25,7 +24,6 @@ export default function EditDashboardTitle() {
     const res = await axios.get(`/dashboards/${targetId}`);
     const nextDashboard = res.data;
     setDashboardInfo(nextDashboard);
-    console.log(targetId);
   }
 
   useEffect(() => {

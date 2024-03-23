@@ -3,30 +3,47 @@ import classNames from 'classnames/bind';
 import HeaderBtn from '@/components/atoms/buttons/headerBtn';
 import Image from 'next/image';
 import ProfileIcon from '@/components/atoms/profileIcon/ProfileIcon';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProfileDown from '@/components/molecules/profileDropdown/index';
 import { useContext } from 'react';
 import { userContext } from '@/pages/_app';
+import { useRouter } from 'next/router';
+import axios from '@/api/axios';
 
 const cn = classNames.bind(styles);
 
 interface Props {
-  name?: string;
   boardTitle?: string;
-  profile?: string;
   isDashboard?: boolean;
   ismyDashboard?: boolean;
 }
 
 export default function HeaderMyDashboard({
-  name = '이름',
   boardTitle = '내 대시보드',
-  profile,
   isDashboard = false,
   ismyDashboard = false,
 }: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
+  const [dashboard, setDashboard] = useState();
   const { userInfo } = useContext(userContext);
+  const router = useRouter();
+  const { id } = router.query;
+
+  async function getDashboard(targetId: string) {
+    const res = await axios.get(`/dashboards/${targetId}`);
+    const nextDashboard = res.data;
+    setDashboard(nextDashboard);
+  }
+  useEffect(() => {
+    if (!id) return;
+    getDashboard(id);
+  }, [id]);
+
+  function onClickEdit() {
+    router.push(`${id}/edit`);
+  }
+
+  function onClickInvite() {}
 
   return (
     <>
@@ -42,9 +59,10 @@ export default function HeaderMyDashboard({
             { dashboardHomeBorderTitle: !isDashboard },
           )}
         >
-          <span>{boardTitle}</span>
+          {!isDashboard && <span>{boardTitle}</span>}
           {isDashboard && (
             <>
+              <span>{dashboard?.title}</span>
               <Image
                 src="/assets/icon/crownIcon.svg"
                 width={20}
@@ -57,7 +75,7 @@ export default function HeaderMyDashboard({
         <div className={styles['headerRight']}>
           {isDashboard && (
             <div className={styles['headerBtn']}>
-              <HeaderBtn name="관리" type="edit" />
+              <HeaderBtn name="관리" type="edit" onClick={onClickEdit} />
               <HeaderBtn name="초대하기" type="invite" />
             </div>
           )}
@@ -68,8 +86,11 @@ export default function HeaderMyDashboard({
             onClick={() => setIsOpenNicknameMenu((preState) => !preState)}
             onBlur={() => setTimeout(() => setIsOpenNicknameMenu(false), 100)}
           >
-            <ProfileIcon name={name} profile={userInfo.profileImageUrl} />
-            <span className={styles['name']}>{userInfo.nickname}</span>
+            <ProfileIcon
+              name={userInfo?.nickname}
+              profile={userInfo?.profileImageUrl}
+            />
+            <span className={styles['name']}>{userInfo?.nickname}</span>
             {isOpenNicknameMenu && (
               <ProfileDown onBlur={() => setIsOpenNicknameMenu(false)} />
             )}
