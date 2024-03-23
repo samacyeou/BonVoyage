@@ -38,8 +38,9 @@ export default function Members({ dashboardId }: Props) {
 
   async function onClickDelete(id: number) {
     try {
-      const res = await deleteMember(id);
+      await deleteMember(id);
     } catch (error) {
+      console.log(id);
       console.error('delete error:', error);
     }
   }
