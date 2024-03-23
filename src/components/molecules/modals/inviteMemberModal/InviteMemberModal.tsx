@@ -8,9 +8,13 @@ import { useRouter } from 'next/router';
 
 interface ModalProps {
   onClose: () => void;
+  refreshMember?: () => void;
 }
 
-export default function InviteMemberModal({ onClose }: ModalProps) {
+export default function InviteMemberModal({
+  onClose,
+  refreshMember,
+}: ModalProps) {
   const [email, setEmail] = useState('');
   const router = useRouter();
   const { id } = router.query;
@@ -37,6 +41,10 @@ export default function InviteMemberModal({ onClose }: ModalProps) {
       );
       console.log('invite successfully:', res.data);
       onClose();
+      if (refreshMember) {
+        refreshMember();
+      }
+
       return res.data;
     } catch (error) {
       console.error('초대 오류:', error);

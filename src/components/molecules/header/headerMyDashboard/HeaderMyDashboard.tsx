@@ -109,7 +109,10 @@ export default function HeaderMyDashboard({
           </button>
         </div>
         {isModalOpen && (
-          <InviteMemberModal onClose={closeModal}></InviteMemberModal>
+          <InviteMemberModal
+            onClose={closeModal}
+            refreshMembers={fetchMembers}
+          ></InviteMemberModal>
         )}
       </div>
     </>
