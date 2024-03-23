@@ -7,6 +7,7 @@ import { useState } from 'react';
 import ProfileDown from '@/components/molecules/profileDropdown/index';
 import { useContext } from 'react';
 import { userContext } from '@/pages/_app';
+import DefaultProfileImage from '@/components/atoms/defaultProfileImage';
 
 const cn = classNames.bind(styles);
 
@@ -66,13 +67,15 @@ export default function HeaderMyDashboard({
           <button
             className={styles['userProfile']}
             onClick={() => setIsOpenNicknameMenu((preState) => !preState)}
-            onBlur={() => setTimeout(() => setIsOpenNicknameMenu(false), 100)}
+            onBlur={() => setTimeout(() => setIsOpenNicknameMenu(false), 300)}
           >
-            <ProfileIcon name={name} profile={userInfo.profileImageUrl} />
-            <span className={styles['name']}>{userInfo.nickname}</span>
-            {isOpenNicknameMenu && (
-              <ProfileDown onBlur={() => setIsOpenNicknameMenu(false)}/>
+            {userInfo.profileImageUrl ? (
+              <ProfileIcon name={name} profile={userInfo.profileImageUrl} />
+            ) : (
+              <DefaultProfileImage />
             )}
+            <span className={styles['name']}>{userInfo.nickname}</span>
+            {isOpenNicknameMenu && <ProfileDown />}
           </button>
         </div>
       </div>

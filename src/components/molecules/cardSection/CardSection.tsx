@@ -1,19 +1,13 @@
-import ChipNumber from '@/components/atoms/chipNumber/ChipNumber';
-import ColorDot from '@/components/atoms/colorDot/ColorDot';
-import styles from './cardSection.module.scss';
-import Image from 'next/image';
-import settingIcon from '../../../../public/assets/icon/settingsIcon.svg';
-import EventDashboardBtn from '@/components/atoms/buttons/eventDashboardBtn';
-import Card from '../card/Card';
-import React, { useEffect, useState } from 'react';
-import CardDetailModal from '../modals/cardDetailModal/CardDetailModal';
+import { Column } from '@/@types/type';
+import instance from '@/api/axios';
+import ColumnComponent from '@/components/atoms/column/ColumnComponent';
+import { useEffect, useState } from 'react';
 import CreateCardModal from '../modals/createCardModal/CreateCardModal';
 import EditColumnModal from '../modals/editColumnModal/EditColumnModal';
-import instance from '@/api/axios';
-import { Column } from '@/@types/type';
+import styles from './cardSection.module.scss';
 
 interface CardSectionProps {
-  dashboardId: number;
+  dashboardId: number | string;
 }
 
 export default function CardSection({ dashboardId }: CardSectionProps) {
@@ -62,26 +56,12 @@ export default function CardSection({ dashboardId }: CardSectionProps) {
   return (
     <div className={styles['cardSection']}>
       {columns?.map((column) => (
-        <div key={column.id} className={styles['column']}>
-          <div className={styles['defaultArea']}>
-            <div className={styles['titleArea']}>
-              <ColorDot colorName="blue"></ColorDot>
-              <h1 className={styles['title']}>{column.title}</h1>
-              <ChipNumber number="3"></ChipNumber>
-            </div>
-            <Image
-              onClick={() => handleSettingButtonClick(column)}
-              className={styles['settingIcon']}
-              src={settingIcon}
-              alt="Setting Icon"
-            />
-          </div>
-          <EventDashboardBtn
-            type="addTodo"
-            onClick={() => handleAddCardButtonClick(column)}
-          />
-          <Card columnId={column.id} columnTitle={column.title} />
-        </div>
+        <ColumnComponent
+          key={column.id}
+          column={column}
+          handleSettingButtonClick={handleSettingButtonClick}
+          handleAddCardButtonClick={handleAddCardButtonClick}
+        />
       ))}
       {isCreateCardModalOpen && (
         <CreateCardModal column={selectedColumn!} onClose={closeModal} />

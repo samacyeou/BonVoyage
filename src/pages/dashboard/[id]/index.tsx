@@ -15,7 +15,7 @@ export default function DashboardPage() {
   const [dashboard, setDashboard] = useState<Dashboard>();
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
-  const { id } = router.query;
+  const { id } = router.query as { id: string };
 
   async function getDashboard(targetId: string) {
     const res = await axios.get(`/dashboards/${targetId}`);
@@ -44,7 +44,7 @@ export default function DashboardPage() {
         <HeaderMyDashboard boardTitle={dashboard.title} isDashboard={true} />
         <SideBar />
         <section className={styles['section']}>
-          <CardSection dashboardId={dashboard.id} />
+          <CardSection dashboardId={id} />
           <div className={styles['newColumnArea']}>
             <EventDashboardBtn
               onClick={handleaddColumnButtonClick}

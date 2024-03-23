@@ -152,7 +152,7 @@ export interface Member extends MemberProfile {
 
 export interface Column {
   id: number;
-  title?: string;
+  title: string;
   teamId: string;
   dashboardId: number;
   createdAt?: string;
@@ -169,7 +169,7 @@ export interface UserContextProps {
     id: number;
     email: string;
     nickname: string;
-    profileImageUrl: string;
+    profileImageUrl?: string;
     createdAt: string;
     updatedAt: string;
   };
