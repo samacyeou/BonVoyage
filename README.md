@@ -29,7 +29,7 @@
   <tbody>
     <tr>
       <td align="center">
-        <img width="100px" alt="choi" src="">
+        <img width="100px" alt="choi" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyZrm5%2FbtsFZwdHzvF%2Fq5YNoJNaj1NcxKOxwJVPqk%2Fimg.jpg" {: style="border-radius: 10px; width:100px; height:130px; "}>
         <a href="https://github.com/jihee1103"><br /><sub><b>반장 - </b>최지희</sub></a><br />
       </td>
       <td align="center">
@@ -78,7 +78,7 @@
 
   <br>
 
-## 📺 기능 시연
+## 📺 주요 기능 시연
 - 기능 시연 동영상 들어갈 곳
   <br>
 
