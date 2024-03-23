@@ -1,7 +1,11 @@
 import styles from './profileForm.module.scss';
 import ProfileImageInput from '@/components/molecules/profileImageInput/index';
 import Button from '@/components/atoms/buttons/button';
+<<<<<<< HEAD
+import { useState, useContext } from 'react';
+=======
 import { useState, useContext, useEffect } from 'react';
+>>>>>>> 0e0efe8da376f7d578bdde5a22969535502db927
 import { userContext } from '@/pages/_app';
 import { userChangeAccount } from '@/api/accountApi/accountApi';
 import CommonInput from '@/components/atoms/input/common/CommonInput';
@@ -43,6 +47,15 @@ const ProfileForm = () => {
     }
   };
 
+<<<<<<< HEAD
+  const watchFiled = watch(['nickname'], {
+    nickname: '',
+  });
+
+  const isButtonDisabled = !profileImage && !watchFiled[0];
+
+=======
+>>>>>>> 0e0efe8da376f7d578bdde5a22969535502db927
   const closeModal = () => {
     setModal({ isModalOpen: false, modalMessage: '' });
   };
