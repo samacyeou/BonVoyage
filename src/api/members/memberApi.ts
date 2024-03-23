@@ -3,7 +3,7 @@ import axios from 'axios';
 import instance from '../axios';
 
 // 대시보드 멤버 목록 조회
-export const getMember = async (dashboardId) => {
+export const getMember = async (dashboardId: number) => {
   try {
     const res = await instance.get<Member>(
       `members?page=1&size=20&dashboardId=${dashboardId}`,
@@ -16,7 +16,7 @@ export const getMember = async (dashboardId) => {
 };
 
 // 대시보드 멤버 삭제
-export const deleteMember = async (memberId: Member) => {
+export const deleteMember = async (memberId: number) => {
   try {
     const res = await axios.delete<Member>(`members/${memberId}`);
     return res.data;
@@ -25,3 +25,18 @@ export const deleteMember = async (memberId: Member) => {
     throw error;
   }
 };
+
+//초대목록 불러오기
+export async function getInvitedMemberList(dashboardId: number) {
+  try {
+    const res = await instance.get(`dashboards/${dashboardId}/invitations`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+      },
+    });
+
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

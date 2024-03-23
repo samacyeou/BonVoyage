@@ -7,7 +7,7 @@ type props = {
 };
 
 export default function ProfileIcon({ name, profile }: props) {
-  const firstCharacter = name.slice(0, 1);
+  const firstCharacter = name?.slice(0, 1);
 
   return (
     <div className={styles['icon']}>
