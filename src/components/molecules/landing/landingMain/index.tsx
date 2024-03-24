@@ -4,7 +4,7 @@ import dashboarimg from '@/../../public/assets/image/dashboardimg.png';
 import inviteimg from '@/../../public/assets/image/inviteimg.png';
 import memberimg from '@/../../public/assets/image/memberimg.png';
 import listimg from '@/../../public/assets/image/listimg.png';
-import mainboard from '@/../../public/assets/image/mainboard.png';
+import maindashboard from '@/../../public/assets/image/maindashboard.png';
 
 const LandingMain = () => {
   const bgLogin = '/assets/image/bgLogin.jpg';
@@ -19,7 +19,7 @@ const LandingMain = () => {
         </div>
         <div className={styles.pointOneImgWrapper}>
           <Image
-            src={mainboard}
+            src={maindashboard}
             alt="bgLogin"
             className={styles.pointOneImg}
             layout="fill"
