@@ -1,4 +1,4 @@
-import { Column } from '@/@types/type';
+import { CardDetail, Column } from '@/@types/type';
 import Card from '@/components/molecules/card/Card';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -14,26 +14,14 @@ interface ColumnProps {
   handleAddCardButtonClick: (column: Column) => void;
 }
 
-interface Card {
-  id: number;
-  title: string;
-  imageUrl: string;
-  tags: string[];
-  createdAt: string;
-  assignee: {
-    profileImageUrl: string;
-  };
-}
-
 export default function ColumnComponent({
   column,
-  columns,
   handleSettingButtonClick,
   handleAddCardButtonClick,
 }: ColumnProps) {
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<CardDetail[]>([]);
 
-  const handleCardsData = (cardsData: []) => {
+  const handleCardsData = (cardsData: CardDetail[]) => {
     setCards(cardsData);
   };
   return (
@@ -61,7 +49,6 @@ export default function ColumnComponent({
           columnId={column.id}
           columnTitle={column.title}
           handleCardsData={handleCardsData}
-          columns={columns}
         />
       </div>
     </>

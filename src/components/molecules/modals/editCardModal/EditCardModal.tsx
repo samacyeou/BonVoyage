@@ -18,12 +18,7 @@ interface ModalProps {
   // selectedManager: MemberProfile | null;
 }
 
-export default function EditCardModal({
-  onClose,
-  cardData,
-  columns,
-  columnTitle,
-}: ModalProps) {
+export default function EditCardModal({ onClose, cardData }: ModalProps) {
   const { handleSubmit, register, setValue } = useForm<Card>({
     defaultValues: cardData,
     mode: 'all',
@@ -51,7 +46,7 @@ export default function EditCardModal({
         onSubmit={handleSubmit(onSubmit)}
       >
         <h1 className={styles['modalTitle']}>여행 계획 수정</h1>
-        <StatusDropDown items={columns} columnTitle={columnTitle} />
+        <StatusDropDown columnId={cardData.columnId} />
         <ManagerDropDown
           defaultValue={cardData.assignee}
           onChange={(assignee) => setValue('assigneeUserId', assignee.userId)}

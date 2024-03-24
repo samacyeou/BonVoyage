@@ -29,7 +29,7 @@ const userContext = React.createContext<UserContextProps>({
 export const UserContextProvider = userContext.Provider;
 
 export default function useAuth(
-  effect: EffectCallback,
+  effect?: EffectCallback,
   deps: DependencyList = [],
 ) {
   const { setUserInfo, userInfo } = useContext(userContext);

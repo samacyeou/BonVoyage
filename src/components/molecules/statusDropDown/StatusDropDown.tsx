@@ -1,3 +1,4 @@
+import { useColumnListState } from '@/hooks/contexts';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -5,25 +6,17 @@ import ChipProgress from '../chipProgress/ChipProgress';
 import styles from './statusDropDown.module.scss';
 
 const cn = classNames.bind(styles);
-
 interface Props {
-  items: Item[];
-  title: string;
-  columnTitle: string;
+  columnId: number;
 }
 
-interface Item {
-  id: number;
-  title: string;
-}
-
-export default function StatusDropDown({ items, title, columnTitle }: Props) {
-  const [nowItem, setNowItem] = useState([columnTitle]);
-  const [itemList] = useState(items);
+export default function StatusDropDown({ columnId }: Props) {
+  const [itemList] = useColumnListState();
+  const [nowItem, setNowItem] = useState(columnId);
   const [isOpenItemList, setIsOpenItemList] = useState(false);
 
-  const onClickItem = (element: string) => {
-    setNowItem(element.title);
+  const onClickItem = (columnId: number) => {
+    setNowItem(columnId);
     setIsOpenItemList(false);
   };
 
@@ -35,7 +28,11 @@ export default function StatusDropDown({ items, title, columnTitle }: Props) {
           className={cn('nowItem', { focus: isOpenItemList })}
           onClick={() => setIsOpenItemList((preStatus) => !preStatus)}
         >
-          <ChipProgress column={nowItem} />
+          <ChipProgress
+            column={
+              itemList.findLast((item) => item.id === columnId)?.title as string
+            }
+          />
           <Image
             width={26}
             height={26}
@@ -47,15 +44,15 @@ export default function StatusDropDown({ items, title, columnTitle }: Props) {
           <div className={cn('itemList')}>
             {itemList.map((element) => {
               let check = false;
-              if (nowItem === element) {
+              if (nowItem === element.id) {
                 check = true;
               }
 
               return (
                 <div
-                  key={element}
+                  key={element.id}
                   className={cn('itemBox')}
-                  onClick={() => onClickItem(element)}
+                  onClick={() => onClickItem(element.id)}
                 >
                   <div className={cn('check')}>
                     {check && (

@@ -1,4 +1,4 @@
-import { Dashboard, Invitation } from '@/@types/type';
+import { Dashboard, Invitation, User } from '@/@types/type';
 import {
   getInvitedDashboardList,
   getMyDashboardList,
@@ -18,7 +18,7 @@ import styles from './myDashboard.module.scss';
 const cn = classNames.bind(styles);
 
 export default function MyDashboard() {
-  const [user] = useSessionStorage('user');
+  const [user] = useSessionStorage<User>('user');
   const [dashboardList, setDashboardList] = useState<Dashboard[]>([]);
   const [dashboardListPage, setDashboardListPage] = useState(1);
   const [dashboardListTotalPage, setDashboardListTotalPage] = useState(0);
@@ -152,11 +152,7 @@ export default function MyDashboard() {
 
   return (
     <div className={cn('background')}>
-      <HeaderMyDashboard
-        name={user?.nickname}
-        profile={user?.profileImageUrl}
-        ismyDashboard={true}
-      />
+      <HeaderMyDashboard ismyDashboard={true} />
       <SideBar />
       <section className={cn('section')}>
         <MyDashboardList

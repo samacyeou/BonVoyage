@@ -1,4 +1,4 @@
-import { ID } from '@/@types/type';
+import { ID, Invitation } from '@/@types/type';
 import {
   deleteInvitation,
   getInvitedMemberList,
@@ -10,28 +10,23 @@ import { useEffect, useState } from 'react';
 import InviteMemberModal from '../modals/inviteMemberModal/InviteMemberModal';
 import styles from './inviteList.module.scss';
 
-type Member = {
-  email: string;
-  id: number;
-};
-
 type Props = {
   dashboardId: ID;
 };
 
 export default function InviteList({ dashboardId }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [members, setMembers] = useState<Member[]>([]);
+  const [members, setMembers] = useState<Invitation[]>([]);
 
-  useEffect(() => {
-    async function fetchMembers() {
-      try {
-        const memberData = await getInvitedMemberList(dashboardId);
-        setMembers(memberData.invitations);
-      } catch (error) {
-        console.error('Error fetching members:', error);
-      }
+  async function fetchMembers() {
+    try {
+      const memberData = await getInvitedMemberList(dashboardId);
+      setMembers(memberData.invitations);
+    } catch (error) {
+      console.error('Error fetching members:', error);
     }
+  }
+  useEffect(() => {
     fetchMembers();
   }, [dashboardId]);
 
@@ -80,7 +75,9 @@ export default function InviteList({ dashboardId }: Props) {
           </div>
         ))}
       </div>
-      {isModalOpen && <InviteMemberModal onClose={closeModal} />}
+      {isModalOpen && (
+        <InviteMemberModal onClose={closeModal} refreshMember={fetchMembers} />
+      )}
     </div>
   );
 }

@@ -137,6 +137,7 @@ export interface Card {
 }
 
 export interface CardDetail {
+  id: number;
   title: string;
   assignee?: MemberProfile;
   dueDate: string;
@@ -145,6 +146,7 @@ export interface CardDetail {
   imageUrl: string;
   columnId: number;
   dashboardId: number;
+  createdAt: string;
 }
 
 export interface Member extends MemberProfile {

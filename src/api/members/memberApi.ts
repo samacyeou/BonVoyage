@@ -20,7 +20,7 @@ export const getMemberList = async (dashboardId: ID) => {
 };
 
 // 대시보드 멤버 삭제
-export const deleteMember = async (memberId: number) => {
+export const deleteMember = async (memberId: ID) => {
   try {
     const res = await instance.delete<Member>(`/members/${memberId}`);
   } catch (error) {
@@ -44,10 +44,7 @@ export async function getInvitedMemberList(dashboardId: ID) {
 }
 
 // 초대 취소
-export const deleteInvitation = async (
-  dashboardId: ID,
-  invitationId: number,
-) => {
+export const deleteInvitation = async (dashboardId: ID, invitationId: ID) => {
   try {
     await instance.delete<Member>(
       `/dashboards/${dashboardId}/invitations/${invitationId}`,
