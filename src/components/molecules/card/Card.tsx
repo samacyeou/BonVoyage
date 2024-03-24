@@ -1,27 +1,27 @@
-import { CardDetail } from '@/@types/type';
-import instance from '@/api/axios';
-import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
-import ProfileIcon from '@/components/atoms/profileIcon/ProfileIcon';
-import { CardProvider } from '@/hooks/contexts';
-import useAuth from '@/hooks/useAuth';
-import { format } from 'date-fns';
-import Image from 'next/image';
-import { useState } from 'react';
-import calendarIcon from '../../../../public/assets/icon/calendarIcon.svg';
-import CardDetailModal from '../modals/cardDetailModal/CardDetailModal';
+import React, { useEffect, useState } from 'react';
 import styles from './card.module.scss';
+import Image from 'next/image';
+import calendarIcon from '../../../../public/assets/icon/calendarIcon.svg';
+import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
+import instance from '@/api/axios';
+import { format } from 'date-fns';
+import CardDetailModal from '../modals/cardDetailModal/CardDetailModal';
 
-const colors: Array<'orange' | 'pink' | 'blue' | 'green'> = [
-  'orange',
-  'green',
-  'pink',
-  'blue',
-];
+interface Card {
+  id: number;
+  title: string;
+  imageUrl: string;
+  tags: string[];
+  createdAt: string;
+  assignee: {
+    profileImageUrl: string;
+  };
+}
 
 interface CardProps {
   columnId: number;
   columnTitle: string;
-  handleCardsData: (cardsData: CardDetail[]) => void;
+  handleCardsData: (cardsData: Card[]) => void;
 }
 
 export default function Card({
@@ -29,13 +29,13 @@ export default function Card({
   columnTitle,
   handleCardsData,
 }: CardProps) {
-  const [cards, setCards] = useState<CardDetail[]>([]);
+  const [cards, setCards] = useState<Card[]>([]);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  const [clickedCard, setClickedCard] = useState<CardDetail>();
+  const [clickedCardId, setClickedCardId] = useState<number>();
 
   async function getCards() {
     try {
-      const res = await instance.get<{ cards: CardDetail[] }>(
+      const res = await instance.get<{ cards: Card[] }>(
         `/cards?size=10&columnId=${columnId}`,
         {
           headers: {
@@ -52,14 +52,14 @@ export default function Card({
     }
   }
 
-  useAuth(() => {
+  useEffect(() => {
     if (columnId !== undefined) {
       getCards();
     }
   }, [columnId]);
 
-  const handleCardClick = (card: CardDetail) => {
-    setClickedCard(card);
+  const handleCardClick = (cardId: number) => {
+    setClickedCardId(cardId);
     setIsDetailModalOpen(true);
   };
 
@@ -73,29 +73,23 @@ export default function Card({
         <div
           key={card.id}
           className={styles['card']}
-          onClick={() => handleCardClick(card)}
+          onClick={() => handleCardClick(card.id)}
         >
           {card.imageUrl && (
-            <img
+            <Image
               className={styles['cardImage']}
               src={card.imageUrl}
               alt="Card Image"
+              width={300}
+              height={200}
             />
           )}
           <div className={styles['infoArea']}>
             <span className={styles['cardTitle']}>{card.title}</span>
             <div className={styles['tagDateArea']}>
-              {card.tags && (
-                <div className={styles['tagArea']}>
-                  {card.tags.map((tag, index) => (
-                    <ChipTagWithoutX
-                      key={tag + index}
-                      tag={tag}
-                      color={colors[index % 4]}
-                    />
-                  ))}
-                </div>
-              )}
+              <div className={styles['tagArea']}>
+                <ChipTagWithoutX tag={card.tags.join(' ')} color="pink" />
+              </div>
 
               <div className={styles['dateProfileArea']}>
                 <div className={styles['dateArea']}>
@@ -108,25 +102,23 @@ export default function Card({
                     {format(card.createdAt, 'yyyy-MM-dd HH:mm')}
                   </span>
                 </div>
-                {card.assignee && (
-                  <ProfileIcon
-                    name={card.assignee.nickname}
-                    profile={card.assignee.profileImageUrl}
-                  />
-                )}
+                <Image
+                  className={styles['userProfile']}
+                  src={card.assignee?.profileImageUrl}
+                  alt="userProfile"
+                />
               </div>
             </div>
           </div>
         </div>
       ))}
       {isDetailModalOpen && (
-        <CardProvider initialValue={clickedCard}>
-          <CardDetailModal
-            onClose={closeModal}
-            columnTitle={columnTitle}
-            getCards={getCards}
-          />
-        </CardProvider>
+        <CardDetailModal
+          onClose={closeModal}
+          cardId={clickedCardId}
+          columnTitle={columnTitle}
+          getCards={getCards}
+        />
       )}
     </div>
   );

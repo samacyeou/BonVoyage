@@ -106,7 +106,12 @@ export default function SideBar({ path }: prop) {
               className={styles['addBox']}
               onClick={() => setIsOpenModal(true)}
             >
-              <Image src={addBoxIcon} width={20} height={20}></Image>
+              <Image
+                src={addBoxIcon}
+                alt="플러스 박스 아이콘"
+                width={20}
+                height={20}
+              />
             </button>
           </div>
           <div ref={startMenu} />

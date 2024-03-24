@@ -22,6 +22,7 @@ export default function SideBarMenu({
         {isCreatedByMe && (
           <img
             className={styles['crownIcon']}
+            alt="왕관 아이콘"
             src={'/assets/icon/crownIcon.svg'}
           />
         )}
@@ -29,6 +30,7 @@ export default function SideBarMenu({
           {isCreatedByMe && (
             <img
               className={styles['hoverCrownIcon']}
+              alt="왕관 아이콘"
               src={'/assets/icon/crownIcon.svg'}
             />
           )}
