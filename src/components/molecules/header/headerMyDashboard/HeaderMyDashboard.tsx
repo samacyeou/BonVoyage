@@ -3,16 +3,13 @@ import axios from '@/api/axios';
 import HeaderBtn from '@/components/atoms/buttons/headerBtn';
 import DefaultProfileImage from '@/components/atoms/defaultProfileImage';
 import ProfileIcon from '@/components/atoms/profileIcon/ProfileIcon';
-import { useEffect, useState } from 'react';
-import ProfileDown from '@/components/molecules/profileDropdown/index';
-import { useContext } from 'react';
-import { userContext } from '@/pages/_app';
-import { useRouter } from 'next/router';
-import InviteMemberModal from '../../modals/inviteMemberModal/InviteMemberModal';
 import ProfileDown from '@/components/molecules/profileDropdown/index';
 import useAuth from '@/hooks/useAuth';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import InviteMemberModal from '../../modals/inviteMemberModal/InviteMemberModal';
 import styles from './headerMyDashboard.module.scss';
 
 const cn = classNames.bind(styles);
@@ -32,7 +29,6 @@ export default function HeaderMyDashboard({
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
   const [dashboard, setDashboard] = useState<Dashboard>();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { userInfo } = useContext(userContext);
   const router = useRouter();
   const { id } = router.query;
 
@@ -121,14 +117,8 @@ export default function HeaderMyDashboard({
             )}
           </button>
         </div>
-        {isModalOpen && <InviteMemberModal onClose={closeModal} />}
       </div>
-      {isModalOpen && (
-        <InviteMemberModal
-          onClose={closeModal}
-          // refreshMembers={fetchMembers}
-        ></InviteMemberModal>
-      )}
+      {isModalOpen && <InviteMemberModal onClose={closeModal} />}
     </>
   );
 }

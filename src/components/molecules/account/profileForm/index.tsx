@@ -46,6 +46,7 @@ const ProfileForm = () => {
       console.error('닉네임 또는 프로필 이미지 변경 실패:', error);
     }
   };
+
   const closeModal = () => {
     setModal({ isModalOpen: false, modalMessage: '' });
   };
