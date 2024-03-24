@@ -41,7 +41,7 @@ export default function DashboardPage() {
   return (
     <div className={styles['background']}>
       <DashboardProvider initialValue={dashboard}>
-        <HeaderMyDashboard boardTitle={dashboard.title} isDashboard={true} />
+        <HeaderMyDashboard isDashboard={true} />
         <SideBar />
         <section className={styles['section']}>
           <CardSection dashboardId={id} />
@@ -54,7 +54,10 @@ export default function DashboardPage() {
           </div>
         </section>
         {isModalOpen && (
-          <CreateColumnModal onClose={closeModal} dashboardId={Number(id)} />
+          <CreateColumnModal
+            onClose={closeModal}
+            dashboardId={Number(id)}
+          ></CreateColumnModal>
         )}
       </DashboardProvider>
     </div>
