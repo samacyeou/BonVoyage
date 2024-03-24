@@ -152,25 +152,22 @@ export default function CardDetailModal({
             <div className={styles['userInfoArea']}>
               <h2 className={styles['infoTitle']}>담당자</h2>
               <div className={styles['userInfo']}>
-                {cardDetail?.assignee && cardDetail.assignee.profileImageUrl ? (
-                  <img
-                    src={cardDetail.assignee.profileImageUrl}
-                    alt="프로필 이미지"
-                  />
-                ) : (
-                  <img
-                    src="/assets/image/testProfile.png"
-                    alt="기본 프로필 이미지"
-                  />
-                )}
-
+                <Image
+                  width={22}
+                  height={22}
+                  src={
+                    cardDetail.assignee?.profileImageUrl ||
+                    '/assets/image/testProfile.png'
+                  }
+                  alt="프로필 이미지"
+                />
                 <span className={styles['name']}>
                   {cardDetail?.assignee ? cardDetail.assignee.nickname : ''}
                 </span>
               </div>
             </div>
             <div className={styles['dateArea']}>
-              <h2 className={styles['infoTitle']}>마감일</h2>
+              <h2 className={styles['infoTitle']}>여행일</h2>
               <span className={styles['date']}>{cardDetail?.dueDate}</span>
             </div>
           </div>

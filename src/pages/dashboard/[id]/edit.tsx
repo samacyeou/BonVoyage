@@ -1,24 +1,24 @@
+import { ID, RouterQuery } from '@/@types/type';
+import { deleteDashboard } from '@/api/dashboardInfoApi/dashboardInfoApi';
+import EventDashboardBtn from '@/components/atoms/buttons/eventDashboardBtn';
 import SideBar from '@/components/atoms/sideBar/SideBar';
 import EditDashboardTitle from '@/components/molecules/editDashboardName/EditDashboardTitle';
 import HeaderMyDashboard from '@/components/molecules/header/headerMyDashboard/HeaderMyDashboard';
 import InviteList from '@/components/molecules/inviteList/InviteList';
 import Members from '@/components/molecules/members/Members';
 import styles from '@/styles/editDashboard.module.scss';
-import React from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import leftArrowIcon from '/public/assets/icon/leftArrowIcon.svg';
-import Image from 'next/image';
-import EventDashboardBtn from '@/components/atoms/buttons/eventDashboardBtn';
-import { deleteDashboard } from '@/api/dashboardInfoApi/dashboardInfoApi';
 
 export default function editdashboard() {
   const router = useRouter();
-  const { id } = router.query;
+  const { id } = router.query as { id: ID };
   const goBack = () => {
     router.back();
   };
 
-  async function onClickDeleteDashboard(id) {
+  async function onClickDeleteDashboard(id: ID) {
     try {
       const dashboard = await deleteDashboard(id);
       router.push('/mydashboard');

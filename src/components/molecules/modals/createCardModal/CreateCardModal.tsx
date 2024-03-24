@@ -17,7 +17,12 @@ interface ModalProps {
   onClose: () => void;
 }
 
-export default function CreateCardModal({ column, onClose }: ModalProps) {
+export default function CreateCardModal({
+  column,
+  onClose,
+  setUpdatedCards,
+  cards,
+}: ModalProps) {
   const image = useRef<File>();
   const { getValues, handleSubmit, register, setValue } = useForm<Card>({
     defaultValues: {
@@ -36,6 +41,7 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
       }
       await createCard(card);
       onClose();
+      setUpdatedCards = { cards };
       // window.location.reload();
     } catch (error) {
       throw error;
@@ -45,9 +51,9 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
   return (
     <div className={styles.cardDetailModal}>
       <form className={styles.modalContent} onSubmit={handleSubmit(onSubmit)}>
-        <h1 className={styles.modalTitle}>할 일 생성</h1>
+        <h1 className={styles.modalTitle}>여행 계획 생성</h1>
         <ManagerDropDown
-          onChange={(assignee) => setValue('assigneeUserId', assignee.id)}
+          onChange={(assignee) => setValue('assigneeUserId', assignee.userId)}
         />
         <CreateDoItYourselfTitle
           {...register('title', {

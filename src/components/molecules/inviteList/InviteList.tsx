@@ -1,13 +1,14 @@
-import PagenationBtn from '@/components/atoms/buttons/pagenationBtn';
-import styles from './inviteList.module.scss';
-import Button from '@/components/atoms/buttons/button';
-import HeaderBtn from '@/components/atoms/buttons/headerBtn';
-import { useEffect, useState } from 'react';
-import InviteMemberModal from '../modals/inviteMemberModal/InviteMemberModal';
+import { ID } from '@/@types/type';
 import {
   deleteInvitation,
   getInvitedMemberList,
 } from '@/api/members/memberApi';
+import Button from '@/components/atoms/buttons/button';
+import HeaderBtn from '@/components/atoms/buttons/headerBtn';
+import PagenationBtn from '@/components/atoms/buttons/pagenationBtn';
+import { useEffect, useState } from 'react';
+import InviteMemberModal from '../modals/inviteMemberModal/InviteMemberModal';
+import styles from './inviteList.module.scss';
 
 type Member = {
   email: string;
@@ -15,7 +16,7 @@ type Member = {
 };
 
 type Props = {
-  dashboardId: number;
+  dashboardId: ID;
 };
 
 export default function InviteList({ dashboardId }: Props) {

@@ -44,12 +44,9 @@ export default function Card({
           },
         },
       );
-      // const nextCards = res.data.cards;
-      // setCards(nextCards);
-      // handleCardsData(nextCards);
-      const newCards = res.data.cards;
-      setCards((prevCards) => [...prevCards, ...newCards]);
-      handleCardsData([...cards, ...newCards]);
+      const nextCards = res.data.cards;
+      setCards(nextCards);
+      handleCardsData(nextCards);
     } catch (error) {
       console.error('Error fetching cards:', error);
     }
@@ -59,7 +56,7 @@ export default function Card({
     if (columnId !== undefined) {
       getCards();
     }
-  }, [columnId]);
+  }, [columnId, cards]);
 
   const handleCardClick = (cardId: number) => {
     setClickedCardId(cardId);
@@ -103,9 +100,14 @@ export default function Card({
                     {format(card.createdAt, 'yyyy-MM-dd HH:mm')}
                   </span>
                 </div>
-                <Image
+                <img
                   className={styles['userProfile']}
-                  src={card.assignee?.profileImageUrl}
+                  width={22}
+                  height={22}
+                  src={
+                    card.assignee?.profileImageUrl ||
+                    '/assets/image/testProfile.png'
+                  }
                   alt="userProfile"
                 />
               </div>

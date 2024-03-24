@@ -3,7 +3,7 @@ import { ChangeEvent, MutableRefObject, useRef, useState } from 'react';
 import styles from './imageInput.module.scss';
 
 interface Props {
-  defaultValue: string;
+  defaultValue?: string;
   imageRef: MutableRefObject<File | undefined>;
   setImageFile?: (file: File) => void;
 }

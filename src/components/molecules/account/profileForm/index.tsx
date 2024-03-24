@@ -14,7 +14,6 @@ const ProfileForm = () => {
     handleSubmit,
     register,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<UserChangeAccountProps>({
     mode: 'all',

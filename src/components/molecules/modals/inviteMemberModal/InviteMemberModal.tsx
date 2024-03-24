@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styles from './inviteMemberModal.module.scss';
 
-import Button from '@/components/atoms/buttons/button';
+import { ID } from '@/@types/type';
 import instance from '@/api/axios';
+import Button from '@/components/atoms/buttons/button';
 import InviteInput from '@/components/atoms/input/inviteInput/inviteInput';
 import { useRouter } from 'next/router';
 
@@ -17,7 +18,7 @@ export default function InviteMemberModal({
 }: ModalProps) {
   const [email, setEmail] = useState('');
   const router = useRouter();
-  const { id } = router.query;
+  const { id } = router.query as { id: ID };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
