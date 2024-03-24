@@ -19,7 +19,7 @@ interface ModalProps {
 
 export default function CreateCardModal({ column, onClose }: ModalProps) {
   const image = useRef<File>();
-  const { getValues, handleSubmit, register, setValue } = useForm<Card>({
+  const { handleSubmit, register, setValue } = useForm<Card>({
     defaultValues: {
       columnId: column.id,
       dashboardId: column.dashboardId,
@@ -27,9 +27,8 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
     mode: 'all',
   });
 
-  const onSubmit = async () => {
+  const onSubmit = async (card: Card) => {
     try {
-      const card = getValues() as Card;
       if (image.current) {
         const { imageUrl } = await uploadCardImage(column.id, image.current);
         card.imageUrl = imageUrl;
@@ -74,7 +73,6 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
             type="modal"
             color="blue"
             buttonProps={{ type: 'submit' }}
-            onClick={onSubmit}
           />
         </div>
       </form>

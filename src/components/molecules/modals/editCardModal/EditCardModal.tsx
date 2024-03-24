@@ -1,10 +1,11 @@
-import { CardDetail } from '@/@types/type';
+import { Card, CardDetail } from '@/@types/type';
+import { updateCard } from '@/api/cards/cardApi';
 import Button from '@/components/atoms/buttons/button';
 import CreateDoItYourselfDate from '@/components/atoms/input/dateInput/CreateDoItYourselfDate';
 import CreateDoItYourselfDescription from '@/components/atoms/input/descriptionInput/CreateDoItYourselfDescription';
 import CreateDoItYourselfTitle from '@/components/atoms/input/titleInput/CreateDoItYourselfTitle';
-import { register } from 'module';
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import ImageInput from '../../imageInput/ImageInput';
 import CreateDoItYourselfTag from '../../input/CreateDoItYourselfTag';
 import ManagerDropDown from '../../managerDropDown/ManagerDropDown';
@@ -17,33 +18,47 @@ interface ModalProps {
 }
 
 export default function EditCardModal({ onClose, cardData }: ModalProps) {
-  const [title, setTitle] = useState(cardData.title);
-  const [description, setDescription] = useState(cardData.description);
-  const [dueDate, setDueDate] = useState(cardData.dueDate);
-  const [tags, setTags] = useState(cardData.tags);
-
-  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
-  };
+  const { handleSubmit, register, setValue } = useForm<Card>({
+    defaultValues: cardData,
+    mode: 'all',
+  });
   const handleModalClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
     event.stopPropagation();
   };
-  console.log({ cardData });
+
+  const onSubmit = async (card: Card) => {
+    try {
+      await updateCard(card);
+      onClose();
+      window.location.reload();
+    } catch (error) {
+      throw error;
+    }
+  };
 
   return (
     <div className={styles['cardDetailModal']} onClick={handleModalClick}>
-      <div className={styles['modalContent']}>
-        <h1 className={styles['modalTitle']}>할 일 수정</h1>
-        {/* <StatusDropDown></StatusDropDown> */}
-        <ManagerDropDown defaultValue={cardData.assignee} />
-        <CreateDoItYourselfTitle value={title} onChange={handleTitleChange} />
-        <CreateDoItYourselfDescription value={description} />
-        <CreateDoItYourselfDate defaultValue={dueDate} />
+      <form
+        className={styles['modalContent']}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h1 className={styles['modalTitle']}>여행 계획 수정</h1>
+        {/* <StatusDropDown items={[]} /> */}
+        <ManagerDropDown
+          defaultValue={cardData.assignee}
+          onChange={(assignee) => setValue('assigneeUserId', assignee.userId)}
+        />
+        <CreateDoItYourselfTitle {...register('title')} />
+        <CreateDoItYourselfDescription {...register('description')} />
+        <CreateDoItYourselfDate
+          defaultValue={cardData.dueDate}
+          {...register('dueDate')}
+        />
         <CreateDoItYourselfTag
-          defaultTags={tags}
-          onChangeTags={(tags) => setTags(tags)}
+          defaultTags={cardData.tags}
+          onChangeTags={(tags) => setValue('tags', tags)}
         />
         <div>
           <h2>이미지</h2>
@@ -51,9 +66,14 @@ export default function EditCardModal({ onClose, cardData }: ModalProps) {
         </div>
         <div className={styles['buttonArea']}>
           <Button name="취소" type="modal" color="white" onClick={onClose} />
-          <Button name="수정" type="modal" color="blue" />
+          <Button
+            name="수정"
+            type="modal"
+            color="blue"
+            buttonProps={{ type: 'submit' }}
+          />
         </div>
-      </div>
+      </form>
     </div>
   );
 }
