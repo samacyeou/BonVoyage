@@ -10,6 +10,7 @@ import { userContext } from '@/pages/_app';
 import { useRouter } from 'next/router';
 import axios from '@/api/axios';
 import InviteMemberModal from '../../modals/inviteMemberModal/InviteMemberModal';
+import { Dashboard } from '@/@types/type';
 
 const cn = classNames.bind(styles);
 
@@ -25,13 +26,13 @@ export default function HeaderMyDashboard({
   ismyDashboard = false,
 }: Props) {
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
-  const [dashboard, setDashboard] = useState();
+  const [dashboard, setDashboard] = useState<Dashboard>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { userInfo } = useContext(userContext);
   const router = useRouter();
   const { id } = router.query;
 
-  async function getDashboard(targetId: string) {
+  async function getDashboard(targetId) {
     const res = await axios.get(`/dashboards/${targetId}`);
     const nextDashboard = res.data;
     setDashboard(nextDashboard);
@@ -71,12 +72,16 @@ export default function HeaderMyDashboard({
           {isDashboard && (
             <>
               <span>{dashboard?.title}</span>
-              <Image
-                src="/assets/icon/crownIcon.svg"
-                width={20}
-                height={16}
-                alt="crown"
-              />
+              {dashboard?.createdByMe && (
+                <div className={styles['crown']}>
+                  <Image
+                    src="/assets/icon/crownIcon.svg"
+                    width={20}
+                    height={16}
+                    alt="crown"
+                  />
+                </div>
+              )}
             </>
           )}
         </div>
@@ -108,13 +113,13 @@ export default function HeaderMyDashboard({
             )}
           </button>
         </div>
-        {isModalOpen && (
-          <InviteMemberModal
-            onClose={closeModal}
-            refreshMembers={fetchMembers}
-          ></InviteMemberModal>
-        )}
       </div>
+      {isModalOpen && (
+        <InviteMemberModal
+          onClose={closeModal}
+          // refreshMembers={fetchMembers}
+        ></InviteMemberModal>
+      )}
     </>
   );
 }
