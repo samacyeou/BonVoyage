@@ -2,10 +2,14 @@ import { Member } from '@/@types/type';
 import axios from 'axios';
 import instance from '../axios';
 
+interface MemberList {
+  members: Member[];
+}
+
 // 대시보드 멤버 목록 조회
-export const getMember = async (dashboardId) => {
+export const getMemberList = async (dashboardId: number) => {
   try {
-    const res = await instance.get<Member>(
+    const res = await instance.get<MemberList>(
       `members?page=1&size=20&dashboardId=${dashboardId}`,
     );
     return res.data;
