@@ -171,7 +171,7 @@ export default function InvitedDashboardList({
             })}
         </>
       )}
-      <div className={cn('intersectionElement')}></div>
+      <div className={cn('intersectionElement')} />
     </>
   );
 }
