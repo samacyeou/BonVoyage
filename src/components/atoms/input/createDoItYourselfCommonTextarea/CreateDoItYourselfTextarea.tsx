@@ -11,13 +11,15 @@ interface CommentData {
   dashboardId: number;
 }
 
+export interface CommentProps {
+  cardId: number;
+  columnId: number;
+  dashboardId: number;
+  getCommentList?: () => void;
+}
+
 interface Props extends PropsWithChildren<CreateDoItYourselfProps> {
-  commentProp: {
-    cardId: number;
-    columnId: number;
-    dashboardId: number;
-    getCommentList?: () => void;
-  } | null;
+  commentProp: CommentProps | null;
 }
 
 export default function CreateDoItYourselfTextarea({

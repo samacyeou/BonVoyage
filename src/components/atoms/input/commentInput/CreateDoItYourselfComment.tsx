@@ -1,6 +1,8 @@
-import CreateDoItYourselfTextarea from '../createDoItYourselfCommonTextarea/CreateDoItYourselfTextarea';
+import CreateDoItYourselfTextarea, {
+  CommentProps,
+} from '../createDoItYourselfCommonTextarea/CreateDoItYourselfTextarea';
 
-export default function CreateDoItYourselfComment(commentProp) {
+export default function CreateDoItYourselfComment(commentProp: CommentProps) {
   return (
     <CreateDoItYourselfTextarea
       title="댓글"
