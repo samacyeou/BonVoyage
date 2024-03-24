@@ -43,6 +43,7 @@ export interface MemberProfile {
   id: number;
   nickname: string;
   profileImageUrl: string;
+  userId: number;
 }
 
 export interface MyDashboardProps extends ButtonProps {

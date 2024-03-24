@@ -34,15 +34,10 @@ export default function DeleteCardModal({
   return (
     <div className={styles['cardDetailModal']} onClick={handleModalClick}>
       <div className={styles['modalContent']}>
-        <h1 className={styles['modalTitle']}>할일을 삭제합니다.</h1>
+        <h1 className={styles['modalTitle']}>여행 계획을 삭제합니다.</h1>
 
         <div className={styles['buttonArea']}>
-          <Button
-            name="취소"
-            type="modal"
-            color="white"
-            onClick={onClose}
-          ></Button>
+          <Button name="취소" type="modal" color="white" onClick={onClose} />
           <Button
             name="삭제"
             type="modal"

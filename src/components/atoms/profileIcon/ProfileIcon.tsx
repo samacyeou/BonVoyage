@@ -14,7 +14,7 @@ export default function ProfileIcon({ name, profile }: props) {
       {profile ? (
         <div className={styles['image']}>
           <Image
-            // layout="fill"
+            layout="fill"
             src={profile}
             alt="프로필 이미지"
             priority={true}
