@@ -63,7 +63,7 @@ export default function EditCardModal({ onClose, cardData }: ModalProps) {
         />
         <div>
           <h2>이미지</h2>
-          <ImageInput size="big" />
+          <ImageInput />
         </div>
         <div className={styles['buttonArea']}>
           <Button name="취소" type="modal" color="white" onClick={onClose} />

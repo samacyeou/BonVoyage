@@ -1,5 +1,7 @@
-import { CardDetail, Column } from '@/@types/type';
+import { Column } from '@/@types/type';
 import Card from '@/components/molecules/card/Card';
+import CreateCardModal from '@/components/molecules/modals/createCardModal/CreateCardModal';
+import { useCardList } from '@/hooks/contexts';
 import Image from 'next/image';
 import { useState } from 'react';
 import settingIcon from '../../../../public/assets/icon/settingsIcon.svg';
@@ -11,19 +13,26 @@ import styles from './column.module.scss';
 interface ColumnProps {
   column: Column;
   handleSettingButtonClick: (column: Column) => void;
-  handleAddCardButtonClick: (column: Column) => void;
 }
 
 export default function ColumnComponent({
   column,
   handleSettingButtonClick,
-  handleAddCardButtonClick,
 }: ColumnProps) {
-  const [cards, setCards] = useState<CardDetail[]>([]);
+  const [cards] = useCardList();
+  const [isCreateCardModalOpen, setIsCreateCardModalOpen] = useState(false);
+  const [selectedColumn, setSelectedColumn] = useState<Column | null>(null);
 
-  const handleCardsData = (cardsData: CardDetail[]) => {
-    setCards(cardsData);
+  const handleAddCardButtonClick = (column: Column) => {
+    setSelectedColumn(column);
+    setIsCreateCardModalOpen(true);
   };
+
+  const handleCloseModal = () => {
+    setSelectedColumn(null);
+    setIsCreateCardModalOpen(false);
+  };
+
   return (
     <>
       <div key={column.id} className={styles['column']}>
@@ -31,7 +40,7 @@ export default function ColumnComponent({
           <div className={styles['titleArea']}>
             <ColorDot colorName="blue" />
             <h1 className={styles['title']}>{column.title}</h1>
-            <ChipNumber number={cards.length} />
+            {cards && <ChipNumber number={cards?.length} />}
           </div>
 
           <Image
@@ -45,12 +54,11 @@ export default function ColumnComponent({
           type="addTodo"
           onClick={() => handleAddCardButtonClick(column)}
         />
-        <Card
-          columnId={column.id}
-          columnTitle={column.title}
-          handleCardsData={handleCardsData}
-        />
+        <Card columnId={column.id} columnTitle={column.title} />
       </div>
+      {isCreateCardModalOpen && (
+        <CreateCardModal column={selectedColumn!} onClose={handleCloseModal} />
+      )}
     </>
   );
 }

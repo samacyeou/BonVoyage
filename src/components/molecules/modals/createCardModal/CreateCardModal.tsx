@@ -11,18 +11,15 @@ import ImageInput from '../../imageInput/ImageInput';
 import CreateDoItYourselfTag from '../../input/CreateDoItYourselfTag';
 import ManagerDropDown from '../../managerDropDown/ManagerDropDown';
 import styles from './createCardModal.module.scss';
+import { useCardList } from '@/hooks/contexts';
 
 interface ModalProps {
   column: Column;
   onClose: () => void;
 }
 
-export default function CreateCardModal({
-  column,
-  onClose,
-  setUpdatedCards,
-  cards,
-}: ModalProps) {
+export default function CreateCardModal({ column, onClose }: ModalProps) {
+  const [cards, setCards] = useCardList();
   const image = useRef<File>();
   const { handleSubmit, register, setValue } = useForm<Card>({
     defaultValues: {
@@ -38,10 +35,9 @@ export default function CreateCardModal({
         const { imageUrl } = await uploadCardImage(column.id, image.current);
         card.imageUrl = imageUrl;
       }
-      await createCard(card);
+      const result = await createCard(card);
       onClose();
-      setUpdatedCards = { cards };
-      // window.location.reload();
+      setCards(cards?.concat(result) ?? [result]);
     } catch (error) {
       throw error;
     }

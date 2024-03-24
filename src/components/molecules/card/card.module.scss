@@ -61,6 +61,7 @@
 
 .dateProfileArea {
   display: flex;
+  height: 22px;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 6px;
@@ -73,6 +74,7 @@
 .dateArea {
   display: flex;
   align-items: center;
+  gap: 3px;
 
   @media (min-width: 376px) and (max-width: 768px) {
     margin-bottom: 3px;

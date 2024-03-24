@@ -2,6 +2,7 @@ import { CardDetail } from '@/@types/type';
 import instance from '@/api/axios';
 import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
 import CreateDoItYourselfComment from '@/components/atoms/input/commentInput/CreateDoItYourselfComment';
+import { useCardState } from '@/hooks/contexts';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
@@ -11,7 +12,6 @@ import styles from './cardDetailModal.module.scss';
 
 interface ModalProps {
   onClose: () => void;
-  cardId?: number;
   columnTitle: string;
   getCards: () => void;
 }
@@ -34,15 +34,16 @@ const colors: Array<'orange' | 'pink' | 'blue' | 'green'> = [
 
 export default function CardDetailModal({
   onClose,
-  cardId,
   columnTitle,
   getCards,
 }: ModalProps) {
-  const [cardDetail, setCardDetail] = useState<CardDetail>();
+  const [cardDetail, setCardDetail] = useCardState();
   const [commentList, setCommentList] = useState<Comment[]>([]);
   const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
   const [editedCommentContent, setEditedCommentContent] = useState<string>('');
   const editCommentInputRef = useRef<HTMLTextAreaElement>(null);
+
+  const cardId = cardDetail?.id;
 
   async function getCardDetail() {
     try {
@@ -206,9 +207,9 @@ export default function CardDetailModal({
             </div>
             <div className={styles['commentArea']}>
               <CreateDoItYourselfComment
-                cardId={cardId}
-                columnId={cardDetail ? cardDetail.columnId : null}
-                dashboardId={cardDetail ? cardDetail.dashboardId : null}
+                cardId={cardDetail!.id}
+                columnId={cardDetail!.columnId}
+                dashboardId={cardDetail!.dashboardId}
                 getCommentList={getCommentList}
               />
               <div className={styles['commentListArea']}>
