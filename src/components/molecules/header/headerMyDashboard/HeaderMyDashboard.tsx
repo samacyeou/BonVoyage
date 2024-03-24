@@ -32,7 +32,7 @@ export default function HeaderMyDashboard({
   const router = useRouter();
   const { id } = router.query;
 
-  async function getDashboard(targetId: string) {
+  async function getDashboard(targetId) {
     const res = await axios.get(`/dashboards/${targetId}`);
     const nextDashboard = res.data;
     setDashboard(nextDashboard);
@@ -72,12 +72,16 @@ export default function HeaderMyDashboard({
           {isDashboard && (
             <>
               <span>{dashboard?.title}</span>
-              <Image
-                src="/assets/icon/crownIcon.svg"
-                width={20}
-                height={16}
-                alt="crown"
-              />
+              {dashboard?.createdByMe && (
+                <div className={styles['crown']}>
+                  <Image
+                    src="/assets/icon/crownIcon.svg"
+                    width={20}
+                    height={16}
+                    alt="crown"
+                  />
+                </div>
+              )}
             </>
           )}
         </div>
@@ -113,8 +117,8 @@ export default function HeaderMyDashboard({
             )}
           </button>
         </div>
-        {isModalOpen && <InviteMemberModal onClose={closeModal} />}
       </div>
+      {isModalOpen && <InviteMemberModal onClose={closeModal} />}
     </>
   );
 }

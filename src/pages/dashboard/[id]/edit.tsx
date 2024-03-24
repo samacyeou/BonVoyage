@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import leftArrowIcon from '/public/assets/icon/leftArrowIcon.svg';
 import Image from 'next/image';
 import EventDashboardBtn from '@/components/atoms/buttons/eventDashboardBtn';
+import { deleteDashboard } from '@/api/dashboardInfoApi/dashboardInfoApi';
 
 export default function editdashboard() {
   const router = useRouter();
@@ -16,6 +17,16 @@ export default function editdashboard() {
   const goBack = () => {
     router.back();
   };
+
+  async function onClickDeleteDashboard(id) {
+    try {
+      const dashboard = await deleteDashboard(id);
+      router.push('/mydashboard');
+    } catch (error) {
+      console.error('Error delete dashboard:', error);
+    }
+  }
+
   return (
     <div className={styles['background']}>
       <HeaderMyDashboard isDashboard={true} />
@@ -28,7 +39,11 @@ export default function editdashboard() {
         <EditDashboardTitle />
         <Members dashboardId={id} />
         <InviteList dashboardId={id} />
-        <EventDashboardBtn name="대시보드 삭제하기" type="deleteDashboard" />
+        <EventDashboardBtn
+          name="대시보드 삭제하기"
+          type="deleteDashboard"
+          onClick={() => onClickDeleteDashboard(id)}
+        />
       </div>
     </div>
   );

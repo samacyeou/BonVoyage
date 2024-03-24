@@ -24,7 +24,8 @@
   display: none;
 
   @media (min-width: 1024px) {
-    display: inline;
+    display: flex;
+    gap: 5px;
   }
 }
 
@@ -44,10 +45,9 @@
     justify-content: flex-end;
   }
 
-  .dashboardHomeHeader{
+  .dashboardHomeHeader {
     justify-content: space-between;
     padding-left: 172px;
-
   }
 }
 

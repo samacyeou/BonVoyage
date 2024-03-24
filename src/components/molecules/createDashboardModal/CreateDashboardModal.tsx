@@ -2,7 +2,6 @@ import BaseModal from '@/components/atoms/baseModal/BaseModal';
 import styles from './createDashboardModal.module.scss';
 import classNames from 'classnames/bind';
 import { ChangeEvent, useState } from 'react';
-import CheckIcon from '@/components/icon/CheckIcon';
 import { CreateDashboard } from '@/@types/type';
 import ColorPalette from '../colorPalette/ColorPalette';
 import { COLOR_LIST, COLOR_NAMES } from '@/styles/colorList';
