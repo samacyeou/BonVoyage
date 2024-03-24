@@ -1,9 +1,13 @@
 import axios from '@/api/axios';
-import { UserChangePasswordProps, UserChangeAccountProps,User } from '@/@types/type';
+import {
+  UserChangePasswordProps,
+  UserChangeAccountProps,
+  User,
+} from '@/@types/type';
 
 export const userInfoData = async () => {
   try {
-    const res = await axios.get('/users/me');
+    const res = await axios.get<User>('/users/me');
     return res.data;
   } catch (error) {
     console.error('emailError:', error);
@@ -36,7 +40,7 @@ export const userChangeAccount = async ({
   profileImageUrl,
 }: UserChangeAccountProps) => {
   try {
-    const requestData : Partial<User>= {};
+    const requestData: Partial<User> = {};
     if (nickname) {
       requestData.nickname = nickname;
     }

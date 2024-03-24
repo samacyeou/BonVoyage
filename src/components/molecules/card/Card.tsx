@@ -6,6 +6,7 @@ import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
 import instance from '@/api/axios';
 import { format } from 'date-fns';
 import CardDetailModal from '../modals/cardDetailModal/CardDetailModal';
+import ProfileIcon from '@/components/atoms/profileIcon/ProfileIcon';
 
 interface Card {
   id: number;
@@ -14,6 +15,7 @@ interface Card {
   tags: string[];
   createdAt: string;
   assignee: {
+    nickname: string;
     profileImageUrl: string;
   };
 }
@@ -100,16 +102,12 @@ export default function Card({
                     {format(card.createdAt, 'yyyy-MM-dd HH:mm')}
                   </span>
                 </div>
-                <img
-                  className={styles['userProfile']}
-                  width={22}
-                  height={22}
-                  src={
-                    card.assignee?.profileImageUrl ||
-                    '/assets/image/testProfile.png'
-                  }
-                  alt="userProfile"
-                />
+                {card.assignee && (
+                  <ProfileIcon
+                    name={card.assignee.nickname}
+                    profile={card.assignee.profileImageUrl}
+                  />
+                )}
               </div>
             </div>
           </div>

@@ -1,20 +1,21 @@
-import styles from './sideBar.module.scss';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
+import styles from './sideBar.module.scss';
 
-import addBoxIcon from '../../../../public/assets/icon/addBoxIcon.svg';
-import SideBarMenu from '../sideBarMenu/SideBarMenu';
-import Link from 'next/link';
-import LogoWithTitle from '../logoWithTitle/LogoWithTitle';
-import { useEffect, useRef, useState } from 'react';
+import { CreateDashboard, Dashboard } from '@/@types/type';
 import {
   getMyDashboardList,
   postNewDashboard,
 } from '@/api/dashboardListApi/dashboardListApi';
-import { CreateDashboard, Dashboard } from '@/@types/type';
-import PagenationBtn from '../buttons/pagenationBtn';
 import CreateDashboardModal from '@/components/molecules/createDashboardModal/CreateDashboardModal';
+import useAuth from '@/hooks/useAuth';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
+import addBoxIcon from '../../../../public/assets/icon/addBoxIcon.svg';
+import PagenationBtn from '../buttons/pagenationBtn';
+import LogoWithTitle from '../logoWithTitle/LogoWithTitle';
+import SideBarMenu from '../sideBarMenu/SideBarMenu';
 
 const cn = classNames.bind(styles);
 
@@ -77,7 +78,7 @@ export default function SideBar({ path }: prop) {
     };
   }, []);
 
-  useEffect(() => {
+  useAuth(() => {
     async function setMyDashboardList() {
       try {
         const response = await getMyDashboardList(dashboardListPage, pageSize);

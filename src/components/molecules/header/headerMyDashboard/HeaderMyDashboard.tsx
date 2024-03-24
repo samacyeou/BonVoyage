@@ -25,7 +25,7 @@ export default function HeaderMyDashboard({
   isDashboard = false,
   ismyDashboard = false,
 }: Props) {
-  const { userInfo } = useAuth();
+  const { accessToken, userInfo } = useAuth();
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
   const [dashboard, setDashboard] = useState<Dashboard>();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,7 +40,7 @@ export default function HeaderMyDashboard({
   useEffect(() => {
     if (!id) return;
     getDashboard(id as string);
-  }, [id]);
+  }, [accessToken, id]);
 
   const onClickEdit = () => {
     router.push(`${id}/edit`);

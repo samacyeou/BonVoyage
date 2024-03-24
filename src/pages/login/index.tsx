@@ -6,7 +6,7 @@ import PasswordInput from '@/components/atoms/input/passwordInput/PasswordInput'
 import useAuth from '@/hooks/useAuth';
 import useSessionStorage from '@/hooks/useSessionStorage';
 import { AxiosError } from 'axios';
-import { getSession, signIn } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -45,15 +45,6 @@ const GoogleIcon = () => (
     height={20}
     alt="Google Icon"
     className={styles.googleIcon}
-  />
-);
-
-const KakaoIcon = () => (
-  <Image
-    src="/assets/icon/kakaotalkIcon.svg"
-    width={20}
-    height={20}
-    alt="Kakao Icon"
   />
 );
 
@@ -144,16 +135,6 @@ export default function Login() {
           name="구글로 로그인"
           onClick={() => signIn('google', { callbackUrl: '/mydashboard' })}
           type="google"
-        />
-        <Button
-          icon={KakaoIcon()}
-          name="카카오 로그인"
-          onClick={async () => {
-            signIn('kakao'); //, { callbackUrl: '/mydashboard' });
-            const session = await getSession();
-            console.log(session);
-          }}
-          type="kakao"
         />
       </form>
       <div className={styles.signUpLinkBox}>
