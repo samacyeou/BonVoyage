@@ -32,7 +32,7 @@ export default function EditDashboardTitle() {
     }));
   };
 
-  async function getDashboard(targetId) {
+  async function getDashboard(targetId: ID) {
     const res = await axios.get(`/dashboards/${targetId}`);
     const nextDashboard = res.data;
     setDashboardInfo(nextDashboard);
