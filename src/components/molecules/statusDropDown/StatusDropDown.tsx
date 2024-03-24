@@ -30,7 +30,8 @@ export default function StatusDropDown({ columnId }: Props) {
         >
           <ChipProgress
             column={
-              itemList.findLast((item) => item.id === columnId)?.title as string
+              itemList?.findLast((item) => item.id === columnId)
+                ?.title as string
             }
           />
           <Image
@@ -42,7 +43,7 @@ export default function StatusDropDown({ columnId }: Props) {
         </div>
         {isOpenItemList && (
           <div className={cn('itemList')}>
-            {itemList.map((element) => {
+            {itemList?.map((element) => {
               let check = false;
               if (nowItem === element.id) {
                 check = true;

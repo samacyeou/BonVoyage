@@ -5,7 +5,7 @@ import SideBar from '@/components/atoms/sideBar/SideBar';
 import CardSection from '@/components/molecules/cardSection/CardSection';
 import HeaderMyDashboard from '@/components/molecules/header/headerMyDashboard/HeaderMyDashboard';
 import CreateColumnModal from '@/components/molecules/modals/createColumnModal/CreateColumnModal';
-import { DashboardProvider } from '@/hooks/contexts';
+import { CardListProvider, DashboardProvider } from '@/hooks/contexts';
 import styles from '@/styles/dashboard.module.scss';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';

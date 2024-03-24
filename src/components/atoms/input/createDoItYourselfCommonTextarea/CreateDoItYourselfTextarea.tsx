@@ -19,24 +19,20 @@ export interface CommentProps {
 }
 
 interface Props extends PropsWithChildren<CreateDoItYourselfProps> {
-  commentProp: CommentProps | null;
+  commentProp: CommentProps;
 }
 
 export default function CreateDoItYourselfTextarea({
   title,
   commentProp,
 }: Props) {
-  const { register, handleSubmit } = useForm();
-  const [content, setContent] = useState('');
+  const { handleSubmit, getValues, register, setValue } = useForm<Comment>();
+  const content = getValues('content');
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setContent(event.target.value);
-  };
-
-  const onSubmit = async () => {
+  const onSubmit = async (values: Comment) => {
     try {
       const commentData: CommentData = {
-        content: content,
+        content: values.comment,
         cardId: commentProp.cardId,
         columnId: commentProp.columnId,
         dashboardId: commentProp.dashboardId,
@@ -47,8 +43,8 @@ export default function CreateDoItYourselfTextarea({
           Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
         },
       });
-      console.log('Comment added successfully:', res.data);
-      commentProp.getCommentList();
+      setValue('comment', '');
+      commentProp.getCommentList?.();
     } catch (error) {
       console.error('Error adding comment:', error);
     }
@@ -61,8 +57,6 @@ export default function CreateDoItYourselfTextarea({
         {...register('comment')}
         placeholder={content}
         className={styles.textareaContainer}
-        value={content}
-        onChange={handleInputChange}
       />
       <button type="submit" className={styles.submitButton}>
         입력

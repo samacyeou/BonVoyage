@@ -1,10 +1,10 @@
-import { Card } from '@/@types/type';
+import { Card, CardDetail, ID } from '@/@types/type';
 import axios from '../axios';
 
 // 카드 생성
 export const createCard = async (card: Card) => {
   try {
-    const res = await axios.post<Card>('cards', card);
+    const res = await axios.post<CardDetail>('cards', card);
     return res.data;
   } catch (error) {
     console.error('createCard:', error);
@@ -13,9 +13,11 @@ export const createCard = async (card: Card) => {
 };
 
 // 카드 목록 조회
-export const getCardList = async () => {
+export const getCardList = async (columnId: ID) => {
   try {
-    const res = await axios.get<Card[]>('cards');
+    const res = await axios.get<{ cards: CardDetail[] }>(
+      `/cards?size=10&columnId=${columnId}`,
+    );
     return res.data;
   } catch (error) {
     console.error('getCards:', error);

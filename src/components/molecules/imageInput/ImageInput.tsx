@@ -4,7 +4,7 @@ import styles from './imageInput.module.scss';
 
 interface Props {
   defaultValue?: string;
-  imageRef: MutableRefObject<File | undefined>;
+  imageRef?: MutableRefObject<File | undefined>;
   setImageFile?: (file: File) => void;
 }
 
@@ -26,7 +26,9 @@ export default function ImageInput({
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      imageRef.current = file;
+      if (imageRef) {
+        imageRef.current = file;
+      }
       reader.onload = (e: ProgressEvent<FileReader>) => {
         if (e.target?.result) {
           setImageUrl(e.target.result.toString());
