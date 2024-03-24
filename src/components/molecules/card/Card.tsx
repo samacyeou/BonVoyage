@@ -44,9 +44,12 @@ export default function Card({
           },
         },
       );
-      const nextCards = res.data.cards;
-      setCards(nextCards);
-      handleCardsData(nextCards);
+      // const nextCards = res.data.cards;
+      // setCards(nextCards);
+      // handleCardsData(nextCards);
+      const newCards = res.data.cards;
+      setCards((prevCards) => [...prevCards, ...newCards]);
+      handleCardsData([...cards, ...newCards]);
     } catch (error) {
       console.error('Error fetching cards:', error);
     }
