@@ -31,12 +31,11 @@ export default function DashboardPage() {
         {
           headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
           },
         },
       );
       setColumns(res.data.data);
-      console.log(res.data.data);
     } catch (error) {
       console.error('Error fetching columns:', error);
     }
@@ -66,7 +65,6 @@ export default function DashboardPage() {
         <section className={styles['section']}>
           {/* <CardSection dashboardId={id} /> */}
           <CardSection columns={columns} getColumns={getColumns} />
-
           <div className={styles['newColumnArea']}>
             <EventDashboardBtn
               onClick={handleaddColumnButtonClick}
