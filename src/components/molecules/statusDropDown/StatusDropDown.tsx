@@ -2,7 +2,7 @@ import { useColumnListState } from '@/hooks/contexts';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
 import { useState } from 'react';
-import ChipProgress from '../chipProgress/ChipProgress';
+import ChipProgress from '../ChipProgress/ChipProgress';
 import styles from './statusDropDown.module.scss';
 
 const cn = classNames.bind(styles);

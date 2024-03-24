@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import CardDetailKebap from '../../cardDetailKebap/CardDetailKebap';
-import ChipProgress from '../../chipProgress/ChipProgress';
+import ChipProgress from '../../ChipProgress/ChipProgress';
 import styles from './cardDetailModal.module.scss';
 
 interface ModalProps {
