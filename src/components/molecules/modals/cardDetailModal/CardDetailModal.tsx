@@ -185,7 +185,7 @@ export default function CardDetailModal({
               <div className={styles['tag']}>
                 {cardDetail.tags.map((tag, index) => (
                   <ChipTagWithoutX
-                    key={tag + index}
+                    key={index}
                     tag={tag}
                     color={colors[index % 4]}
                   />
@@ -224,7 +224,10 @@ export default function CardDetailModal({
                           src={comment.author.profileImageUrl}
                         />
                       ) : (
-                        <img src="/assets/image/testProfile.png" />
+                        <img
+                          src="/assets/image/testProfile.png"
+                          alt="테스트 프로필 이미지"
+                        />
                       )}
 
                       <h1 className={styles['writerName']}>
