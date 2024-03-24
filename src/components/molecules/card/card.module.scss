@@ -12,13 +12,16 @@
     flex-direction: row;
     padding: 20px;
     gap: 20px;
+    height: 93px;
   }
 }
 .cardImage {
   border-radius: 6px;
+  width: 100%;
+  height: 150px;
   @media (min-width: 376px) and (max-width: 768px) {
-    width: 90px;
-    height: 53px;
+    width: 100px;
+    height: 100%;
   }
 }
 
@@ -36,7 +39,7 @@
 .cardTitle {
   font-size: 1.4rem;
   @media (min-width: 376px) and (max-width: 768px) {
-    margin-top: 6px;
+    // margin-top: 3px;
   }
 }
 .tagDateArea {
@@ -50,7 +53,7 @@
   margin-top: 6px;
 
   @media (min-width: 376px) and (max-width: 768px) {
-    margin-top: 10px;
+    // margin-top: 10px;
   }
 }
 
@@ -72,6 +75,10 @@
   @media (min-width: 376px) and (max-width: 768px) {
     margin-bottom: 3px;
   }
+
+  @media (min-width: 1024px) {
+    margin-top: 10px;
+  }
 }
 .date {
   font-size: 1rem;
@@ -87,10 +94,4 @@
   @media (min-width: 376px) and (max-width: 768px) {
     position: relative;
   }
-}
-
-@media (min-width: 376px) {
-}
-
-@media (min-width: 769px) {
 }

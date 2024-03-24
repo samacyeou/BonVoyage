@@ -17,7 +17,12 @@ interface ModalProps {
   onClose: () => void;
 }
 
-export default function CreateCardModal({ column, onClose }: ModalProps) {
+export default function CreateCardModal({
+  column,
+  onClose,
+  setUpdatedCards,
+  cards,
+}: ModalProps) {
   const image = useRef<File>();
   const { handleSubmit, register, setValue } = useForm<Card>({
     defaultValues: {
@@ -35,7 +40,8 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
       }
       await createCard(card);
       onClose();
-      window.location.reload();
+      setUpdatedCards = { cards };
+      // window.location.reload();
     } catch (error) {
       throw error;
     }
