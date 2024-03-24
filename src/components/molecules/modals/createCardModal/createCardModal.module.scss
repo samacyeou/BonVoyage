@@ -35,9 +35,8 @@
   }
 }
 
-/* 스크롤이 필요 없을 때 숨김 처리 */
 .modalContent::-webkit-scrollbar {
-  display: none;
+  width: 5px;
 }
 
 .modalTitle {
