@@ -4,7 +4,7 @@ import EmailInput from '@/components/atoms/input/emailInput/EmailInput';
 import NicknameInput from '@/components/atoms/input/nicknameInput/NicknameInput';
 import PasswordConfirmInput from '@/components/atoms/input/passwordConfirmInput/passwordConfirmInput';
 import PasswordInput from '@/components/atoms/input/passwordInput/PasswordInput';
-import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -18,10 +18,8 @@ interface SignUpProps extends AuthRequest {
   terms: boolean;
 }
 
-const DynamicImage = dynamic(() => import('next/image'));
-
 const MobileLogo = () => (
-  <DynamicImage
+  <Image
     src="/assets/icon/bonVoyageMobileLogo.svg"
     width={150}
     height={150}
@@ -30,13 +28,14 @@ const MobileLogo = () => (
 );
 
 const DesktopLogo = () => (
-  <DynamicImage
+  <Image
     src="/assets/icon/bonVoyageLogo.svg"
     width={500}
     height={100}
     alt="Desktop Logo"
   />
 );
+
 export default function SignUp() {
   const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
@@ -105,7 +104,12 @@ export default function SignUp() {
         <div className={styles.signUpError}>
           {errors.terms && '약관에 동의해주세요.'}
         </div>
-        <Button name="가입하기" type="account" disabled={!isValid} />
+        <Button
+          name="가입하기"
+          buttonProps={{ type: 'submit' }}
+          type="account"
+          disabled={!isValid}
+        />
       </form>
     </div>
   );

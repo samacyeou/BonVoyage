@@ -15,6 +15,13 @@ interface CardProps {
   columnTitle: string;
 }
 
+const colors: Array<'orange' | 'blue' | 'green' | 'purple'> = [
+  'orange',
+  'blue',
+  'green',
+  'purple',
+];
+
 export default function Card({ columnId, columnTitle }: CardProps) {
   const [cards, setCards] = useCardList();
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
@@ -65,10 +72,17 @@ export default function Card({ columnId, columnTitle }: CardProps) {
           <div className={styles['infoArea']}>
             <span className={styles['cardTitle']}>{card.title}</span>
             <div className={styles['tagDateArea']}>
-              <div className={styles['tagArea']}>
-                <ChipTagWithoutX tag={card.tags.join(' ')} color="pink" />
-              </div>
-
+              {card.tags && (
+                <div className={styles['tagArea']}>
+                  {card.tags.map((tag, index) => (
+                    <ChipTagWithoutX
+                      key={tag + index}
+                      tag={tag}
+                      color={colors[index % 4]}
+                    />
+                  ))}
+                </div>
+              )}
               <div className={styles['dateProfileArea']}>
                 <div className={styles['dateArea']}>
                   <Image
