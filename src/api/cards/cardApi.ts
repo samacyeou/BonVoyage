@@ -26,7 +26,7 @@ export const getCardList = async () => {
 // 카드 수정
 export const updateCard = async (card: Card) => {
   try {
-    const res = await axios.put<Card>(`cards/${card.columnId}`, card);
+    const res = await axios.put<Card>(`cards/${card.id}`, card);
     return res.data;
   } catch (error) {
     console.error('updateCard:', error);

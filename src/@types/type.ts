@@ -125,6 +125,7 @@ export interface AuthResponse extends ErrorResponse {
 }
 
 export interface Card {
+  id: number;
   assigneeUserId: number;
   dashboardId: number;
   columnId: number;
