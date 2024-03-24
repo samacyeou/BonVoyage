@@ -1,4 +1,4 @@
-import { AuthResponse, User, UserResponse } from '@/@types/type';
+import { AuthResponse, User } from '@/@types/type';
 import axios from '../axios';
 import { AxiosError } from 'axios';
 

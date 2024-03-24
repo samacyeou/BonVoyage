@@ -1,9 +1,9 @@
+import { CreateDashboard, ID } from '@/@types/type';
 import axios from '@/api/axios';
-import { CreateDashboard } from '@/@types/type';
 
 export const changeDashboardInfo = async (
   { title, color }: CreateDashboard,
-  dashboardId,
+  dashboardId: ID,
 ) => {
   try {
     const requestData: Partial<CreateDashboard> = {};
@@ -22,7 +22,7 @@ export const changeDashboardInfo = async (
 };
 //대시보드 정보 수정
 
-export const deleteDashboard = async (id: number) => {
+export const deleteDashboard = async (id: ID) => {
   try {
     const res = await axios.delete(`dashboards/${id}`);
     return res.data;

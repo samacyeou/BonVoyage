@@ -1,18 +1,17 @@
-import styles from './editDashboardTitle.module.scss';
-import Button from '@/components/atoms/buttons/button';
-import ColorPalette from '../colorPalette/ColorPalette';
-import { useEffect, useState } from 'react';
-import { COLOR_LIST, COLOR_NAMES } from '@/styles/colorList';
+import { Dashboard, ID } from '@/@types/type';
 import axios from '@/api/axios';
-import { useRouter } from 'next/router';
 import { changeDashboardInfo } from '@/api/dashboardInfoApi/dashboardInfoApi';
-import { Dashboard } from '@/@types/type';
-
+import Button from '@/components/atoms/buttons/button';
+import { COLOR_LIST, COLOR_NAMES } from '@/styles/colorList';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import ColorPalette from '../colorPalette/ColorPalette';
+import styles from './editDashboardTitle.module.scss';
 
 export default function EditDashboardTitle() {
   const router = useRouter();
-  const { id } = router.query;
-  
+  const { id } = router.query as { id: ID };
+
   const [dashboardInfo, setDashboardInfo] = useState<Dashboard>({
     id: 0,
     title: '',
@@ -32,7 +31,6 @@ export default function EditDashboardTitle() {
       color: COLOR_LIST[color],
     }));
   };
-
 
   async function getDashboard(targetId) {
     const res = await axios.get(`/dashboards/${targetId}`);
@@ -63,7 +61,6 @@ export default function EditDashboardTitle() {
     }
   };
 
-
   return (
     <div className={styles['container']}>
       <div className={styles['titleAndColor']}>
@@ -72,7 +69,6 @@ export default function EditDashboardTitle() {
           colorList={COLOR_LIST}
           colorNameList={COLOR_NAMES}
           onClickPaletteColor={onClickPaletteColor}
-
         />
       </div>
       <div className={styles['changeTitle']}>

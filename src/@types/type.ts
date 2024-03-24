@@ -3,9 +3,12 @@ import {
   ChangeEventHandler,
   ForwardedRef,
   HTMLInputTypeAttribute,
+  InputHTMLAttributes,
   ReactNode,
 } from 'react';
 import { ChangeHandler } from 'react-hook-form';
+
+export type ID = number | string;
 
 export interface ButtonProps {
   name?: string;

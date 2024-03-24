@@ -1,4 +1,4 @@
-import { Dashboard } from '@/@types/type';
+import { Dashboard, ID } from '@/@types/type';
 import axios from '@/api/axios';
 import HeaderBtn from '@/components/atoms/buttons/headerBtn';
 import DefaultProfileImage from '@/components/atoms/defaultProfileImage';
@@ -30,9 +30,9 @@ export default function HeaderMyDashboard({
   const [dashboard, setDashboard] = useState<Dashboard>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-  const { id } = router.query;
+  const { id } = router.query as { id: ID };
 
-  async function getDashboard(targetId) {
+  async function getDashboard(targetId: ID) {
     const res = await axios.get(`/dashboards/${targetId}`);
     const nextDashboard = res.data;
     setDashboard(nextDashboard);

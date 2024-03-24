@@ -1,5 +1,5 @@
-import { Member } from '@/@types/type';
-import axios from 'axios';
+import { ID, Member } from '@/@types/type';
+import { getErrorMessage } from '..';
 import instance from '../axios';
 
 interface MemberList {
@@ -7,7 +7,7 @@ interface MemberList {
 }
 
 // 대시보드 멤버 목록 조회
-export const getMemberList = async (dashboardId: number) => {
+export const getMemberList = async (dashboardId: ID) => {
   try {
     const res = await instance.get<MemberList>(
       `members?page=1&size=20&dashboardId=${dashboardId}`,
@@ -24,7 +24,7 @@ export const deleteMember = async (memberId: number) => {
   try {
     const res = await instance.delete<Member>(`/members/${memberId}`);
   } catch (error) {
-    console.error('deleteMember:', error.response.data.message);
+    console.error('deleteMember:', getErrorMessage(error));
     console.log(memberId);
   }
 };
@@ -54,7 +54,7 @@ export const deleteInvitation = async (
       `/dashboards/${dashboardId}/invitations/${invitationId}`,
     );
   } catch (error) {
-    console.error('deleteInvitation:', error.response.data.message);
+    console.error('deleteInvitation:', getErrorMessage(error));
     console.log(invitationId);
   }
 };
