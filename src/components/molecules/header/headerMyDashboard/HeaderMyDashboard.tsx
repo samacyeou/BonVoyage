@@ -96,8 +96,8 @@ export default function HeaderMyDashboard({
               />
             </div>
           )}
-          {isDashboard && <div className={styles['line']}></div>}
-          <div className={styles['invited']}></div>
+          {isDashboard && <div className={styles['line']} />}
+          <div className={styles['invited']} />
           <button
             className={styles['userProfile']}
             onClick={() => setIsOpenNicknameMenu((preState) => !preState)}
@@ -112,9 +112,7 @@ export default function HeaderMyDashboard({
               <DefaultProfileImage />
             )}
             <span className={styles['name']}>{userInfo.nickname}</span>
-            {isOpenNicknameMenu && (
-              <ProfileDown />
-            )}
+            {isOpenNicknameMenu && <ProfileDown />}
             {isOpenNicknameMenu && <ProfileDown />}
           </button>
         </div>

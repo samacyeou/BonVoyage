@@ -100,7 +100,7 @@ export default function Card({
                 <div className={styles['tagArea']}>
                   {card.tags.map((tag, index) => (
                     <ChipTagWithoutX
-                      key={index}
+                      key={tag + index}
                       tag={tag}
                       color={colors[index % 4]}
                     />
