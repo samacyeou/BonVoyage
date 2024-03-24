@@ -1,22 +1,17 @@
 import { CardDetail } from '@/@types/type';
 import KebapMenu from '@/components/atoms/kebapMenu/KebapMenu';
-import Image from 'next/image';
+import { useColumnListState } from '@/hooks/contexts';
 import { useState } from 'react';
 import styles from './cardDetailKebap.module.scss';
 
 interface ModalProps {
   getCards: () => void;
   cardId?: number;
-  cardData?: CardDetail;
+  cardData: CardDetail;
 }
 
-const CardDetailKebap = ({
-  cardId,
-  getCards,
-  cardData,
-  columns,
-  columnTitle,
-}: ModalProps) => {
+const CardDetailKebap = ({ cardId, getCards, cardData }: ModalProps) => {
+  const [columns] = useColumnListState();
   const [view, setView] = useState(false);
 
   const handleView = () => {
@@ -40,8 +35,6 @@ const CardDetailKebap = ({
           cardId={cardId}
           getCards={getCards}
           cardData={cardData}
-          columns={columns}
-          columnTitle={columnTitle}
         />
       )}
     </div>

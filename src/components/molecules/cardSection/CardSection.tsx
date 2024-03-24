@@ -1,16 +1,17 @@
 import { Column } from '@/@types/type';
 import ColumnComponent from '@/components/atoms/column/ColumnComponent';
+import { useColumnListState } from '@/hooks/contexts';
 import { useState } from 'react';
 import CreateCardModal from '../modals/createCardModal/CreateCardModal';
 import EditColumnModal from '../modals/editColumnModal/EditColumnModal';
 import styles from './cardSection.module.scss';
 
 interface CardSectionProps {
-  columns: Column[];
   getColumns: () => void;
 }
 
-export default function CardSection({ columns, getColumns }: CardSectionProps) {
+export default function CardSection({ getColumns }: CardSectionProps) {
+  const [columns] = useColumnListState();
   const [isCreateCardModalOpen, setIsCreateCardModalOpen] = useState(false);
   const [isEditColumnModalOpen, setIsEditColumnModalOpen] = useState(false);
   const [selectedColumn, setSelectedColumn] = useState<Column | null>(null);
@@ -37,7 +38,6 @@ export default function CardSection({ columns, getColumns }: CardSectionProps) {
         <ColumnComponent
           key={column.id}
           column={column}
-          columns={columns}
           handleSettingButtonClick={handleSettingButtonClick}
           handleAddCardButtonClick={handleAddCardButtonClick}
         />

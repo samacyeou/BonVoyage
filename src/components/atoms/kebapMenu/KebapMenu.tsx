@@ -10,13 +10,7 @@ interface ModalProps {
   cardData: CardDetail;
 }
 
-const KebapMenu = ({
-  cardId,
-  getCards,
-  cardData,
-  columns,
-  columnTitle,
-}: ModalProps) => {
+const KebapMenu = ({ cardId, getCards, cardData }: ModalProps) => {
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [showDeleteCardModal, setShowDeleteCardModal] = useState(false);
 
@@ -52,12 +46,7 @@ const KebapMenu = ({
         삭제하기
       </div>
       {showEditCardModal && (
-        <EditCardModal
-          onClose={closeModal}
-          cardData={cardData}
-          columns={columns}
-          columnTitle={columnTitle}
-        />
+        <EditCardModal onClose={closeModal} cardData={cardData} />
       )}
       {showDeleteCardModal && (
         <DeleteCardModal

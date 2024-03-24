@@ -9,6 +9,7 @@ import { DashboardProvider } from '@/hooks/contexts';
 import styles from '@/styles/dashboard.module.scss';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { columnContext } from './../../../hooks/contexts';
 
 export default function DashboardPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,8 +64,9 @@ export default function DashboardPage() {
         <HeaderMyDashboard isDashboard={true} />
         <SideBar />
         <section className={styles['section']}>
-          {/* <CardSection dashboardId={id} /> */}
-          <CardSection columns={columns} getColumns={getColumns} />
+          <columnContext.Provider value={[columns, setColumns]}>
+            <CardSection getColumns={getColumns} />
+          </columnContext.Provider>
           <div className={styles['newColumnArea']}>
             <EventDashboardBtn
               onClick={handleaddColumnButtonClick}
