@@ -53,7 +53,7 @@ export default function ManagerDropDown({
   async function fetchMembers() {
     try {
       const memberData = await getMemberList(dashboard?.id as number); // 멤버 목록 가져오기
-      setMembers(memberData.members); // Fix: Pass memberData as an array
+      setMembers(memberData.members);
     } catch (error) {
       console.error('Error fetching members:', error);
     }
@@ -78,22 +78,12 @@ export default function ManagerDropDown({
 
           {manager && !inputValue ? (
             <div className={cn('member', 'selected')}>
-              {manager.profileImageUrl ? (
-                <Image
-                  width={26}
-                  height={26}
-                  src={manager.profileImageUrl}
-                  alt="프로필 이미지"
-                />
-              ) : (
-                <Image
-                  width={26}
-                  height={26}
-                  src={defaultImage}
-                  alt="기본 프로필 이미지"
-                />
-              )}
-
+              <Image
+                width={26}
+                height={26}
+                src={manager.profileImageUrl || defaultImage}
+                alt="프로필 이미지"
+              />
               <span>{manager.nickname}</span>
             </div>
           ) : null}
@@ -135,21 +125,12 @@ export default function ManagerDropDown({
                       )}
                     </div>
                     <div className={cn('member')}>
-                      {element.profileImageUrl ? (
-                        <Image
-                          width={26}
-                          height={26}
-                          src={element.profileImageUrl}
-                          alt="프로필 이미지"
-                        />
-                      ) : (
-                        <Image
-                          width={26}
-                          height={26}
-                          src={defaultImage}
-                          alt="기본 프로필 이미지"
-                        />
-                      )}
+                      <Image
+                        width={26}
+                        height={26}
+                        src={element.profileImageUrl || defaultImage}
+                        alt="프로필 이미지"
+                      />
                       <span>{element.nickname}</span>
                     </div>
                   </div>

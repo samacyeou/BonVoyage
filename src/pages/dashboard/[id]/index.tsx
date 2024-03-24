@@ -1,4 +1,4 @@
-import { Column, Dashboard, User } from '@/@types/type';
+import { Column, Dashboard, ID } from '@/@types/type';
 import instance from '@/api/axios';
 import EventDashboardBtn from '@/components/atoms/buttons/eventDashboardBtn';
 import SideBar from '@/components/atoms/sideBar/SideBar';
@@ -15,7 +15,7 @@ export default function DashboardPage() {
   const [dashboard, setDashboard] = useState<Dashboard>();
   const [columns, setColumns] = useState<Column[]>([]);
   const router = useRouter();
-  const { id } = router.query as { id: string };
+  const { id } = router.query as { id: ID };
 
   async function getDashboard(targetId: string) {
     const res = await instance.get(`/dashboards/${targetId}`);

@@ -45,9 +45,9 @@ export default function CreateCardModal({ column, onClose }: ModalProps) {
   return (
     <div className={styles.cardDetailModal}>
       <form className={styles.modalContent} onSubmit={handleSubmit(onSubmit)}>
-        <h1 className={styles.modalTitle}>할 일 생성</h1>
+        <h1 className={styles.modalTitle}>여행 계획 생성</h1>
         <ManagerDropDown
-          onChange={(assignee) => setValue('assigneeUserId', assignee.id)}
+          onChange={(assignee) => setValue('assigneeUserId', assignee.userId)}
         />
         <CreateDoItYourselfTitle
           {...register('title', {
