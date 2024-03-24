@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'NPSfontBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2')
+    format('woff2');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'ChosunGu';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .container {
   margin: 100px 0 100px 0;
   display: flex;
@@ -20,6 +35,7 @@
     .pointOneText,
     .pointTwoText {
       text-align: center;
+      font-family: 'NPSfontBold';
 
       span {
         font-size: 2rem;
@@ -56,6 +72,7 @@
   .pointThr {
     width: 100%;
     .pointThrTitle {
+      font-family: 'NPSfontBold';
       text-align: center;
       font-weight: 700;
       margin: 50px 0 50px;
@@ -135,6 +152,7 @@
       height: 972px;
       .pointOneText,
       .pointTwoText {
+        font-family: 'NPSfontBold';
         text-align: left;
         padding-left: 60px;
 
@@ -166,6 +184,7 @@
       width: 60%;
 
       .pointThrTitle {
+        font-family: 'NPSfontBold';
         font-size: 2.8rem;
       }
 
@@ -217,6 +236,8 @@
       height: 600px;
 
       .pointOneText {
+        font-family: 'NPSfontBold';
+
         width: 600px;
         span {
           display: block;
@@ -244,6 +265,7 @@
       height: 600px;
 
       .pointTwoText {
+        font-family: 'NPSfontBold';
         width: 600px;
         span {
           display: block;
@@ -263,6 +285,7 @@
       width: 100%;
 
       .pointThrTitle {
+        font-family: 'NPSfontBold';
         text-align: left;
       }
 
@@ -274,4 +297,13 @@
       }
     }
   }
+}
+
+.pointTextColor {
+  color: var(--orange30);
+}
+
+.settingsTitle,
+.settingsContent {
+  font-family: 'ChosunGu';
 }

@@ -112,14 +112,24 @@ const LandingCarousel = ({ carouselList }: LandingCarouselProps) => {
           className={styles.leftBtn}
           onClick={() => handleSwipe(-1)}
         >
-          <Image src={LeftArrowIcon} width={40} height={80} />
+          <Image
+            src={LeftArrowIcon}
+            width={40}
+            height={80}
+            alt="Left Arrow Icon"
+          />
         </button>
         <button
           type="button"
           className={styles.rightBtn}
           onClick={() => handleSwipe(1)}
         >
-          <Image src={ForwardArrowIcon} width={40} height={80} />
+          <Image
+            src={ForwardArrowIcon}
+            width={40}
+            height={80}
+            alt="Forward Arrow Icon"
+          />
         </button>
         <ul className={styles.carousel} ref={carouselRef}>
           {currList.map((image, idx) => {
