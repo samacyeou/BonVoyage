@@ -137,6 +137,10 @@
   margin-top: 16px;
   display: flex;
 }
+.tag {
+  display: flex;
+  gap: 6px;
+}
 
 .line {
   border-left: 1px solid var(--gray30);
@@ -158,6 +162,7 @@
 
 .image {
   width: 100%;
+  border-radius: 6px;
 }
 
 .commentArea {

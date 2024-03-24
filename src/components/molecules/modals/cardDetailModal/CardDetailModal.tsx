@@ -25,6 +25,12 @@ interface Comment {
     nickname: string;
   };
 }
+const colors: Array<'orange' | 'pink' | 'blue' | 'green'> = [
+  'orange',
+  'green',
+  'pink',
+  'blue',
+];
 
 export default function CardDetailModal({
   onClose,
@@ -156,6 +162,7 @@ export default function CardDetailModal({
               <h2 className={styles['infoTitle']}>담당자</h2>
               <div className={styles['userInfo']}>
                 <Image
+                  className={styles['profileImage']}
                   width={22}
                   height={22}
                   src={
@@ -178,10 +185,14 @@ export default function CardDetailModal({
             <div className={styles['tagArea']}>
               <ChipProgress column={columnTitle} />
               <div className={styles['line']}></div>
-              <ChipTagWithoutX
-                tag={cardDetail?.tags.join(' ')}
-                color="pink"
-              ></ChipTagWithoutX>
+              <div className={styles['tag']}>
+                {cardDetail.tags.map((tag, index) => (
+                  <ChipTagWithoutX
+                    tag={tag}
+                    color={colors[index % 4]}
+                  ></ChipTagWithoutX>
+                ))}
+              </div>
             </div>
             <p className={styles['description']}>{cardDetail?.description}</p>
             <div className={styles['imageArea']}>
