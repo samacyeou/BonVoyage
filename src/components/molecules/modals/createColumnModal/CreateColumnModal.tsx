@@ -8,13 +8,11 @@ import instance from '@/api/axios';
 interface ModalProps {
   onClose: () => void;
   dashboardId: number;
-  setColumns: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 export default function CreateColumnModal({
   onClose,
   dashboardId,
-  setColumns,
 }: ModalProps) {
   const [columnName, setColumnName] = useState('');
 

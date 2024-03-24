@@ -1,13 +1,13 @@
-import styles from './cardSection.module.scss';
-import React, { useEffect, useState } from 'react';
+import { Column } from '@/@types/type';
+import instance from '@/api/axios';
+import ColumnComponent from '@/components/atoms/column/ColumnComponent';
+import { useEffect, useState } from 'react';
 import CreateCardModal from '../modals/createCardModal/CreateCardModal';
 import EditColumnModal from '../modals/editColumnModal/EditColumnModal';
-import instance from '@/api/axios';
-
-import Column from '@/components/atoms/column/Column';
+import styles from './cardSection.module.scss';
 
 interface CardSectionProps {
-  dashboardId: number;
+  dashboardId: number | string;
 }
 
 export default function CardSection({ dashboardId }: CardSectionProps) {
@@ -56,11 +56,12 @@ export default function CardSection({ dashboardId }: CardSectionProps) {
   return (
     <div className={styles['cardSection']}>
       {columns?.map((column) => (
-        <Column
+        <ColumnComponent
+          key={column.id}
           column={column}
           handleSettingButtonClick={handleSettingButtonClick}
           handleAddCardButtonClick={handleAddCardButtonClick}
-        ></Column>
+        />
       ))}
       {isCreateCardModalOpen && (
         <CreateCardModal column={selectedColumn!} onClose={closeModal} />
