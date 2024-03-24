@@ -1,88 +1,119 @@
-import styles from './headerMyDashboard.module.scss';
-import classNames from 'classnames/bind';
+import { Dashboard } from '@/@types/type';
+import axios from '@/api/axios';
 import HeaderBtn from '@/components/atoms/buttons/headerBtn';
-import Image from 'next/image';
+import DefaultProfileImage from '@/components/atoms/defaultProfileImage';
 import ProfileIcon from '@/components/atoms/profileIcon/ProfileIcon';
-import { useState } from 'react';
-import Link from 'next/link';
+import ProfileDown from '@/components/molecules/profileDropdown/index';
+import useAuth from '@/hooks/useAuth';
+import classNames from 'classnames/bind';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import InviteMemberModal from '../../modals/inviteMemberModal/InviteMemberModal';
+import styles from './headerMyDashboard.module.scss';
 
 const cn = classNames.bind(styles);
 
 interface Props {
-  enName?: string;
-  koName?: string;
   boardTitle?: string;
-  profile?: string;
-  isMyDashboard?: boolean;
-  isNotDashboardHome?: boolean;
+  isDashboard?: boolean;
+  ismyDashboard?: boolean;
 }
 
 export default function HeaderMyDashboard({
-  enName = 'Name',
-  koName = '이름',
   boardTitle = '내 대시보드',
-  profile,
-  isMyDashboard = true,
-  isNotDashboardHome = true,
+  isDashboard = false,
+  ismyDashboard = false,
 }: Props) {
+  const { userInfo } = useAuth();
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
+  const [dashboard, setDashboard] = useState<Dashboard>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+  const { id } = router.query;
+
+  async function getDashboard(targetId: string) {
+    const res = await axios.get(`/dashboards/${targetId}`);
+    const nextDashboard = res.data;
+    setDashboard(nextDashboard);
+  }
+  useEffect(() => {
+    if (!id) return;
+    getDashboard(id as string);
+  }, [id]);
+
+  const onClickEdit = () => {
+    router.push(`${id}/edit`);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const onClickInviteBtn = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <>
       <div
         className={cn(
-          { header: isNotDashboardHome },
-          { dashboardHomeHeader: !isNotDashboardHome },
+          { header: isDashboard },
+          { dashboardHomeHeader: !isDashboard },
         )}
       >
         <div
           className={cn(
-            { boardTitle: isNotDashboardHome },
-            { dashboardHomeBorderTitle: !isNotDashboardHome },
+            { boardTitle: isDashboard },
+            { dashboardHomeBorderTitle: !isDashboard },
           )}
         >
-          <span>{boardTitle}</span>
-          {isNotDashboardHome && isMyDashboard && (
-            <Image
-              src="/assets/icon/crownIcon.svg"
-              width={20}
-              height={16}
-              alt="crown"
-            />
+          {!isDashboard && <span>{boardTitle}</span>}
+          {isDashboard && (
+            <>
+              <span>{dashboard?.title}</span>
+              <Image
+                src="/assets/icon/crownIcon.svg"
+                width={20}
+                height={16}
+                alt="crown"
+              />
+            </>
           )}
         </div>
         <div className={styles['headerRight']}>
-          {isNotDashboardHome && isMyDashboard && (
+          {isDashboard && (
             <div className={styles['headerBtn']}>
-              <HeaderBtn name="관리" type="edit" />
-              <HeaderBtn name="초대하기" type="invite" />
+              <HeaderBtn name="관리" type="edit" onClick={onClickEdit} />
+              <HeaderBtn
+                name="초대하기"
+                type="invite"
+                onClick={onClickInviteBtn}
+              />
             </div>
           )}
-          {isNotDashboardHome && <div className={styles['line']}></div>}
+          {isDashboard && <div className={styles['line']}></div>}
           <div className={styles['invited']}></div>
           <button
             className={styles['userProfile']}
             onClick={() => setIsOpenNicknameMenu((preState) => !preState)}
-            onBlur={() => setTimeout(() => setIsOpenNicknameMenu(false), 100)}
+            onBlur={() => setTimeout(() => setIsOpenNicknameMenu(false), 300)}
           >
-            <ProfileIcon name={enName} profile={profile} />
-            <span className={styles['koName']}>{koName}</span>
+            {userInfo?.profileImageUrl ? (
+              <ProfileIcon
+                name={userInfo.nickname}
+                profile={userInfo.profileImageUrl}
+              />
+            ) : (
+              <DefaultProfileImage />
+            )}
+            <span className={styles['name']}>{userInfo.nickname}</span>
             {isOpenNicknameMenu && (
-              <div
-                className={styles['nicknameMenu']}
-                onBlur={() => setIsOpenNicknameMenu(false)}
-              >
-                <button className={styles['menuItem']}>
-                  <Link href="/myPage">마이페이지</Link>
-                </button>
-                <hr />
-                <button className={cn('menuItem', 'logout')}>
-                  <Link href="/">로그아웃</Link>
-                </button>
-              </div>
+              <ProfileDown onBlur={() => setIsOpenNicknameMenu(false)} />
             )}
           </button>
         </div>
+        {isModalOpen && <InviteMemberModal onClose={closeModal} />}
       </div>
     </>
   );

@@ -21,12 +21,17 @@ interface Card {
 interface CardProps {
   columnId: number;
   columnTitle: string;
+  handleCardsData: (cardsData: []) => void;
 }
 
-export default function Card({ columnId, columnTitle }: CardProps) {
+export default function Card({
+  columnId,
+  columnTitle,
+  handleCardsData,
+}: CardProps) {
   const [cards, setCards] = useState<Card[]>([]);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  const [clickedCardId, setClickedCardId] = useState<number | null>(null);
+  const [clickedCardId, setClickedCardId] = useState<number>();
 
   async function getCards() {
     try {
@@ -41,6 +46,7 @@ export default function Card({ columnId, columnTitle }: CardProps) {
       );
       const nextCards = res.data.cards;
       setCards(nextCards);
+      handleCardsData(nextCards);
     } catch (error) {
       console.error('Error fetching cards:', error);
     }
@@ -48,7 +54,6 @@ export default function Card({ columnId, columnTitle }: CardProps) {
 
   useEffect(() => {
     if (columnId !== undefined) {
-      // columnId가 undefined가 아닐 때에만 호 출
       getCards();
     }
   }, [columnId]);
@@ -113,7 +118,7 @@ export default function Card({ columnId, columnTitle }: CardProps) {
           cardId={clickedCardId}
           columnTitle={columnTitle}
           getCards={getCards}
-        ></CardDetailModal>
+        />
       )}
     </div>
   );

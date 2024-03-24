@@ -7,14 +7,14 @@ type props = {
 };
 
 export default function ProfileIcon({ name, profile }: props) {
-  const firstCharacter = name.slice(0, 1);
+  const firstCharacter = name?.slice(0, 1);
 
   return (
     <div className={styles['icon']}>
       {profile ? (
         <div className={styles['image']}>
           <Image
-            layout="fill"
+            // layout="fill"
             src={profile}
             alt="프로필 이미지"
             priority={true}
