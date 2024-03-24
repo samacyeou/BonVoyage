@@ -1,5 +1,5 @@
-import { Dashboard, User } from '@/@types/type';
-import axios from '@/api/axios';
+import { Column, Dashboard, User } from '@/@types/type';
+import instance from '@/api/axios';
 import EventDashboardBtn from '@/components/atoms/buttons/eventDashboardBtn';
 import SideBar from '@/components/atoms/sideBar/SideBar';
 import CardSection from '@/components/molecules/cardSection/CardSection';
@@ -14,13 +14,33 @@ export default function DashboardPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dashboard, setDashboard] = useState<Dashboard>();
   const [user, setUser] = useState<User | null>(null);
+  const [columns, setColumns] = useState<Column[]>([]);
   const router = useRouter();
   const { id } = router.query as { id: string };
 
   async function getDashboard(targetId: string) {
-    const res = await axios.get(`/dashboards/${targetId}`);
+    const res = await instance.get(`/dashboards/${targetId}`);
+
     const nextDashboard = res.data;
     setDashboard(nextDashboard);
+  }
+
+  async function getColumns() {
+    try {
+      const res = await instance.get<{ data: Column[] }>(
+        `/columns?dashboardId=${id}`,
+        {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        },
+      );
+      setColumns(res.data.data);
+      console.log(res.data.data);
+    } catch (error) {
+      console.error('Error fetching columns:', error);
+    }
   }
 
   const handleaddColumnButtonClick = () => {
@@ -34,6 +54,7 @@ export default function DashboardPage() {
   useEffect(() => {
     if (!id) return;
     getDashboard(id as string);
+    getColumns();
   }, [id]);
 
   if (!dashboard) return null;
@@ -41,10 +62,12 @@ export default function DashboardPage() {
   return (
     <div className={styles['background']}>
       <DashboardProvider initialValue={dashboard}>
-        <HeaderMyDashboard isDashboard={true} />
+        <HeaderMyDashboard boardTitle={dashboard.title} isDashboard={true} />
         <SideBar />
         <section className={styles['section']}>
-          <CardSection dashboardId={id} />
+          {/* <CardSection dashboardId={id} /> */}
+          <CardSection columns={columns} getColumns={getColumns} />
+
           <div className={styles['newColumnArea']}>
             <EventDashboardBtn
               onClick={handleaddColumnButtonClick}
@@ -57,7 +80,8 @@ export default function DashboardPage() {
           <CreateColumnModal
             onClose={closeModal}
             dashboardId={Number(id)}
-          ></CreateColumnModal>
+            getColumns={getColumns}
+          />
         )}
       </DashboardProvider>
     </div>
