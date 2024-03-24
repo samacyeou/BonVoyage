@@ -20,8 +20,6 @@ const Button = ({
     switch (type) {
       case 'google':
         return styles.googleBtn;
-      case 'kakao':
-        return styles.kakaoBtn;
       case 'account':
         return styles.accountBtn;
       case 'small':
