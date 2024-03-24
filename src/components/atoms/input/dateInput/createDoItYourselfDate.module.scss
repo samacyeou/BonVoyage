@@ -1,0 +1,13 @@
+.datePickerContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  font-size: 1.3rem;
+  cursor: pointer;
+
+  @media (min-width: 769px) {
+    font-size: 1.4rem;
+  }
+}

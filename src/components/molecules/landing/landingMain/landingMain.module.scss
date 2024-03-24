@@ -1,0 +1,309 @@
+@font-face {
+  font-family: 'NPSfontBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2')
+    format('woff2');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'ChosunGu';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.container {
+  margin: 100px 0 100px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  .pointOne,
+  .pointTwo {
+    width: 100%;
+    height: 690px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--white, #ffffff);
+    border-radius: 8px;
+
+    .pointOneText,
+    .pointTwoText {
+      text-align: center;
+      font-family: 'NPSfontBold';
+
+      span {
+        font-size: 2rem;
+        font-weight: 500;
+      }
+      p {
+        margin-top: 60px;
+        font-size: 3.3rem;
+        font-weight: 700;
+      }
+    }
+
+    .pointOneImgWrapper {
+      width: 90%;
+      height: 260px;
+      margin-left: auto;
+      box-shadow: -5px -5px 5px var(--gray40, #9fa6b2);
+      position: relative;
+      border-top-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    .pointTwoImgWrapper {
+      width: 220px;
+      height: 50%;
+      position: relative;
+      margin: 0 auto;
+      box-shadow: 0px 0px 15px var(--gray40, #9fa6b2);
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+  }
+
+  .pointThr {
+    width: 100%;
+    .pointThrTitle {
+      font-family: 'NPSfontBold';
+      text-align: center;
+      font-weight: 700;
+      margin: 50px 0 50px;
+    }
+
+    .cardList {
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+
+      .dashboard,
+      .invite,
+      .member {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background: var(--white, #ffffff);
+        border-radius: 8px;
+        height: 347px;
+
+        .dashboardImg {
+          width: 73%;
+          max-width: 260px;
+          margin: auto;
+          box-shadow: 5px 5px 5px 5px var(--gray40, #9fa6b2);
+          border-radius: 8px;
+          .indashboardImg {
+            border-radius: 8px;
+          }
+        }
+
+        .inviteImg {
+          width: 60%;
+          max-width: 260px;
+          margin: auto;
+          box-shadow: 5px 5px 5px 5px var(--gray40, #9fa6b2);
+          border-radius: 8px;
+          .ininviteImg {
+            border-radius: 8px;
+          }
+        }
+
+        .memberImg {
+          width: 73%;
+          max-width: 260px;
+          margin: auto;
+          box-shadow: 5px 5px 5px 5px var(--gray40, #9fa6b2);
+          border-radius: 8px;
+          img {
+            border-radius: 8px;
+          }
+        }
+      }
+
+      .dashboardText,
+      .inviteText,
+      .memberText {
+        height: 112px;
+        padding: 25px 15px;
+        background-color: var(white);
+        border-top: 1px solid var(--orange2, #fac171);
+        word-break: keep-all;
+        p {
+          margin-top: 0;
+          margin-bottom: 10px;
+          font-weight: 700;
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 769px) {
+    .pointOne,
+    .pointTwo {
+      height: 972px;
+      .pointOneText,
+      .pointTwoText {
+        font-family: 'NPSfontBold';
+        text-align: left;
+        padding-left: 60px;
+
+        span {
+          font-size: 2.2rem;
+          font-weight: 500;
+        }
+
+        P {
+          margin-top: 100px;
+          font-size: 4.8rem;
+        }
+      }
+
+      .pointOneImgWrapper {
+        width: 520px;
+        height: 435px;
+        margin-left: auto;
+      }
+
+      .pointTwoImgWrapper {
+        width: 370px;
+        height: 502px;
+        margin: 0 auto;
+      }
+    }
+
+    .pointThr {
+      width: 60%;
+
+      .pointThrTitle {
+        font-family: 'NPSfontBold';
+        font-size: 2.8rem;
+      }
+
+      .cardList {
+        margin-bottom: 80px;
+
+        .dashboard,
+        .invite,
+        .member {
+          height: 384px;
+
+          .dashboardImg {
+            width: 73%;
+            height: 35%;
+            margin: auto;
+            img {
+              border-radius: 8px;
+            }
+          }
+
+          .inviteImg {
+            width: 73%;
+            height: 60%;
+            margin: auto;
+            img {
+              border-radius: 8px;
+            }
+          }
+
+          .memberImg {
+            width: 73%;
+            height: 50%;
+            margin: auto;
+            position: relative;
+            img {
+              border-radius: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pointOne {
+      display: flex;
+      flex-direction: row;
+      max-width: 1200px;
+      height: 600px;
+
+      .pointOneText {
+        font-family: 'NPSfontBold';
+
+        width: 600px;
+        span {
+          display: block;
+          margin-top: 52px;
+        }
+      }
+
+      .pointOneImgWrapper {
+        height: 497px;
+        margin-top: auto;
+        width: 594px;
+      }
+
+      .pointTwoImgWrapper {
+        width: 436px;
+        height: 502px;
+        margin: auto;
+      }
+    }
+
+    .pointTwo {
+      display: flex;
+      flex-direction: row-reverse;
+      max-width: 1200px;
+      height: 600px;
+
+      .pointTwoText {
+        font-family: 'NPSfontBold';
+        width: 600px;
+        span {
+          display: block;
+          margin-top: 52px;
+        }
+      }
+
+      .pointTwoImgWrapper {
+        width: 37%;
+        height: 502px;
+        margin-top: auto;
+      }
+    }
+
+    .pointThr {
+      max-width: 1200px;
+      width: 100%;
+
+      .pointThrTitle {
+        font-family: 'NPSfontBold';
+        text-align: left;
+      }
+
+      .cardList {
+        margin-bottom: 80px;
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+      }
+    }
+  }
+}
+
+.pointTextColor {
+  color: var(--orange30);
+}
+
+.settingsTitle,
+.settingsContent {
+  font-family: 'ChosunGu';
+}

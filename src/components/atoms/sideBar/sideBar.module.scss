@@ -1,0 +1,133 @@
+.sidebar {
+  top: 0;
+  width: 67px;
+  align-items: center;
+  height: 100vh;
+  padding: 20px 24px;
+  border-right: solid 1px var(--gray20, #eee);
+  position: fixed;
+  z-index: 2;
+  background-color: var(--white);
+}
+
+.logoText {
+  display: none;
+}
+
+.menuTitleArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.menuTitle {
+  font-size: 1.2rem;
+  color: var(--gray50);
+  display: none;
+}
+
+.addBox {
+  width: fit-content;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  cursor: pointer;
+
+  background-color: inherit;
+  border: none;
+}
+
+.pagenation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.page {
+  font-size: 1.6rem;
+  margin-top: 5px;
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    width: 160px;
+    padding: 20px 24px;
+  }
+
+  .logoText {
+    display: block;
+  }
+
+  .menuTitle {
+    display: block;
+  }
+
+  .menuArea {
+    margin-top: 20px;
+  }
+
+  .pagenation {
+    justify-content: left;
+  }
+
+  @media (min-width: 1024px) {
+    .sidebar {
+      width: 300px;
+      padding: 20px 24px;
+    }
+
+    .menuTitleArea {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .menuTitle {
+      font-size: 1.2rem;
+      color: var(--gray50, #787486);
+    }
+
+    .sidebar a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+  }
+  // 태블릿일때 사이드바 전체크기
+  //   @media (min-width: 769px) {
+  //     .sidebar {
+  //       width: 160px;
+  //     }
+
+  //     .menuTitle {
+  //       display: block;
+  //     }
+  //   }
+
+  //   // 위와 아래 중 어떤 게 맞는거죠..?
+
+  //   // @media (min-width: 1024px) {
+  //   //   .sidebar {
+  //   //     width: 300px;
+  //   //   }
+  //   // }
+  //   // 데스크탑일때 사이드바 전체크기
+  //   @media (min-width: 1024px) {
+  //     .sidebar {
+  //       width: 300px;
+  //       padding: 20px 24px;
+  //     }
+
+  //     .menuTitle {
+  //       display: block;
+  //     }
+  //   }
+}

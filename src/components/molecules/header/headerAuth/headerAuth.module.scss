@@ -1,0 +1,46 @@
+.header {
+  padding: 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-bottom: solid 1px var(--gray20, #eee);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  .authButton {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .loginBtn, .signUpBtn {
+    width: 70px;
+    height: 30px;
+    padding-top: 4px;
+    font-size: 1.3rem;
+    text-align: center;
+    background: var(--white, #ffffff);
+    color: var(--black30, #171717);
+    border-radius: 8px;
+    border: 2px solid var(--orange20, #fac171);
+  }
+
+  @media (min-width: 769px) {
+    padding: 16px 48px;
+    .loginBtn, .signUpBtn {
+      width: 100px;
+      height: 40px;
+      font-size: 2rem;
+      padding: 4px;
+    }
+  }
+  .loginBtn:hover, .signUpBtn:hover {
+    background: var(--orange20, #fac171);
+    color: var(--white, #ffffff);
+    transition: 0.3s;
+    scale: 1.1;
+  }
+
+}

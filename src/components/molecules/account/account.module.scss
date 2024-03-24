@@ -1,0 +1,38 @@
+.container {
+  margin-top: 70px;
+  padding: 12px;
+  margin-left: 80px;
+
+  .return {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 5px;
+    border: none;
+    background: var(--gray10, #fafafa);
+    color: var(--black20, #333236);
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .return:hover {
+    transition: all 0.3s;
+    scale: 1.1;
+  }
+
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  //태블릿
+   @media (min-width: 769px) {
+    margin-left: 180px;
+  }
+
+  //데스크탑
+  @media (min-width: 1024px) {
+    margin-left: 320px;
+  }
+}

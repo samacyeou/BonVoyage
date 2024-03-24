@@ -1,0 +1,82 @@
+.sidebarMenu {
+  width: 100%;
+  height: 45px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .dot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8px;
+    height: 8px;
+  }
+
+  .menuTitle {
+    color: var(--gray50);
+    font-size: 1.8rem;
+    margin-left: 16px;
+    margin-right: 6px;
+    display: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .crownIcon {
+    display: none;
+  }
+
+  .hoverHelper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .hoverContainer {
+    position: absolute;
+    display: none;
+    padding-left: 8px;
+  }
+
+  .hoverTitle {
+    font-size: 1.8rem;
+    padding: 0 5px;
+    white-space: nowrap;
+    color: black;
+
+    background-color: white;
+  }
+
+  &:hover .hoverContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (min-width: 769px) {
+    justify-content: left;
+
+    .menuTitle {
+      display: inline-block;
+    }
+    .crownIcon {
+      display: inline-block;
+    }
+
+    .hoverContainer {
+      padding-left: 0;
+    }
+  }
+
+  // 데스크탑일때 사이드바 전체크기
+  @media (min-width: 1024px) {
+    .menuTitle {
+      display: inline-block;
+    }
+    .crownIcon {
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,149 @@
+@import '@/styles/mixins';
+
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 280px;
+  min-height: 100vh;
+  gap: 10px;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.691),
+      rgba(255, 255, 255, 0.358)
+    ),
+    url(../../../public/assets/image/bgLogin.jpg);
+  @include animatedBackground;
+
+  @media (min-width: 769px) {
+    gap: 50px;
+  }
+}
+
+.loginLogoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  @media (min-width: 769px) {
+    gap: 10px;
+  }
+}
+
+.loginLogo {
+  cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &:active {
+    animation-name: bob-float, bob;
+    animation-duration: 0.3s, 1.5s;
+    animation-delay: 0s, 0.3s;
+    animation-timing-function: ease-out, ease-in-out;
+    animation-iteration-count: 1, infinite;
+    animation-fill-mode: forwards;
+    animation-direction: normal, alternate;
+  }
+}
+
+@keyframes bob {
+  0% {
+    transform: translateY(-8px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes bob-float {
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+.loginNiceMeetYouText {
+  color: var(--black);
+  font-size: 1.2rem;
+
+  @media (min-width: 769px) {
+    font-size: 1.5rem;
+  }
+}
+
+.loginFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: calc(100% - 24px);
+  gap: 8px;
+  background-color: #ffffff77;
+  padding: 24px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+
+  @media (min-width: 769px) {
+    width: 50%;
+    padding: 24px;
+    gap: 20px;
+  }
+}
+
+.loginButton {
+  margin-bottom: 8px;
+}
+
+.signUpLinkBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  color: var(--white);
+
+  @media (min-width: 769px) {
+    font-size: 1.5rem;
+  }
+
+  .signUpLinkText {
+    color: var(--black20);
+    border-bottom: 1px solid var(--black20);
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: bold;
+    transition: all 0.2s ease;
+
+    &:active,
+    &:hover,
+    &:focus {
+      color: var(--pink10);
+      border-bottom: 1px solid var(--pink10);
+    }
+
+    @media (min-width: 769px) {
+      color: var(--black20);
+      border-bottom: 1px solid var(--black10);
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.divider {
+  color: var(--gray40);
+  width: 100%;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 1.2rem;
+  margin: 2px 0;
+
+  @media (min-width: 769px) {
+    font-size: 1.4rem;
+  }
+}
