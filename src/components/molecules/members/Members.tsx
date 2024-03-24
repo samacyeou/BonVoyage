@@ -65,7 +65,7 @@ export default function Members({ dashboardId }: Props) {
             <Button
               type="delete"
               name="삭제"
-              onClick={() => onClickDelete(member.userId)}
+              onClick={() => onClickDelete(member.id)}
             />
           </div>
         ))}
