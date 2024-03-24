@@ -76,12 +76,10 @@ export default function Card({
           onClick={() => handleCardClick(card.id)}
         >
           {card.imageUrl && (
-            <Image
+            <img
               className={styles['cardImage']}
               src={card.imageUrl}
               alt="Card Image"
-              width={300}
-              height={200}
             />
           )}
           <div className={styles['infoArea']}>
