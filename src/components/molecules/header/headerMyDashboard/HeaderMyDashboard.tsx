@@ -1,16 +1,19 @@
-import styles from './headerMyDashboard.module.scss';
-import classNames from 'classnames/bind';
+import { Dashboard } from '@/@types/type';
+import axios from '@/api/axios';
 import HeaderBtn from '@/components/atoms/buttons/headerBtn';
-import Image from 'next/image';
+import DefaultProfileImage from '@/components/atoms/defaultProfileImage';
 import ProfileIcon from '@/components/atoms/profileIcon/ProfileIcon';
 import { useEffect, useState } from 'react';
 import ProfileDown from '@/components/molecules/profileDropdown/index';
 import { useContext } from 'react';
 import { userContext } from '@/pages/_app';
 import { useRouter } from 'next/router';
-import axios from '@/api/axios';
 import InviteMemberModal from '../../modals/inviteMemberModal/InviteMemberModal';
-import { Dashboard } from '@/@types/type';
+import ProfileDown from '@/components/molecules/profileDropdown/index';
+import useAuth from '@/hooks/useAuth';
+import classNames from 'classnames/bind';
+import Image from 'next/image';
+import styles from './headerMyDashboard.module.scss';
 
 const cn = classNames.bind(styles);
 
@@ -25,6 +28,7 @@ export default function HeaderMyDashboard({
   isDashboard = false,
   ismyDashboard = false,
 }: Props) {
+  const { userInfo } = useAuth();
   const [isOpenNicknameMenu, setIsOpenNicknameMenu] = useState(false);
   const [dashboard, setDashboard] = useState<Dashboard>();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,7 +43,7 @@ export default function HeaderMyDashboard({
   }
   useEffect(() => {
     if (!id) return;
-    getDashboard(id);
+    getDashboard(id as string);
   }, [id]);
 
   const onClickEdit = () => {
@@ -103,16 +107,21 @@ export default function HeaderMyDashboard({
             onClick={() => setIsOpenNicknameMenu((preState) => !preState)}
             onBlur={() => setTimeout(() => setIsOpenNicknameMenu(false), 300)}
           >
-            <ProfileIcon
-              name={userInfo?.nickname}
-              profile={userInfo?.profileImageUrl}
-            />
-            <span className={styles['name']}>{userInfo?.nickname}</span>
+            {userInfo?.profileImageUrl ? (
+              <ProfileIcon
+                name={userInfo.nickname}
+                profile={userInfo.profileImageUrl}
+              />
+            ) : (
+              <DefaultProfileImage />
+            )}
+            <span className={styles['name']}>{userInfo.nickname}</span>
             {isOpenNicknameMenu && (
               <ProfileDown onBlur={() => setIsOpenNicknameMenu(false)} />
             )}
           </button>
         </div>
+        {isModalOpen && <InviteMemberModal onClose={closeModal} />}
       </div>
       {isModalOpen && (
         <InviteMemberModal

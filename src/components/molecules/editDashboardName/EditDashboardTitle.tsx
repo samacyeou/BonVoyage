@@ -8,10 +8,11 @@ import { useRouter } from 'next/router';
 import { changeDashboardInfo } from '@/api/dashboardInfoApi/dashboardInfoApi';
 import { Dashboard } from '@/@types/type';
 
+
 export default function EditDashboardTitle() {
   const router = useRouter();
   const { id } = router.query;
-
+  
   const [dashboardInfo, setDashboardInfo] = useState<Dashboard>({
     id: 0,
     title: '',
@@ -27,9 +28,11 @@ export default function EditDashboardTitle() {
   const onClickPaletteColor = (color: string) => {
     setDashboardInfo((prevData) => ({
       ...prevData,
+
       color: COLOR_LIST[color],
     }));
   };
+
 
   async function getDashboard(targetId) {
     const res = await axios.get(`/dashboards/${targetId}`);
@@ -60,6 +63,7 @@ export default function EditDashboardTitle() {
     }
   };
 
+
   return (
     <div className={styles['container']}>
       <div className={styles['titleAndColor']}>
@@ -68,6 +72,7 @@ export default function EditDashboardTitle() {
           colorList={COLOR_LIST}
           colorNameList={COLOR_NAMES}
           onClickPaletteColor={onClickPaletteColor}
+
         />
       </div>
       <div className={styles['changeTitle']}>

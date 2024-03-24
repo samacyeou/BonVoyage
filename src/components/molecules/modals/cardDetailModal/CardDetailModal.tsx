@@ -2,6 +2,7 @@ import { CardDetail } from '@/@types/type';
 import instance from '@/api/axios';
 import ChipTagWithoutX from '@/components/atoms/chipTag/ChipTagWithoutX';
 import CreateDoItYourselfComment from '@/components/atoms/input/commentInput/CreateDoItYourselfComment';
+import { format } from 'date-fns';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import CardDetailKebap from '../../cardDetailKebap/CardDetailKebap';
@@ -98,7 +99,7 @@ export default function CardDetailModal({
         {
           headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
           },
         },
       );
@@ -114,7 +115,7 @@ export default function CardDetailModal({
       await instance.delete(`/comments/${commentId}`, {
         headers: {
           Accept: 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
         },
       });
       getCommentList();
@@ -201,84 +202,86 @@ export default function CardDetailModal({
                 dashboardId={cardDetail ? cardDetail.dashboardId : null}
                 getCommentList={getCommentList}
               />
-              {commentList.map((comment) => (
-                <div className={styles['commentListArea']} key={comment.id}>
-                  <div className={styles['commentWriterArea']}>
-                    {comment.author.profileImageUrl ? (
-                      <Image
-                        className={styles['profileImage']}
-                        width={26}
-                        height={26}
-                        alt="Profile image"
-                        src={comment.author.profileImageUrl}
-                      />
-                    ) : (
-                      <img src="/assets/image/testProfile.png" />
-                    )}
+              <div className={styles['commentListArea']}>
+                {commentList.map((comment) => (
+                  <div className={styles['commentListArea']} key={comment.id}>
+                    <div className={styles['commentWriterArea']}>
+                      {comment.author.profileImageUrl ? (
+                        <Image
+                          className={styles['profileImage']}
+                          width={26}
+                          height={26}
+                          alt="Profile image"
+                          src={comment.author.profileImageUrl}
+                        />
+                      ) : (
+                        <img src="/assets/image/testProfile.png" />
+                      )}
 
-                    <h1 className={styles['writerName']}>
-                      {' '}
-                      {comment.author.nickname}
-                    </h1>
-                    <span className={styles['createDate']}>
-                      {comment.createdAt}
-                    </span>
-                  </div>
-                  {editingCommentId === comment.id ? (
-                    <>
-                      <textarea
-                        className={styles['editCommentInput']}
-                        value={editedCommentContent}
-                        onChange={(e) =>
-                          setEditedCommentContent(e.target.value)
-                        }
-                        ref={editCommentInputRef}
-                      />
-                      <div className={styles['buttonArea']}>
-                        <span
-                          className={styles['button']}
-                          onClick={() =>
-                            handleCommentUpdate(
-                              editedCommentContent,
-                              comment.id,
-                            )
-                          }
-                        >
-                          확인
-                        </span>
-                        <span
-                          className={styles['button']}
-                          onClick={() => setEditingCommentId(null)}
-                        >
-                          취소
-                        </span>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <span className={styles['commentText']}>
-                        {comment.content}
+                      <h1 className={styles['writerName']}>
+                        {' '}
+                        {comment.author.nickname}
+                      </h1>
+                      <span className={styles['createDate']}>
+                        {format(comment.createdAt, 'yyyy-MM-dd HH:mm')}
                       </span>
-                      <div className={styles['buttonArea']}>
-                        <span
-                          className={styles['button']}
-                          onClick={() =>
-                            handleEditComment(comment.id, comment.content)
+                    </div>
+                    {editingCommentId === comment.id ? (
+                      <>
+                        <textarea
+                          className={styles['editCommentInput']}
+                          value={editedCommentContent}
+                          onChange={(e) =>
+                            setEditedCommentContent(e.target.value)
                           }
-                        >
-                          수정
+                          ref={editCommentInputRef}
+                        />
+                        <div className={styles['buttonArea']}>
+                          <span
+                            className={styles['button']}
+                            onClick={() =>
+                              handleCommentUpdate(
+                                editedCommentContent,
+                                comment.id,
+                              )
+                            }
+                          >
+                            확인
+                          </span>
+                          <span
+                            className={styles['button']}
+                            onClick={() => setEditingCommentId(null)}
+                          >
+                            취소
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <span className={styles['commentText']}>
+                          {comment.content}
                         </span>
-                        <span
-                          className={styles['button']}
-                          onClick={() => handleCommentDelete(comment.id)}
-                        >
-                          삭제
-                        </span>
-                      </div>
-                    </>
-                  )}
-                </div>
-              ))}
+                        <div className={styles['buttonArea']}>
+                          <span
+                            className={styles['button']}
+                            onClick={() =>
+                              handleEditComment(comment.id, comment.content)
+                            }
+                          >
+                            수정
+                          </span>
+                          <span
+                            className={styles['button']}
+                            onClick={() => handleCommentDelete(comment.id)}
+                          >
+                            삭제
+                          </span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
