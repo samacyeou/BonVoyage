@@ -1,30 +1,30 @@
 import styles from './landingHeader.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import bonVoyageLogo from '@/../../public/assets/icon/bonVoyageLogo.svg'
+import bonVoyageLogo from '@/../../public/assets/icon/bonVoyageLogo.svg';
 const LandingHeader = () => {
   return (
     <div className={styles.container}>
       <div className={styles.logoBox}>
         <div className={styles.logoContainer}>
-           <Image
+          {/* <Image
             src={bonVoyageLogo}
             className={styles.bonVoyageLogoMain}
             alt="bonVoyageLogo"
             width={340}
             height={100}
-          />
+          /> */}
         </div>
       </div>
       <div className={styles.textContainer}>
         <div className={styles.textWrapper}>
-          <p className={styles.headerTitle}>새로운 일정 관리</p>
+          <div className={styles.headerTitle}>새로운 일정 관리</div>
           <Image
             src={bonVoyageLogo}
             className={styles.bonVoyageLogoSub}
             alt="bonVoyageLogo"
             width={300}
-            height={100}
+            height={80}
           />
         </div>
         <p className={styles.headerTitleSub}>

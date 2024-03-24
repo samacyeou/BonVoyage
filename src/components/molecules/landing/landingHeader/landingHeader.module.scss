@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'NPSfontBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2')
+    format('woff2');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'ChosunGu';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .container {
   width: 100%;
   margin: 60px 0 0 0;
@@ -31,7 +46,8 @@
     text-align: center;
 
     .headerTitle {
-      margin: 26px 0 0 0;
+      font-family: 'NPSfontBold'; // 국민연금체
+      margin-top: 25px;
       font-weight: 600;
       font-size: 3rem;
     }
@@ -43,15 +59,23 @@
     .startBtn {
       width: 250px;
       height: 40px;
-      border: 1px solid #fac171;
+      border: none;
       border-radius: 8px;
-      background: var(--white, #ffffff);
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-    .startBtn:hover {
-      background: var(--orange20, #fac171);
       color: var(--white, #ffffff);
+      background: var(--orange20, #fac171);
+      letter-spacing: -0.1rem;
+      font-size: 1.4rem;
+      cursor: pointer;
+      &:hover {
+        background: var(--orange30);
+      }
+
+      @media (min-width: 769px) {
+        margin: 10px 0;
+        font-size: 1.8rem;
+        width: 300px;
+        height: 40px;
+      }
     }
   }
 
@@ -62,6 +86,7 @@
     }
 
     .textContainer {
+      margin-top: 60px;
       padding-top: 60px;
 
       .textWrapper {
@@ -72,7 +97,9 @@
         .headerTitle {
           margin: 0;
           font-size: 5.4rem;
+          color: var(--black20);
         }
+
         .bonVoyageLogo {
           width: 300px;
           height: 250px;
@@ -90,8 +117,9 @@
       width: 1100px;
       height: 430px;
     }
+
     .textContainer {
-      padding: 150px 0 100px 0;
+      padding: 80px 0 100px 0;
       gap: 40px;
 
       .textWrapper {
@@ -101,12 +129,8 @@
 
         .headerTitle {
           margin: 0;
-          font-size: 7.6rem;
+          font-size: 6.5rem;
         }
-      }
-
-      .headerTitleSub {
-        font-size: 2rem;
       }
 
       .startBtn {
@@ -115,5 +139,57 @@
         font-size: 2rem;
       }
     }
+  }
+}
+
+.headerTitleSub {
+  font-size: 1.3rem;
+  letter-spacing: -0.1rem;
+  min-width: 11px;
+  white-space: nowrap;
+  margin: 0;
+  position: absolute;
+  color: transparent;
+  font-family: 'ChosunGu';
+  top: 360px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    top: 550px;
+    font-size: 2.8rem;
+  }
+
+  @media (min-width: 1025px) {
+    top: 680px;
+    font-size: 2.8rem;
+  }
+}
+
+.headerTitleSub::before {
+  content: '당신의 여행을 완벽하게 만들어드려요';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--black20);
+  letter-spacing: -0.1rem;
+  font-family: 'ChosunGu';
+  font-weight: bold;
+  overflow: hidden;
+  border-right: 1px solid var(--black20);
+  animation: typing 7s steps(26) infinite;
+}
+
+@keyframes typing {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
   }
 }

@@ -12,25 +12,24 @@ const LandingMain = () => {
     <div className={styles.container}>
       <div className={styles.pointOne}>
         <div className={styles.pointOneText}>
-          <span>Point 1</span>
+          <span className={styles.pointTextColor}>Point 1</span>
           <p>
             일의 우선순위를 <br /> 관리하세요
           </p>
         </div>
         <div className={styles.pointOneImgWrapper}>
-            <Image
-              src={mainboard}
-              alt="bgLogin"
-              className={styles.pointOneImg}
-              layout="fill"
-              objectFit="cover"
-
-            />
+          <Image
+            src={mainboard}
+            alt="bgLogin"
+            className={styles.pointOneImg}
+            layout="fill"
+            objectFit="cover"
+          />
         </div>
       </div>
       <div className={styles.pointTwo}>
         <div className={styles.pointTwoText}>
-          <span>Point 2</span>
+          <span className={styles.pointTextColor}>Point 2</span>
           <p>
             해야 할 일을 <br /> 등록하세요
           </p>
@@ -59,8 +58,10 @@ const LandingMain = () => {
               />
             </div>
             <div className={styles.dashboardText}>
-              <p>대시보드 설정</p>
-              <span>대시보드 사진과 이름을 변경할 수 있어요</span>
+              <p className={styles.settingsTitle}>대시보드 설정</p>
+              <span className={styles.settingsContent}>
+                대시보드 사진과 이름을 변경할 수 있어요
+              </span>
             </div>
           </div>
           <div className={styles.invite}>
@@ -74,8 +75,10 @@ const LandingMain = () => {
               />
             </div>
             <div className={styles.inviteText}>
-              <p>초대</p>
-              <span>새로운 팀원을 초대할 수 있어요</span>
+              <p className={styles.settingsTitle}>초대</p>
+              <span className={styles.settingsContent}>
+                새로운 팀원을 초대할 수 있어요
+              </span>
             </div>
           </div>
           <div className={styles.member}>
@@ -83,8 +86,10 @@ const LandingMain = () => {
               <Image src={memberimg} alt="bgLogin" width={260} height={190} />
             </div>
             <div className={styles.memberText}>
-              <p>구성원</p>
-              <span>구성원을 초대하고 내보낼 수 있어요</span>
+              <p className={styles.settingsTitle}>구성원</p>
+              <span className={styles.settingsContent}>
+                구성원을 초대하고 내보낼 수 있어요
+              </span>
             </div>
           </div>
         </div>
