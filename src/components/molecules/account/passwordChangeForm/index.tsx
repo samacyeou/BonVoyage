@@ -14,7 +14,7 @@ const PasswordChangeForm = () => {
     reset,
     watch,
     formState: { errors },
-  } = useForm<passwordFromProps>({ mode: 'all' }); // 사용하지는 않지만 register 에러 막기용
+  } = useForm<passwordFromProps>({ mode: 'all' });
 
   const [modal, setModal] = useState({
     isModalOpen: false,

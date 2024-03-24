@@ -18,7 +18,7 @@ export async function getServerSideProps(ctx: any) {
   return { props: { session } };
 }
 
-const index = () => {
+const Index = () => {
   const router = useRouter();
 
   useEffect(() => {
@@ -43,4 +43,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

@@ -9,8 +9,9 @@ import styles from './profileDropdown.module.scss';
 
 const cn = classNames.bind(styles);
 
-const ProfileDown = ({ onBlur }: ProfileDownProps) => {
+const ProfileDown = () => {
   const { userInfo } = useAuth();
+
   const handleLogout = async () => {
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('user');
@@ -18,7 +19,7 @@ const ProfileDown = ({ onBlur }: ProfileDownProps) => {
   };
 
   return (
-    <div className={cn('nicknameMenu')} onBlur={onBlur}>
+    <div className={cn('nicknameMenu')}>
       {userInfo.profileImageUrl ? (
         <Image
           src={userInfo.profileImageUrl}
