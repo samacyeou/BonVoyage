@@ -3,7 +3,7 @@ import styles from './members.module.scss';
 import PagenationBtn from '@/components/atoms/buttons/pagenationBtn';
 import Button from '@/components/atoms/buttons/button';
 import { useEffect, useState } from 'react';
-import { deleteMember, getMember } from '@/api/members/memberApi';
+import { deleteMember, getMemberList } from '@/api/members/memberApi';
 
 type Member = {
   createdAt: string;
@@ -26,7 +26,7 @@ export default function Members({ dashboardId }: Props) {
   useEffect(() => {
     async function fetchMembers() {
       try {
-        const memberData = await getMember(dashboardId);
+        const memberData = await getMemberList(dashboardId);
         setMembers(memberData.members);
       } catch (error) {
         console.error('Error fetching members:', error);
@@ -65,7 +65,7 @@ export default function Members({ dashboardId }: Props) {
             <Button
               type="delete"
               name="삭제"
-              onClick={() => onClickDelete(member.userId)}
+              onClick={() => onClickDelete(member.id)}
             />
           </div>
         ))}
