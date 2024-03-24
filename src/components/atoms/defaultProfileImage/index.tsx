@@ -1,14 +1,11 @@
-import { useContext } from 'react';
-import { userContext } from '@/pages/_app';
+import useAuth from '@/hooks/useAuth';
 import styles from './DefaultProfileImage.module.scss';
 
 const DefaultProfileImage = () => {
-  const { userInfo } = useContext(userContext);
+  const { userInfo } = useAuth();
   const firstName = userInfo.nickname.slice(0, 1);
 
-  return (
-    <div className={styles.container}>{firstName}</div>
-  )
-}
+  return <div className={styles.container}>{firstName}</div>;
+};
 
-export default DefaultProfileImage
+export default DefaultProfileImage;

@@ -3,7 +3,6 @@ import {
   ChangeEventHandler,
   ForwardedRef,
   HTMLInputTypeAttribute,
-  InputHTMLAttributes,
   ReactNode,
 } from 'react';
 import { ChangeHandler } from 'react-hook-form';
@@ -162,16 +161,4 @@ export interface Column {
 
 export interface ProfileDownProps {
   onBlur: React.FocusEventHandler<HTMLDivElement>;
-}
-
-export interface UserContextProps {
-  userInfo: {
-    id: number;
-    email: string;
-    nickname: string;
-    profileImageUrl?: string;
-    createdAt: string;
-    updatedAt: string;
-  };
-  setUserInfo: (userInfo: any) => void;
 }

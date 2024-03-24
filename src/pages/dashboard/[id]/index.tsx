@@ -13,7 +13,6 @@ import { useEffect, useState } from 'react';
 export default function DashboardPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dashboard, setDashboard] = useState<Dashboard>();
-  const [user, setUser] = useState<User | null>(null);
   const [columns, setColumns] = useState<Column[]>([]);
   const router = useRouter();
   const { id } = router.query as { id: string };

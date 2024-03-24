@@ -1,26 +1,24 @@
-import React from 'react';
+import { ProfileDownProps } from '@/@types/type';
+import DefaultProfileImage from '@/components/atoms/defaultProfileImage';
+import useAuth from '@/hooks/useAuth';
 import classNames from 'classnames/bind';
+import { signOut } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './profileDropdown.module.scss';
-import { useRouter } from 'next/router';
-import { useContext } from 'react';
-import { userContext } from '@/pages/_app';
-import Image from 'next/image';
-import DefaultProfileImage from '@/components/atoms/defaultProfileImage';
 
 const cn = classNames.bind(styles);
 
-const ProfileDown = () => {
-  const { userInfo } = useContext(userContext);
-  const router = useRouter();
-  const handleLogout = () => {
+const ProfileDown = ({ onBlur }: ProfileDownProps) => {
+  const { userInfo } = useAuth();
+  const handleLogout = async () => {
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('user');
-    router.push('/');
+    await signOut({ callbackUrl: '/' });
   };
 
   return (
-    <div className={cn('nicknameMenu')}>
+    <div className={cn('nicknameMenu')} onBlur={onBlur}>
       {userInfo.profileImageUrl ? (
         <Image
           src={userInfo.profileImageUrl}
@@ -30,7 +28,7 @@ const ProfileDown = () => {
           className={cn('profileImage')}
         />
       ) : (
-        <DefaultProfileImage/>
+        <DefaultProfileImage />
       )}
       <span>{userInfo.nickname}</span>
       <span>{userInfo.email}</span>
