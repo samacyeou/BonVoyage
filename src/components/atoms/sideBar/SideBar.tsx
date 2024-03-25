@@ -25,7 +25,7 @@ interface prop {
 export default function SideBar({ path }: prop) {
   const [dashboardList, setDashboardList] = useState<Dashboard[]>([]);
   const [dashboardListPage, setDashboardListPage] = useState(1);
-  const [pageSize, setPageSize] = useState(8);
+  const [pageSize, setPageSize] = useState(1);
   const [dashboardListTotalPage, setDashboardListTotalPage] = useState(0);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const sideBar = useRef<HTMLDivElement>(null);

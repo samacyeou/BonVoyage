@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from './chipTag.module.scss';
+import styles from './ChipTag.module.scss';
 import classNames from 'classnames/bind';
 
 const cn = classNames.bind(styles);
@@ -16,8 +16,8 @@ export default function ChipTag({ tag, color, onClick }: Props) {
       <span>{tag}</span>
       <Image
         className={styles.closeIcon}
-        src='/assets/icon/closeIcon.svg'
-        alt='close Icon'
+        src="/assets/icon/closeIcon.svg"
+        alt="close Icon"
         width={12}
         height={12}
       />

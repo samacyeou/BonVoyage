@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
 import { MouseEvent, ReactNode } from 'react';
-import styles from './BaseModal.module.scss';
+import styles from './baseModal.module.scss';
 import classNames from 'classnames/bind';
 
 const cn = classNames.bind(styles);
