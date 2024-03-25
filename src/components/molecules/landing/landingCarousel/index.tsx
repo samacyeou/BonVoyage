@@ -1,5 +1,5 @@
 import { TouchEventHandler, useEffect, useRef, useState } from 'react';
-import styles from './LandingCarousel.module.scss';
+import styles from './landingCarousel.module.scss';
 import Image from 'next/image';
 import ForwardArrowIcon from '@/../../public/assets/icon/forwardArrowIcon.svg';
 import LeftArrowIcon from '@/../../public/assets/icon/leftArrowIcon.svg';

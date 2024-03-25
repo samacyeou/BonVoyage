@@ -1,5 +1,5 @@
 import useAuth from '@/hooks/useAuth';
-import styles from './DefaultProfileImage.module.scss';
+import styles from './defaultProfileImage.module.scss';
 
 const DefaultProfileImage = () => {
   const { userInfo } = useAuth();

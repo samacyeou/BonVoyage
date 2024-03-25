@@ -2,7 +2,7 @@ import styles from './landingMain.module.scss';
 import Image from 'next/image';
 import dashboarimg from '@/../../public/assets/image/dashboardimg.png';
 import inviteimg from '@/../../public/assets/image/inviteimg.png';
-import memberimg from '@/../../public/assets/image/memberimg.png';
+import memberimg from '@/../../public/assets/image/memberImg.png';
 import listimg from '@/../../public/assets/image/listimg.png';
 import maindashboard from '@/../../public/assets/image/maindashboard.png';
 
